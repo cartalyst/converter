@@ -1,3 +1,3 @@
-## Introduction
+# Introduction
 
 - [Introduction]({url}/introduction)

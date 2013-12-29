@@ -1,4 +1,4 @@
-## Install & Configure
+# Install & Configure
 
 You can use Cartalyst's Measures package both with Laravel 4 and outside by installing the package through Composer.
 

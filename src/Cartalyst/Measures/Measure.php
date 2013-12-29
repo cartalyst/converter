@@ -18,6 +18,8 @@
  * @link       http://cartalyst.com
  */
 
+use Exception;
+
 class Measure {
 
 	/**
@@ -42,14 +44,14 @@ class Measure {
 	protected $value = null;
 
 	/**
-	 * The available formats to format the measurement.
+	 * The available measures to convert and format the measurement.
 	 *
 	 * @var array
 	 */
-	protected $formats = array();
+	protected $measures = array();
 
-/**
-	 * Set the format we want to convert from.
+	/**
+	 * Set the measure we want to convert from.
 	 *
 	 * @param  string  $value
 	 * @return \Cartalyst\Measures\Measure
@@ -62,7 +64,7 @@ class Measure {
 	}
 
 	/**
-	 * Return the format we want to convert the measure from.
+	 * Return the measure we want to convert from.
 	 *
 	 * @return string
 	 */
@@ -72,7 +74,7 @@ class Measure {
 	}
 
 	/**
-	 * Set the format we want to convert the measure to.
+	 * Set the measure we want to convert to.
 	 *
 	 * @param  string  $value
 	 * @return \Cartalyst\Measures\Measure
@@ -85,7 +87,7 @@ class Measure {
 	}
 
 	/**
-	 * Return the format we want to convert the measure to.
+	 * Return the measure we want to convert to.
 	 *
 	 * @return string
 	 */
@@ -95,7 +97,7 @@ class Measure {
 	}
 
 	/**
-	 * Set the value to be converted to.
+	 * Set the value we want to convert.
 	 *
 	 * @param  float  $value
 	 * @return \Cartalyst\Measures\Measure
@@ -130,36 +132,38 @@ class Measure {
 			$this->setValue($value);
 		}
 
-		$this->value = $this->exchange->convert($this->getValue(), $this->getFrom(), $this->getTo());
+		$rateTo = $this->getMeasure($this->getTo() . '.unit') * (1 / $this->getMeasure($this->getFrom() . '.unit'));
+
+		$this->value = $this->getValue() * $rateTo;
 
 		return $this;
 	}
 
 	/**
-	 * Format the value into the desired measure.
+	 * Format the value into the desired measurement.
 	 *
-	 * @param  string  $format
+	 * @param  string  $measure
 	 * @return string
 	 */
-	public function format($format = null)
+	public function format($measure = null)
 	{
 		// Get the value
 		$value = $this->getValue();
 
-		// Get the format we want to format the value to
-		$format = $format ?: $this->getFormat($this->to);
+		// Get the measurement format
+		$measure = $measure ?: $this->getMeasure($this->to . '.format');
 
 		// Value Regex
 		$valRegex = '/([0-9].*|)[0-9]/';
 
 		// Match decimal and thousand separators
-		preg_match_all('/[,.!]/', $format, $separators);
+		preg_match_all('/[,.!]/', $measure, $separators);
 
 		$thousand = isset( $separators[0][0] ) ? $separators[0][0] !== '!' ? $separators[0][0] : '' : '';
 		$decimal = isset( $separators[0][1] ) ? $separators[0][1] :'';
 
 		// Match format for decimals count
-		preg_match($valRegex, $format, $valFormat);
+		preg_match($valRegex, $measure, $valFormat);
 
 		$valFormat = isset($valFormat[0]) ? $valFormat[0] : 0;
 
@@ -170,57 +174,55 @@ class Measure {
 		$value = number_format($value, $decimals, $decimal, $thousand);
 
 		// Return the formatted measure
-		return preg_replace($valRegex, $value, $format);
-	}
-
-/**
-	 * Return the list of available measurements formats.
-	 *
-	 * @return array
-	 */
-	public function getFormats()
-	{
-		return $this->formats;
+		return preg_replace($valRegex, $value, $measure);
 	}
 
 	/**
-	 * Set measurements formats.
+	 * Return the list of available measurements.
 	 *
-	 * By default it will merge the new formats with the current
-	 * formats, you can change this behavior by setting false
+	 * @return array
+	 */
+	public function getMeasures()
+	{
+		return $this->measures;
+	}
+
+	/**
+	 * Set measurements.
+	 *
+	 * By default it will merge the new measures with the current
+	 * measures, you can change this behavior by setting false
 	 * as the second parameter.
 	 *
-	 * @param  array  $formats
+	 * @param  array  $measures
 	 * @param  bool   $merge
 	 * @return array
 	 */
-	public function setFormats($formats = array(), $merge = true)
+	public function setMeasures($measures = array(), $merge = true)
 	{
-		$formats = (array) $formats;
+		$measures = (array) $measures;
 
-		$currentFormats = $merge ? $this->getFormats() : array();
+		$currentMeasures = $merge ? $this->getMeasures() : array();
 
-		return $this->formats = array_merge($currentFormats, $formats);
+		return $this->measures = array_merge($currentMeasures, $measures);
 	}
 
 	/**
-	 * Return information about the provided format.
+	 * Return information about the provided measure.
 	 *
-	 * @param  string  $format
+	 * @param  string  $measure
 	 * @return array
 	 */
-	public function getFormat($format)
+	public function getMeasure($measure)
 	{
-		$formats = $this->getFormats();
+		$measures = $this->getMeasures();
 
-		$format = strtolower($format);
-
-		if ( ! array_key_exists($format, $formats))
+		if (!$measurement = array_get($measures, $measure))
 		{
-			throw new Exception("Format [{$format}] was not found.");
+			throw new Exception("Measure [{$measure}] was not found.");
 		}
 
-		return $formats[$format];
+		return $measurement;
 	}
 
 }

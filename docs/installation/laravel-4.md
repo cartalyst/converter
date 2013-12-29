@@ -1,13 +1,11 @@
-## Install & Configure in Laravel 4
+# Install & Configure in Laravel 4
 
 > **Note:** To use Cartalyst's Measures package you need to have a valid Cartalyst.com subscription.
 Click [here](https://www.cartalyst.com/pricing) to obtain your subscription.
 
-### 1. Composer {#composer}
+## Composer {#composer}
 
-----
-
-Open your `composer.json` file and add the following lines:
+Open your `composer.json` file and add the following lines
 
 	{
 		"repositories": [
@@ -19,17 +17,29 @@ Open your `composer.json` file and add the following lines:
 		"require": {
 			"cartalyst/measures": "1.0.*",
 		},
+		"minimum-stability": "dev"
 	}
+
+> **Note:** The minimum-stability key must be set to dev so that you can use the package (which isn't marked as stable, yet).
 
 Run composer update from the command line
 
 	composer update
 
+## Service Provider {#service-provider}
 
-### 2. Migrations {#migrations}
+Add the following to the list of service providers in `app/config/app.php`.
 
-----
+	'Cartalyst\Measures\Laravel\MeasuresServiceProvider',
 
-In order to run the migration successfully, you need to have a default database connection setup on your Laravel 4 application, once you have that setup, you can run the following command:
+## Alias {#alias}
 
-	php artisan migrate --package=cartalyst/measures
+	'Measure' => 'Cartalyst\Measures\Laravel\Facades\Measure',
+
+## Configuration {#configuration}
+
+After installing, you can publish the package's configuration file into your application, by running the following command:
+
+	php artisan config:publish cartalyst/measures
+
+This will publish the config file to `app/config/packages/cartalyst/measures/config.php` where you can modify the package configuration.

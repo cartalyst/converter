@@ -1,11 +1,9 @@
-## Installing with Composer
+# Installing with Composer
 
 > **Note:** To use Cartalyst's Measures package you need to have a valid Cartalyst.com subscription.
 Click [here](https://www.cartalyst.com/pricing) to obtain your subscription.
 
-### 1. Composer {#composer}
-
-----
+## 1. Composer {#composer}
 
 Open your `composer.json` file and add the following lines
 
@@ -19,7 +17,10 @@ Open your `composer.json` file and add the following lines
 		"require": {
 			"cartalyst/measures": "1.0.*",
 		},
+		"minimum-stability": "dev"
 	}
+
+> **Note:** The minimum-stability key must be set to dev so that you can use the package (which isn't marked as stable, yet).
 
 Run composer update from the command line
 

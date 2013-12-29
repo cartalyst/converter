@@ -1,3 +1,15 @@
 ## Usage
 
-- [Usage]({url}/usage/index)
+- [Laravel 4]({url}/usage/laravel-4)
+	- [Setting Measurements](#settings-measurements)
+	- [Converting from a unit to another](#convert-units)
+	- [Retrieve value](#retrieve-value)
+	- [Get all available measurements](#all-measurements)
+	- [Custom Formatting](#custom-formatting)
+- [Everywhere Else]({url}/usage/everywhere-else)
+	- [Create a Measure Instance](#create-instance)
+	- [Setting Measurements](#settings-measurements)
+	- [Converting from a unit to another](#convert-units)
+	- [Retrieve value](#retrieve-value)
+	- [Get all available measurements](#all-measurements)
+	- [Custom Formatting](#custom-formatting)

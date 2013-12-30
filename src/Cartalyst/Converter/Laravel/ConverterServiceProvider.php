@@ -1,6 +1,6 @@
-<?php namespace Cartalyst\Measures\Laravel;
+<?php namespace Cartalyst\Converter\Laravel;
 /**
- * Part of the Measures package.
+ * Part of the Converter package.
  *
  * NOTICE OF LICENSE
  *
@@ -10,7 +10,7 @@
  * bundled with this package in the LICENSE file.  It is also available at
  * the following URL: http://www.opensource.org/licenses/BSD-3-Clause
  *
- * @package    Measures
+ * @package    Converter
  * @version    1.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
@@ -18,10 +18,10 @@
  * @link       http://cartalyst.com
  */
 
-use Cartalyst\Measures\Measure;
+use Cartalyst\Converter\Converter;
 use Illuminate\Support\ServiceProvider;
 
-class MeasuresServiceProvider extends ServiceProvider {
+class ConverterServiceProvider extends ServiceProvider {
 
 	/**
 	 * Boot the service provider.
@@ -30,7 +30,7 @@ class MeasuresServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('cartalyst/measures', 'cartalyst/measures');
+		$this->package('cartalyst/converter', 'cartalyst/converter');
 	}
 
 	/**
@@ -40,16 +40,16 @@ class MeasuresServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['config']->package('cartalyst/measures', __DIR__.'/../../config');
+		$this->app['config']->package('cartalyst/converter', __DIR__.'/../../config');
 
-		$this->app['measure'] = $this->app->share(function($app)
+		$this->app['converter'] = $this->app->share(function($app)
 		{
-			$formats = $app['config']->get('measures::measures');
+			$formats = $app['config']->get('converter::measurements');
 
-			$measure = new Measure;
-			$measure->setMeasures($formats);
+			$converter = new Converter;
+			$converter->setMeasurements($formats);
 
-			return $measure;
+			return $converter;
 		});
 	}
 

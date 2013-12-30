@@ -1,6 +1,6 @@
-<?php namespace Cartalyst\Measures\Laravel\Facades;
+<?php namespace Cartalyst\Converter\Laravel\Facades;
 /**
- * Part of the Measures package.
+ * Part of the Converter package.
  *
  * NOTICE OF LICENSE
  *
@@ -10,7 +10,7 @@
  * bundled with this package in the LICENSE file.  It is also available at
  * the following URL: http://www.opensource.org/licenses/BSD-3-Clause
  *
- * @package    Measures
+ * @package    Converter
  * @version    1.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
@@ -20,7 +20,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Measure extends Facade {
+class Converter extends Facade {
 
 	/**
 	 * Get the registered name of the component.
@@ -29,7 +29,7 @@ class Measure extends Facade {
 	 */
 	protected static function getFacadeAccessor()
 	{
-		return 'measure';
+		return 'converter';
 	}
 
 }

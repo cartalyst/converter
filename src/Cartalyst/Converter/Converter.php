@@ -1,6 +1,6 @@
-<?php namespace Cartalyst\Measures;
+<?php namespace Cartalyst\Converter;
 /**
- * Part of the Measures package.
+ * Part of the Converter package.
  *
  * NOTICE OF LICENSE
  *
@@ -10,7 +10,7 @@
  * bundled with this package in the LICENSE file.  It is also available at
  * the following URL: http://www.opensource.org/licenses/BSD-3-Clause
  *
- * @package    Measures
+ * @package    Converter
  * @version    1.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
@@ -20,7 +20,7 @@
 
 use Exception;
 
-class Measure {
+class Converter {
 
 	/**
 	 * Measurement we are converting from.
@@ -44,17 +44,17 @@ class Measure {
 	protected $value = null;
 
 	/**
-	 * The available measures to convert and format the measurement.
+	 * The available measurements to convert and format the measurement.
 	 *
 	 * @var array
 	 */
-	protected $measures = array();
+	protected $measurements = array();
 
 	/**
-	 * Set the measure we want to convert from.
+	 * Set the measurement we want to convert from.
 	 *
 	 * @param  string  $value
-	 * @return \Cartalyst\Measures\Measure
+	 * @return \Cartalyst\Converter\Converter
 	 */
 	public function from($value)
 	{
@@ -64,7 +64,7 @@ class Measure {
 	}
 
 	/**
-	 * Return the measure we want to convert from.
+	 * Return the measurement we want to convert from.
 	 *
 	 * @return string
 	 */
@@ -74,10 +74,10 @@ class Measure {
 	}
 
 	/**
-	 * Set the measure we want to convert to.
+	 * Set the measurement we want to convert to.
 	 *
 	 * @param  string  $value
-	 * @return \Cartalyst\Measures\Measure
+	 * @return \Cartalyst\Converter\Converter
 	 */
 	public function to($value)
 	{
@@ -87,7 +87,7 @@ class Measure {
 	}
 
 	/**
-	 * Return the measure we want to convert to.
+	 * Return the measurement we want to convert to.
 	 *
 	 * @return string
 	 */
@@ -100,7 +100,7 @@ class Measure {
 	 * Set the value we want to convert.
 	 *
 	 * @param  float  $value
-	 * @return \Cartalyst\Measures\Measure
+	 * @return \Cartalyst\Converter\Converter
 	 */
 	public function value($value)
 	{
@@ -123,16 +123,16 @@ class Measure {
 	 * Convert the specified value.
 	 *
 	 * @param  float  $value
-	 * @return \Cartalyst\Measures\Measure
+	 * @return \Cartalyst\Converter\Converter
 	 */
 	public function convert($value = null)
 	{
 		if ($value)
 		{
-			$this->setValue($value);
+			$this->value($value);
 		}
 
-		$rateTo = $this->getMeasure($this->getTo() . '.unit') * (1 / $this->getMeasure($this->getFrom() . '.unit'));
+		$rateTo = $this->getMeasurement($this->getTo() . '.unit') * (1 / $this->getMeasurement($this->getFrom() . '.unit'));
 
 		$this->value = $this->getValue() * $rateTo;
 
@@ -142,28 +142,28 @@ class Measure {
 	/**
 	 * Format the value into the desired measurement.
 	 *
-	 * @param  string  $measure
+	 * @param  string  $measurement
 	 * @return string
 	 */
-	public function format($measure = null)
+	public function format($measurement = null)
 	{
 		// Get the value
 		$value = $this->getValue();
 
 		// Get the measurement format
-		$measure = $measure ?: $this->getMeasure($this->to . '.format');
+		$measurement = $measurement ?: $this->getMeasurement($this->to . '.format');
 
 		// Value Regex
 		$valRegex = '/([0-9].*|)[0-9]/';
 
 		// Match decimal and thousand separators
-		preg_match_all('/[,.!]/', $measure, $separators);
+		preg_match_all('/[,.!]/', $measurement, $separators);
 
 		$thousand = isset( $separators[0][0] ) ? $separators[0][0] !== '!' ? $separators[0][0] : '' : '';
 		$decimal = isset( $separators[0][1] ) ? $separators[0][1] :'';
 
 		// Match format for decimals count
-		preg_match($valRegex, $measure, $valFormat);
+		preg_match($valRegex, $measurement, $valFormat);
 
 		$valFormat = isset($valFormat[0]) ? $valFormat[0] : 0;
 
@@ -174,7 +174,7 @@ class Measure {
 		$value = number_format($value, $decimals, $decimal, $thousand);
 
 		// Return the formatted measure
-		return preg_replace($valRegex, $value, $measure);
+		return preg_replace($valRegex, $value, $measurement);
 	}
 
 	/**
@@ -182,47 +182,47 @@ class Measure {
 	 *
 	 * @return array
 	 */
-	public function getMeasures()
+	public function getMeasurements()
 	{
-		return $this->measures;
+		return $this->measurements;
 	}
 
 	/**
 	 * Set measurements.
 	 *
-	 * By default it will merge the new measures with the current
-	 * measures, you can change this behavior by setting false
+	 * By default it will merge the new measurements with the current
+	 * measurements, you can change this behavior by setting false
 	 * as the second parameter.
 	 *
-	 * @param  array  $measures
+	 * @param  array  $measurements
 	 * @param  bool   $merge
 	 * @return array
 	 */
-	public function setMeasures($measures = array(), $merge = true)
+	public function setMeasurements($measurements = array(), $merge = true)
 	{
-		$measures = (array) $measures;
+		$measurements = (array) $measurements;
 
-		$currentMeasures = $merge ? $this->getMeasures() : array();
+		$currentMeasurements = $merge ? $this->getMeasurements() : array();
 
-		return $this->measures = array_merge($currentMeasures, $measures);
+		return $this->measurements = array_merge($currentMeasurements, $measurements);
 	}
 
 	/**
 	 * Return information about the provided measure.
 	 *
-	 * @param  string  $measure
+	 * @param  string  $measurement
 	 * @return array
 	 */
-	public function getMeasure($measure)
+	public function getMeasurement($measurement)
 	{
-		$measures = $this->getMeasures();
+		$measurements = $this->getMeasurements();
 
-		if (!$measurement = array_get($measures, $measure))
+		if (!$measure = array_get($measurements, $measurement))
 		{
-			throw new Exception("Measure [{$measure}] was not found.");
+			throw new Exception("Measurement [{$measurement}] was not found.");
 		}
 
-		return $measurement;
+		return $measure;
 	}
 
 }

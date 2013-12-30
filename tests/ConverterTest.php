@@ -1,6 +1,6 @@
-<?php namespace Cartalyst\Measures\Tests;
+<?php namespace Cartalyst\Converter\Tests;
 /**
- * Part of the Measures package.
+ * Part of the Converter package.
  *
  * NOTICE OF LICENSE
  *
@@ -10,7 +10,7 @@
  * bundled with this package in the LICENSE file.  It is also available at
  * the following URL: http://www.opensource.org/licenses/BSD-3-Clause
  *
- * @package    Measures
+ * @package    Converter
  * @version    1.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
@@ -18,17 +18,17 @@
  * @link       http://cartalyst.com
  */
 
-use Cartalyst\Measures\Measure;
+use Cartalyst\Converter\Converter;
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
 
-class MeasuresTest extends PHPUnit_Framework_TestCase {
+class ConverterTest extends PHPUnit_Framework_TestCase {
 
 	/**
-	 * Holds the measure instance.
-	 * @var \Cartalyst\Measures\Measure
+	 * Holds the converter instance.
+	 * @var \Cartalyst\Converter\Converter
 	 */
-	protected $measure;
+	protected $converter;
 
 	/**
 	 * Close mockery.
@@ -45,9 +45,9 @@ class MeasuresTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function setUp()
 	{
-		$this->measure = new Measure;
+		$this->converter = new Converter;
 
-		$this->measure->setMeasures(array(
+		$this->converter->setMeasurements(array(
 
 			'weights' => array(
 				'kg' => array(
@@ -104,18 +104,18 @@ class MeasuresTest extends PHPUnit_Framework_TestCase {
 
 	public function testMeasureCanBeInstantiated()
 	{
-		$this->measure = new Measure;
+		$this->converter = new Converter;
 	}
 
 	public function testConvertWeights()
 	{
 		// Grams to pounds
-		$gLb = $this->measure->value(200000)->from('weights.g')->to('weights.lb')->convert();
+		$gLb = $this->converter->value(200000)->from('weights.g')->to('weights.lb')->convert();
 		$this->assertEquals($gLb->format(), '441 lb');
 		$this->assertEquals($gLb->getValue(), 440.924);
 
 		// Pounds to kilograms
-		$lbKg = $this->measure->value(4440.924)->from('weights.lb')->to('weights.kg')->convert();
+		$lbKg = $this->converter->value(4440.924)->from('weights.lb')->to('weights.kg')->convert();
 		$this->assertEquals($lbKg->format(), '2.014,37 KG');
 		$this->assertEquals(round($lbKg->getValue(), 2), 2014.37);
 	}
@@ -123,22 +123,22 @@ class MeasuresTest extends PHPUnit_Framework_TestCase {
 	public function testConvertLenghts()
 	{
 		// Millimeters to kilometers
-		$mmKm = $this->measure->value(2000000)->from('lengths.mm')->to('lengths.km')->convert();
+		$mmKm = $this->converter->value(2000000)->from('lengths.mm')->to('lengths.km')->convert();
 		$this->assertEquals($mmKm->format(), '2.000 KM');
 		$this->assertEquals(round($mmKm->getValue(), 3), 2.000);
 
 		// Miles to kilometers
-		$mileKm = $this->measure->value(200)->from('lengths.mile')->to('lengths.km')->convert();
+		$mileKm = $this->converter->value(200)->from('lengths.mile')->to('lengths.km')->convert();
 		$this->assertEquals($mileKm->format(), '321.869 KM');
 		$this->assertEquals(round($mileKm->getValue(), 3), 321.869);
 
 		// Kilometers to miles
-		$kmMile = $this->measure->value(200)->from('lengths.km')->to('lengths.mile')->convert();
+		$kmMile = $this->converter->value(200)->from('lengths.km')->to('lengths.mile')->convert();
 		$this->assertEquals($kmMile->format(), '124.274 Miles');
 		$this->assertEquals(round($kmMile->getValue(), 3), 124.274);
 
 		// Foot to centimeters
-		$ftCm = $this->measure->value(200)->from('lengths.ft')->to('lengths.cm')->convert();
+		$ftCm = $this->converter->value(200)->from('lengths.ft')->to('lengths.cm')->convert();
 		$this->assertEquals($ftCm->format(), '6096 centimeters');
 		$this->assertEquals(round($ftCm->getValue(), 3), 6096);
 	}
@@ -146,7 +146,7 @@ class MeasuresTest extends PHPUnit_Framework_TestCase {
 	public function testConvertAreas()
 	{
 		// SQM to Acres
-		$sqmAcres = $this->measure->value(43200)->from('area.sqm')->to('area.acre')->convert();
+		$sqmAcres = $this->converter->value(43200)->from('area.sqm')->to('area.acre')->convert();
 		$this->assertEquals($sqmAcres->format(), '10.675 Acres');
 		$this->assertEquals(round($sqmAcres->getValue(), 3), 10.675);
 	}

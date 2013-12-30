@@ -1,7 +1,7 @@
 {
-	"name" : "Measures",
+	"name" : "Converter",
 	"branch" : "master",
-	"github" : "cartalyst/measures",
+	"github" : "cartalyst/converter",
 	"travis" : false,
 	"demo" : null
 }

@@ -1,6 +1,6 @@
 # Install & Configure in Laravel 4
 
-> **Note:** To use Cartalyst's Measures package you need to have a valid Cartalyst.com subscription.
+> **Note:** To use Cartalyst's Converter package you need to have a valid Cartalyst.com subscription.
 Click [here](https://www.cartalyst.com/pricing) to obtain your subscription.
 
 ## Composer {#composer}
@@ -15,7 +15,7 @@ Open your `composer.json` file and add the following lines
 			}
 		],
 		"require": {
-			"cartalyst/measures": "1.0.*",
+			"cartalyst/converter": "1.0.*",
 		},
 		"minimum-stability": "dev"
 	}
@@ -30,16 +30,16 @@ Run composer update from the command line
 
 Add the following to the list of service providers in `app/config/app.php`.
 
-	'Cartalyst\Measures\Laravel\MeasuresServiceProvider',
+	'Cartalyst\Converter\Laravel\ConverterServiceProvider',
 
 ## Alias {#alias}
 
-	'Measure' => 'Cartalyst\Measures\Laravel\Facades\Measure',
+	'Converter' => 'Cartalyst\Converter\Laravel\Facades\Converter',
 
 ## Configuration {#configuration}
 
 After installing, you can publish the package's configuration file into your application, by running the following command:
 
-	php artisan config:publish cartalyst/measures
+	php artisan config:publish cartalyst/converter
 
-This will publish the config file to `app/config/packages/cartalyst/measures/config.php` where you can modify the package configuration.
+This will publish the config file to `app/config/packages/cartalyst/converter/config.php` where you can modify the package configuration.

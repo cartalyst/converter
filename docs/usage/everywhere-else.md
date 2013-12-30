@@ -2,13 +2,13 @@
 
 ## Create Instance {#create-instance}
 
-	use Cartalyst\Measures\Measure;
+	use Cartalyst\Converter\Converter;
 
-	$measure = new Measure;
+	$converter = new Converter;
 
 ## Setting Measurements {#settings-measurements}
 
-	$measure->setMeasures(array(
+	$converter->setMeasurements(array(
 		'weights' => array(
 			'kg' => array(
 				'format' => '1,0.00 KG',
@@ -27,24 +27,24 @@
 
 ## Converting from a unit to another {#convert-units}
 
-	$measure->value(200000)->from('weights.g')->to('weights.lb')->convert()->format();
+	$converter->value(200000)->from('weights.g')->to('weights.lb')->convert()->format();
 
 ## Retrieve value {#retrieve-value}
 
-	$measure->value(200000)->from('weights.g')->to('weights.lb')->convert()->getValue();
+	$converter->value(200000)->from('weights.g')->to('weights.lb')->convert()->getValue();
 
 ## Get all available measurements {#all-measurements}
 
-	$measure->getMeasures();
+	$converter->getMeasurements();
 
 ## Custom Formatting {#custom-formatting}
 
-	$measure->value(200000)->from('weights.g')->to('weights.lb')->convert()->format('1,0.00 Pounds');
+	$converter->value(200000)->from('weights.g')->to('weights.lb')->convert()->format('1,0.00 Pounds');
 
 ## Setting formats {#setting-formats}
 
-You can add your required measurements to `app/config/packages/cartalyst/measures/config.php`
+You can add your required measurements to `app/config/packages/cartalyst/converter/config.php`
 
 > **Note 1**: You can place any currency symbol or text at the beginning or end of the format, the first character ',' in the case above represents the thousands separator, second character represents the decimals separator, digits after the second separator represent the number of decimals you want to show.
 If you want to have only a decimal separator, you have to override the first separator using an `!` Ex. a value of 2000.5 with the format '0!0.00 KG' would output 2000.50 KG.
-**Note 2**: Passing a boolean of false as the second parameter will not merge the current measures with the provided measures.
+**Note 2**: Passing a boolean of false as the second parameter will not merge the current measurements with the provided measurements.

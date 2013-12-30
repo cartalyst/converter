@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of the Measures package.
+ * Part of the Converter package.
  *
  * NOTICE OF LICENSE
  *
@@ -10,7 +10,7 @@
  * bundled with this package in the LICENSE file.  It is also available at
  * the following URL: http://www.opensource.org/licenses/BSD-3-Clause
  *
- * @package    Measures
+ * @package    Converter
  * @version    1.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
@@ -25,18 +25,18 @@ return array(
 	| Measurements
 	|--------------------------------------------------------------------------
 	|
-	| The available measures to convert and format units.
+	| The available measurements to convert and format units.
 	|
 	*/
 
-	'measures' => array(
+	'measurements' => array(
 
 		/*
 		|--------------------------------------------------------------------------
 		| Weights
 		|--------------------------------------------------------------------------
 		|
-		| The available measures to convert and format weights.
+		| The available measurements to convert and format weights.
 		|
 		*/
 
@@ -56,7 +56,7 @@ return array(
 		| Lenghts
 		|--------------------------------------------------------------------------
 		|
-		| The available measures to convert and format lengths.
+		| The available measurements to convert and format lengths.
 		|
 		*/
 

@@ -1,5 +1,5 @@
 {
-	"name": "cartalyst/measures",
+	"name": "cartalyst/converter",
 	"description": "",
 	"keywords": [],
 	"license": "BSD-3-Clause",
@@ -39,7 +39,7 @@
 	},
 	"autoload": {
 		"psr-0": {
-			"Cartalyst\\Measures": "src/"
+			"Cartalyst\\Converter": "src/"
 		}
 	},
 	"minimum-stability": "dev"

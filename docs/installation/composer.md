@@ -1,6 +1,6 @@
 # Installing with Composer
 
-> **Note:** To use Cartalyst's Measures package you need to have a valid Cartalyst.com subscription.
+> **Note:** To use Cartalyst's Converter package you need to have a valid Cartalyst.com subscription.
 Click [here](https://www.cartalyst.com/pricing) to obtain your subscription.
 
 ## 1. Composer {#composer}
@@ -15,7 +15,7 @@ Open your `composer.json` file and add the following lines
 			}
 		],
 		"require": {
-			"cartalyst/measures": "1.0.*",
+			"cartalyst/converter": "1.0.*",
 		},
 		"minimum-stability": "dev"
 	}

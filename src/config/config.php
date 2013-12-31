@@ -41,14 +41,17 @@ return array(
 		*/
 
 		'weights' => array(
+
 			'kg' => array(
 				'format' => '1,0.00 KG',
-				'unit' => '1.00',
+				'unit'   => 1.00,
 			),
+
 			'g' => array(
 				'format' => '(1,0.00 grams)',
-				'unit' => 1000.00
+				'unit'   => 1000.00
 			),
+
 		),
 
 		/*
@@ -61,22 +64,27 @@ return array(
 		*/
 
 		'lengths' => array(
+
 			'km' => array(
 				'format' => '1,00.00 KM',
-				'unit' => '1.00',
+				'unit'   => 1.00,
 			),
+
 			'm' => array(
 				'format' => '1,00.00 M',
-				'unit' => 1000
+				'unit'   => 1000
 			),
+
 			'cm' => array(
 				'format' => '1,00.00 CM',
-				'unit' => 100000
+				'unit'   => 100000
 			),
+
 			'mm' => array(
 				'format' => '1,00.00 MM',
-				'unit' => 1000000
+				'unit'   => 1000000
 			),
+
 		),
 
 	),

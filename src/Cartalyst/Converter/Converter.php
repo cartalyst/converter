@@ -159,13 +159,17 @@ class Converter {
 		// Match decimal and thousand separators
 		preg_match_all('/[,.!]/', $measurement, $separators);
 
-		$thousand = isset( $separators[0][0] ) ? $separators[0][0] !== '!' ? $separators[0][0] : '' : '';
-		$decimal = isset( $separators[0][1] ) ? $separators[0][1] :'';
+		if ($thousand = array_get($separators, '0.0', null))
+		{
+			if ($thousand == '!') $thousand = '';
+		}
+
+		$decimal = array_get($separators, '0.1', null);
 
 		// Match format for decimals count
 		preg_match($valRegex, $measurement, $valFormat);
 
-		$valFormat = isset($valFormat[0]) ? $valFormat[0] : 0;
+		$valFormat = array_get($valFormat, 0, 0);
 
 		// Count decimals length
 		$decimals = $decimal ? strlen(substr(strrchr($valFormat, $decimal), 1)) : 0;
@@ -217,7 +221,7 @@ class Converter {
 	{
 		$measurements = $this->getMeasurements();
 
-		if (!$measure = array_get($measurements, $measurement))
+		if ( ! $measure = array_get($measurements, $measurement))
 		{
 			throw new Exception("Measurement [{$measurement}] was not found.");
 		}

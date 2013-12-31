@@ -33,14 +33,14 @@ return array(
 
 		/*
 		|--------------------------------------------------------------------------
-		| Weights
+		| Weight
 		|--------------------------------------------------------------------------
 		|
 		| The available measurements to convert and format weights.
 		|
 		*/
 
-		'weights' => array(
+		'weight' => array(
 
 			'kg' => array(
 				'format' => '1,0.00 KG',
@@ -48,41 +48,106 @@ return array(
 			),
 
 			'g' => array(
-				'format' => '(1,0.00 grams)',
-				'unit'   => 1000.00
+				'format' => '1,0.00 G',
+				'unit'   => 1000.00,
 			),
 
 		),
 
 		/*
 		|--------------------------------------------------------------------------
-		| Lenghts
+		| Length
 		|--------------------------------------------------------------------------
 		|
 		| The available measurements to convert and format lengths.
 		|
 		*/
 
-		'lengths' => array(
+		'length' => array(
 
 			'km' => array(
-				'format' => '1,00.00 KM',
+				'format' => '1,0.00 KM',
 				'unit'   => 1.00,
 			),
 
 			'm' => array(
-				'format' => '1,00.00 M',
-				'unit'   => 1000
+				'format' => '1,0.00 M',
+				'unit'   => 1000,
 			),
 
 			'cm' => array(
-				'format' => '1,00.00 CM',
-				'unit'   => 100000
+				'format' => '1,0.00 CM',
+				'unit'   => 100000,
 			),
 
 			'mm' => array(
-				'format' => '1,00.00 MM',
-				'unit'   => 1000000
+				'format' => '1,0.00 MM',
+				'unit'   => 1000000,
+			),
+
+		),
+
+		/*
+		|--------------------------------------------------------------------------
+		| Currency
+		|--------------------------------------------------------------------------
+		|
+		| The available measurements to convert and format currencies.
+		|
+		*/
+
+		'currency' => array(
+
+			'usd' => array(
+				'format' => '$1,0.00',
+			),
+
+			'eur' => array(
+				'format' => '&euro;1,0.00',
+			),
+
+			'gbp' => array(
+				'format' => '&pound;1,0.00',
+			),
+
+		),
+
+		/*
+		|--------------------------------------------------------------------------
+		| Currency Cache Expiration Duration
+		|--------------------------------------------------------------------------
+		|
+		| The duration currency rates are cached in minutes.
+		|
+		*/
+
+		'expires' => 60,
+
+		/*
+		|--------------------------------------------------------------------------
+		| Currency Service Exchangers
+		|--------------------------------------------------------------------------
+		|
+		| Here, you may specify any number of service exchangers configurations
+		| your application requires.
+		|
+		*/
+
+		'exchangers' => array(
+
+			/*
+			|--------------------------------------------------------------------------
+			| OpenExchangeRates.org
+			|--------------------------------------------------------------------------
+			|
+			| Define here the OpenExchangeRates.org app id.
+			|
+			*/
+
+			'openexchangerates' => array(
+
+				'app_id' => null,
+
 			),
 
 		),

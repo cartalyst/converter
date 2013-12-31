@@ -19,6 +19,7 @@
  */
 
 use Cartalyst\Converter\Converter;
+use Cartalyst\Converter\Exchange\OpenExchangeRatesExchange;
 use Illuminate\Support\ServiceProvider;
 
 class ConverterServiceProvider extends ServiceProvider {
@@ -46,7 +47,21 @@ class ConverterServiceProvider extends ServiceProvider {
 		{
 			$formats = $app['config']->get('converter::measurements');
 
-			$converter = new Converter;
+			if ($secret = $app['config']->get('converter::measurements.exchangers.openexchangerates.app_id'))
+			{
+				$expires = $app['config']->get('converter::measurements.expires');
+
+				$exchange = new OpenExchangeRatesExchange($app['cache']);
+				$exchange->setSecret($secret);
+				$exchange->setExpires($expires);
+
+				foreach ($formats['currency'] as $key => $value)
+				{
+					$formats['currency'][$key]['unit'] = $exchange->get($key);
+				}
+			}
+
+			$converter = $secret ? new Converter($exchange) : new Converter;
 			$converter->setMeasurements($formats);
 
 			return $converter;

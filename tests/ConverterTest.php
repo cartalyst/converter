@@ -79,7 +79,6 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 				'gbp' => array(
 					'format' => '&pound;1,0.00',
-					'unit'   => 0.603401,
 				),
 
 			),
@@ -160,6 +159,11 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$usdEur = $this->converter->value(56.73)->from('currency.usd')->to('currency.eur')->convert();
 		$this->assertEquals($usdEur->format(), '&euro;41.25');
 		$this->assertEquals(round($usdEur->getValue(), 3), 41.254);
+
+		// EUR to GBP
+		$eurGbp = $this->converter->value(43.22)->from('currency.eur')->to('currency.gbp')->convert();
+		$this->assertEquals($eurGbp->format(), '&pound;59.43');
+		$this->assertEquals(round($eurGbp->getValue(), 3), 59.433);
 	}
 
 	public function testConvertLenghts()

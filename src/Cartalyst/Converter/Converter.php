@@ -251,7 +251,7 @@ class Converter {
 			{
 				$currency = explode('.', $measurement);
 
-				return $this->exchanger->get($currency[0]);
+				return $this->exchanger->get($currency[1]);
 			}
 
 			throw new Exception("Measurement [{$measurement}] was not found.");

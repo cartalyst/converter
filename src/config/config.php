@@ -139,50 +139,62 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Currency Cache Expiration Duration
+	| Configurations
 	|--------------------------------------------------------------------------
 	|
-	| The duration currency rates are cached in minutes.
+	| Converter configurations.
 	|
 	*/
 
-	'expires' => 60,
-
-	/*
-	|--------------------------------------------------------------------------
-	| Currency Service Exchangers
-	|--------------------------------------------------------------------------
-	|
-	| Here, you may specify any number of service exchangers configurations
-	| your application requires.
-	|
-	*/
-
-	'exchangers' => array(
+	'config' => array(
 
 		/*
 		|--------------------------------------------------------------------------
-		| Default Exchanger
+		| Currency Cache Expiration Duration
 		|--------------------------------------------------------------------------
 		|
-		| Define here the default exchanger.
+		| The duration currency rates are cached in minutes.
 		|
 		*/
-
-		'default' => 'native',
+		'expires' => 60,
 
 		/*
 		|--------------------------------------------------------------------------
-		| OpenExchangeRates.org
+		| Currency Service Exchangers
 		|--------------------------------------------------------------------------
 		|
-		| Define here the OpenExchangeRates.org app id.
+		| Here, you may specify any number of service exchangers configurations
+		| your application requires.
 		|
 		*/
 
-		'openexchangerates' => array(
+		'exchangers' => array(
 
-			'app_id' => null,
+			/*
+			|--------------------------------------------------------------------------
+			| Default Exchanger
+			|--------------------------------------------------------------------------
+			|
+			| Define here the default exchanger.
+			|
+			*/
+
+			'default' => 'native',
+
+			/*
+			|--------------------------------------------------------------------------
+			| OpenExchangeRates.org
+			|--------------------------------------------------------------------------
+			|
+			| Define here the OpenExchangeRates.org app id.
+			|
+			*/
+
+			'openexchangerates' => array(
+
+				'app_id' => null,
+
+			),
 
 		),
 

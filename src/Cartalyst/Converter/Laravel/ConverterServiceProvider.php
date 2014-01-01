@@ -76,7 +76,7 @@ class ConverterServiceProvider extends ServiceProvider {
 		{
 			$config = $app['config']->get('converter::config');
 
-			return $app["converter.{$config['exchangers.default']}.exchanger"]
+			return $app["converter.{$config['exchangers.default']}.exchanger"];
 		});
 	}
 

@@ -53,11 +53,11 @@ class OpenExchangeRatesExchanger implements ExchangerInterface {
 	protected $url = 'http://openexchangerates.org/api/latest.json';
 
 	/**
-	 * Holds the secret keys to connect to the api.
+	 * Holds the application id.
 	 *
 	 * @var array
 	 */
-	protected $secrets = array();
+	protected $appId = null;
 
 	/**
 	 * Constructor.
@@ -77,30 +77,17 @@ class OpenExchangeRatesExchanger implements ExchangerInterface {
 	 */
 	public function getAppId()
 	{
-		$secrets = $this->getSecrets();
-
-		return $secrets['app_id'];
+		return $this->appId;
 	}
 
 	/**
-	 * Return the api secret keys.
+	 * Set the app id.
 	 *
-	 * @return array
-	 */
-	public function getSecrets()
-	{
-		return $this->secrets;
-	}
-
-	/**
-	 * Set the api secret keys.
-	 *
-	 * @param  array  $data
 	 * @return void
 	 */
-	public function setSecrets(array $data)
+	public function setAppId($appId)
 	{
-		$this->secrets = $data;
+		$this->appId = $appId;
 	}
 
 	/**
@@ -108,6 +95,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface {
 	 *
 	 * @param  string  $code
 	 * @return float
+	 * @throws \Exception
 	 */
 	public function get($code)
 	{
@@ -117,7 +105,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface {
 
 		if (empty($rates->{$code}))
 		{
-			throw new \Exception;
+			throw new Exception;
 		}
 
 		return $rates->{$code};
@@ -189,9 +177,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface {
 		// Cache the currencies
 		return $this->rates = $this->cache->remember('currencies', $this->getExpires(), function() use ($self)
 		{
-			$appId = $self->getAppId();
-
-			if (is_null($appId))
+			if ( ! $appId = $self->getAppId())
 			{
 				throw new Exception('OpenExchangeRates.org requires an app key.');
 			}

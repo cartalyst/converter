@@ -28,34 +28,4 @@ interface ExchangerInterface {
 	 */
 	public function get($code);
 
-	/**
-	 * Return the api url.
-	 *
-	 * @return string
-	 */
-	public function getUrl();
-
-	/**
-	 * Set the api url.
-	 *
-	 * @param  string  $url
-	 * @return void
-	 */
-	public function setUrl($url);
-
-	/**
-	 * Return the api secret keys.
-	 *
-	 * @return array
-	 */
-	public function getSecrets();
-
-	/**
-	 * Set the api secret keys.
-	 *
-	 * @param  array  $data
-	 * @return void
-	 */
-	public function setSecrets(array $data);
-
 }

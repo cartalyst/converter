@@ -66,7 +66,7 @@ class ConverterServiceProvider extends ServiceProvider {
 			$config = $app['config']->get('converter::config');
 
 			$exchanger = new OpenExchangeRatesExchanger($app['cache']);
-			$exchanger->setSecrets($config['exchangers.openexchangerates']);
+			$exchanger->setAppId($config['exchangers.openexchangerates.app_id']);
 			$exchanger->setExpires($config['expires']);
 
 			return $exchanger;

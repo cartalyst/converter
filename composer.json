@@ -1,7 +1,19 @@
 {
 	"name": "cartalyst/converter",
-	"description": "",
-	"keywords": [],
+	"description": "Convert and format units, sizes and currencies.",
+	"keywords": [
+		"php",
+		"laravel",
+		"currencies",
+		"currency",
+		"lenghts",
+		"lenght",
+		"weights",
+		"weight",
+		"unit",
+		"converter",
+		"convert"
+	],
 	"license": "BSD-3-Clause",
 	"authors": [
 		{
@@ -42,6 +54,12 @@
 	"autoload": {
 		"psr-0": {
 			"Cartalyst\\Converter": "src/"
+		}
+	},
+	"extra": {
+		"component": "package",
+		"branch-alias": {
+			"dev-master": "1.0-dev"
 		}
 	},
 	"minimum-stability": "dev"

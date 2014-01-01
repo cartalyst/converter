@@ -33,23 +33,48 @@ return array(
 
 		/*
 		|--------------------------------------------------------------------------
-		| Weight
+		| Area
 		|--------------------------------------------------------------------------
 		|
-		| The available measurements to convert and format weights.
+		| The available measurements to convert and format areas.
 		|
 		*/
 
-		'weight' => array(
+		'area' => array(
 
-			'kg' => array(
-				'format' => '1,0.00 KG',
-				'unit'   => 1.00,
+			'sqm' => array(
+				'format' => '1,00.00 SQM',
+				'unit'   => 1,
 			),
 
-			'g' => array(
-				'format' => '1,0.00 G',
-				'unit'   => 1000.00,
+			'acre' => array(
+				'format' => '1,00.000 Acres',
+				'unit'   => 0.000247105,
+			),
+		),
+
+
+		/*
+		|--------------------------------------------------------------------------
+		| Currency
+		|--------------------------------------------------------------------------
+		|
+		| The available measurements to convert and format currencies.
+		|
+		*/
+
+		'currency' => array(
+
+			'usd' => array(
+				'format' => '$1,0.00',
+			),
+
+			'eur' => array(
+				'format' => '&euro;1,0.00',
+			),
+
+			'gbp' => array(
+				'format' => '&pound;1,0.00',
 			),
 
 		),
@@ -89,66 +114,64 @@ return array(
 
 		/*
 		|--------------------------------------------------------------------------
-		| Currency
+		| Weight
 		|--------------------------------------------------------------------------
 		|
-		| The available measurements to convert and format currencies.
+		| The available measurements to convert and format weights.
 		|
 		*/
 
-		'currency' => array(
+		'weight' => array(
 
-			'usd' => array(
-				'format' => '$1,0.00',
+			'kg' => array(
+				'format' => '1,0.00 KG',
+				'unit'   => 1.00,
 			),
 
-			'eur' => array(
-				'format' => '&euro;1,0.00',
-			),
-
-			'gbp' => array(
-				'format' => '&pound;1,0.00',
+			'g' => array(
+				'format' => '1,0.00 G',
+				'unit'   => 1000.00,
 			),
 
 		),
 
+	),
+
+	/*
+	|--------------------------------------------------------------------------
+	| Currency Cache Expiration Duration
+	|--------------------------------------------------------------------------
+	|
+	| The duration currency rates are cached in minutes.
+	|
+	*/
+
+	'expires' => 60,
+
+	/*
+	|--------------------------------------------------------------------------
+	| Currency Service Exchangers
+	|--------------------------------------------------------------------------
+	|
+	| Here, you may specify any number of service exchangers configurations
+	| your application requires.
+	|
+	*/
+
+	'exchangers' => array(
+
 		/*
 		|--------------------------------------------------------------------------
-		| Currency Cache Expiration Duration
+		| OpenExchangeRates.org
 		|--------------------------------------------------------------------------
 		|
-		| The duration currency rates are cached in minutes.
+		| Define here the OpenExchangeRates.org app id.
 		|
 		*/
 
-		'expires' => 60,
+		'openexchangerates' => array(
 
-		/*
-		|--------------------------------------------------------------------------
-		| Currency Service Exchangers
-		|--------------------------------------------------------------------------
-		|
-		| Here, you may specify any number of service exchangers configurations
-		| your application requires.
-		|
-		*/
-
-		'exchangers' => array(
-
-			/*
-			|--------------------------------------------------------------------------
-			| OpenExchangeRates.org
-			|--------------------------------------------------------------------------
-			|
-			| Define here the OpenExchangeRates.org app id.
-			|
-			*/
-
-			'openexchangerates' => array(
-
-				'app_id' => null,
-
-			),
+			'app_id' => null,
 
 		),
 

@@ -18,9 +18,17 @@
  * @link       http://cartalyst.com
  */
 
+use Cartalyst\Converter\Exchangers\ExchangerInterface;
 use Exception;
 
 class Converter {
+
+	/**
+	 * Exchanger driver.
+	 *
+	 * @var \Cartalyst\Converter\Exchangers\ExchangerInterface
+	 */
+	protected $exchanger = null;
 
 	/**
 	 * Measurement we are converting from.
@@ -49,6 +57,17 @@ class Converter {
 	 * @var array
 	 */
 	protected $measurements = array();
+
+	/**
+	 * Constructor.
+	 *
+	 * @param  \Cartalyst\Converter\Exchangers\ExchangerInterface  $exchanger
+	 * @return void
+	 */
+	public function __construct(ExchangerInterface $exchanger)
+	{
+		$this->exchanger = $exchanger;
+	}
 
 	/**
 	 * Set the measurement we want to convert from.

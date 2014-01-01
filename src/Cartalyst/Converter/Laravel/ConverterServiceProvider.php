@@ -47,9 +47,9 @@ class ConverterServiceProvider extends ServiceProvider {
 		{
 			$formats = $app['config']->get('converter::measurements');
 
-			if ($secret = $app['config']->get('converter::measurements.exchangers.openexchangerates.app_id'))
+			if ($secret = $app['config']->get('converter::exchangers.openexchangerates.app_id'))
 			{
-				$expires = $app['config']->get('converter::measurements.expires');
+				$expires = $app['config']->get('converter::expires');
 
 				$exchange = new OpenExchangeRatesExchange($app['cache']);
 				$exchange->setSecret($secret);

@@ -44,18 +44,18 @@ interface ExchangeInterface {
 	public function setUrl($url);
 
 	/**
-	 * Return the api secret key.
+	 * Return the api secret keys.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public function getSecret();
+	public function getSecrets();
 
 	/**
-	 * Set the api secret key.
+	 * Set the api secret keys.
 	 *
-	 * @param  string  $secret
+	 * @param  array  $data
 	 * @return void
 	 */
-	public function setSecret($secret);
+	public function setSecrets(array $data);
 
 }

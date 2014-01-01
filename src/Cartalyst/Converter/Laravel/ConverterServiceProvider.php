@@ -47,12 +47,12 @@ class ConverterServiceProvider extends ServiceProvider {
 		{
 			$formats = $app['config']->get('converter::measurements');
 
-			if ($secret = $app['config']->get('converter::measurements.exchangers.openexchangerates.app_id'))
+			if ($secrets = $app['config']->get('converter::exchangers.openexchangerates') and ! empty($secrets['app_id']))
 			{
-				$expires = $app['config']->get('converter::measurements.expires');
+				$expires = $app['config']->get('converter::expires');
 
 				$exchange = new OpenExchangeRatesExchange($app['cache']);
-				$exchange->setSecret($secret);
+				$exchange->setSecrets($secrets);
 				$exchange->setExpires($expires);
 
 				foreach ($formats['currency'] as $key => $value)
@@ -61,7 +61,7 @@ class ConverterServiceProvider extends ServiceProvider {
 				}
 			}
 
-			$converter = $secret ? new Converter($exchange) : new Converter;
+			$converter = $secrets['app_id'] ? new Converter($exchange) : new Converter;
 			$converter->setMeasurements($formats);
 
 			return $converter;

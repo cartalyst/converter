@@ -53,11 +53,11 @@ class OpenExchangeRatesExchange implements ExchangeInterface {
 	protected $url = 'http://openexchangerates.org/api/latest.json';
 
 	/**
-	 * Holds the secret key to connect to the api.
+	 * Holds the secret keys to connect to the api.
 	 *
-	 * @var string
+	 * @var array
 	 */
-	protected $secret;
+	protected $secrets = array();
 
 	/**
 	 * Constructor.
@@ -77,30 +77,30 @@ class OpenExchangeRatesExchange implements ExchangeInterface {
 	 */
 	public function getAppId()
 	{
-		$secret = $this->getSecret();
+		$secrets = $this->getSecrets();
 
-		return $secret;
+		return $secrets['app_id'];
 	}
 
 	/**
-	 * Return the api secret key.
+	 * Return the api secret keys.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public function getSecret()
+	public function getSecrets()
 	{
-		return $this->secret;
+		return $this->secrets;
 	}
 
 	/**
-	 * Set the api secret key.
+	 * Set the api secret keys.
 	 *
-	 * @param  string  $secret
+	 * @param  array  $data
 	 * @return void
 	 */
-	public function setSecret($secret)
+	public function setSecrets(array $data)
 	{
-		$this->secret = $secret;
+		$this->secrets = $data;
 	}
 
 	/**
@@ -115,7 +115,7 @@ class OpenExchangeRatesExchange implements ExchangeInterface {
 
 		$code = strtoupper($code);
 
-		if(empty($rates->{$code}))
+		if (empty($rates->{$code}))
 		{
 			throw new \Exception;
 		}

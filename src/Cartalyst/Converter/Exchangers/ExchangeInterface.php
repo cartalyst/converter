@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Converter\Exchange;
+<?php namespace Cartalyst\Converter\Exchanger;
 /**
  * Part of the Converter package.
  *
@@ -18,7 +18,7 @@
  * @link       http://cartalyst.com
  */
 
-interface ExchangeInterface {
+interface ExchangerInterface {
 
 	/**
 	 * Return the exchange rate for the provided currency code.

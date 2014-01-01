@@ -19,7 +19,8 @@
  */
 
 use Cartalyst\Converter\Converter;
-use Cartalyst\Converter\Exchange\OpenExchangeRatesExchange;
+use Cartalyst\Converter\Exchangers\NativeExchanger;
+use Cartalyst\Converter\Exchangers\OpenExchangeRatesExchanger;
 use Illuminate\Support\ServiceProvider;
 
 class ConverterServiceProvider extends ServiceProvider {
@@ -43,26 +44,55 @@ class ConverterServiceProvider extends ServiceProvider {
 	{
 		$this->app['config']->package('cartalyst/converter', __DIR__.'/../../config');
 
+		$this->registerExchangers();
+
+		$this->registerConverter();
+	}
+
+	/**
+	 * Register all the available exchangers.
+	 *
+	 * @return void
+	 */
+	protected function registerExchangers()
+	{
+		$this->app['converter.native.exchanger'] = $this->app->share(function($app)
+		{
+			return new NativeExchanger;
+		});
+
+		$this->app['converter.openexchangerates.exchanger'] = $this->app->share(function($app)
+		{
+			$config = $app['config']->get('converter::config');
+
+			$exchanger = new OpenExchangeRatesExchanger($app['cache']);
+			$exchanger->setSecrets($config['exchangers.openexchangerates']);
+			$exchanger->setExpires($config['expires']);
+
+			return $exchanger;
+		});
+
+		$this->app['converter.exchanger'] = $this->app->share(function($app)
+		{
+			$config = $app['config']->get('converter::config');
+
+			return $app["converter.{$config['exchangers.default']}.exchanger"]
+		});
+	}
+
+	/**
+	 * Register the Converter.
+	 *
+	 * @return void
+	 */
+	protected function registerConverter()
+	{
 		$this->app['converter'] = $this->app->share(function($app)
 		{
-			$formats = $app['config']->get('converter::measurements');
+			$measurements = $app['config']->get('converter::measurements');
 
-			if ($secrets = $app['config']->get('converter::exchangers.openexchangerates') and ! empty($secrets['app_id']))
-			{
-				$expires = $app['config']->get('converter::expires');
-
-				$exchange = new OpenExchangeRatesExchange($app['cache']);
-				$exchange->setSecrets($secrets);
-				$exchange->setExpires($expires);
-
-				foreach ($formats['currency'] as $key => $value)
-				{
-					$formats['currency'][$key]['unit'] = $exchange->get($key);
-				}
-			}
-
-			$converter = $secrets['app_id'] ? new Converter($exchange) : new Converter;
-			$converter->setMeasurements($formats);
+			$converter = new Converter($app['converter.exchanger']);
+			$converter->setMeasurements($measurements);
 
 			return $converter;
 		});

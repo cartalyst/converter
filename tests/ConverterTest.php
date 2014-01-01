@@ -19,6 +19,7 @@
  */
 
 use Cartalyst\Converter\Converter;
+use Cartalyst\Converter\Exchangers\NativeExchanger;
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
 
@@ -45,7 +46,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function setUp()
 	{
-		$this->converter = new Converter;
+		$this->converter = new Converter(new NativeExchanger);
 
 		$this->converter->setMeasurements(array(
 
@@ -104,7 +105,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 	public function testMeasureCanBeInstantiated()
 	{
-		$this->converter = new Converter;
+		$this->converter = new Converter(new NativeExchanger);
 	}
 
 	public function testConvertWeights()

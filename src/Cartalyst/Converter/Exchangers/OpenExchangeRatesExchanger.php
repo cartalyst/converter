@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Converter\Exchange;
+<?php namespace Cartalyst\Converter\Exchanger;
 /**
  * Part of the Converter package.
  *
@@ -22,7 +22,7 @@ use Exception;
 use Illuminate\Cache\CacheManager;
 use Requests;
 
-class OpenExchangeRatesExchange implements ExchangeInterface {
+class OpenExchangeRatesExchanger implements ExchangerInterface {
 
 	/**
 	 * Cache manager.

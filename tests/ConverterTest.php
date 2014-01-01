@@ -27,6 +27,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Holds the converter instance.
+	 *
 	 * @var \Cartalyst\Converter\Converter
 	 */
 	protected $converter;
@@ -60,6 +61,25 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 				'acre' => array(
 					'format' => '1,00.000 Acres',
 					'unit'   => 0.000247105,
+				),
+
+			),
+
+			'currency' => array(
+
+				'usd' => array(
+					'format' => '$1,0.00',
+					'unit'   => 1,
+				),
+
+				'eur' => array(
+					'format' => '&euro;1,0.00',
+					'unit'   => 0.727204,
+				),
+
+				'gbp' => array(
+					'format' => '&pound;1,0.00',
+					'unit'   => 0.603401,
 				),
 
 			),
@@ -121,17 +141,25 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->converter = new Converter(new NativeExchanger);
 	}
 
-	public function testConvertWeights()
+	public function testConvertAreas()
 	{
-		// Grams to pounds
-		$gLb = $this->converter->value(200000)->from('weights.g')->to('weights.lb')->convert();
-		$this->assertEquals($gLb->format(), '441 lb');
-		$this->assertEquals($gLb->getValue(), 440.924);
+		// SQM to Acres
+		$sqmAcres = $this->converter->value(43200)->from('area.sqm')->to('area.acre')->convert();
+		$this->assertEquals($sqmAcres->format(), '10.675 Acres');
+		$this->assertEquals(round($sqmAcres->getValue(), 3), 10.675);
+	}
 
-		// Pounds to kilograms
-		$lbKg = $this->converter->value(4440.924)->from('weights.lb')->to('weights.kg')->convert();
-		$this->assertEquals($lbKg->format(), '2.014,37 KG');
-		$this->assertEquals(round($lbKg->getValue(), 2), 2014.37);
+	public function testConvertCurrencies()
+	{
+		// EUR to USD
+		$eurUsd = $this->converter->value(25.50)->from('currency.eur')->to('currency.usd')->convert();
+		$this->assertEquals($eurUsd->format(), '$35.07');
+		$this->assertEquals(round($eurUsd->getValue(), 3), 35.066);
+
+		// USD to EUR
+		$usdEur = $this->converter->value(56.73)->from('currency.usd')->to('currency.eur')->convert();
+		$this->assertEquals($usdEur->format(), '&euro;41.25');
+		$this->assertEquals(round($usdEur->getValue(), 3), 41.254);
 	}
 
 	public function testConvertLenghts()
@@ -157,12 +185,17 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(round($ftCm->getValue(), 3), 6096);
 	}
 
-	public function testConvertAreas()
+	public function testConvertWeights()
 	{
-		// SQM to Acres
-		$sqmAcres = $this->converter->value(43200)->from('area.sqm')->to('area.acre')->convert();
-		$this->assertEquals($sqmAcres->format(), '10.675 Acres');
-		$this->assertEquals(round($sqmAcres->getValue(), 3), 10.675);
+		// Grams to pounds
+		$gLb = $this->converter->value(200000)->from('weights.g')->to('weights.lb')->convert();
+		$this->assertEquals($gLb->format(), '441 lb');
+		$this->assertEquals($gLb->getValue(), 440.924);
+
+		// Pounds to kilograms
+		$lbKg = $this->converter->value(4440.924)->from('weights.lb')->to('weights.kg')->convert();
+		$this->assertEquals($lbKg->format(), '2.014,37 KG');
+		$this->assertEquals(round($lbKg->getValue(), 2), 2014.37);
 	}
 
 }

@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Converter\Exchanger;
+<?php namespace Cartalyst\Converter\Exchangers;
 /**
  * Part of the Converter package.
  *

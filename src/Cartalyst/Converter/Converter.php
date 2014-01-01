@@ -151,9 +151,13 @@ class Converter {
 			$this->value($value);
 		}
 
-		$rateTo = $this->getMeasurement($this->getTo() . '.unit') * (1 / $this->getMeasurement($this->getFrom() . '.unit'));
+		$to = $this->getTo();
 
-		$this->value = $this->getValue() * $rateTo;
+		$from = $this->getFrom();
+
+		$value = $this->getValue();
+
+		$this->value = $value * $this->getMeasurement("{$to}.unit") * (1 / $this->getMeasurement("{$from}.unit"));
 
 		return $this;
 	}
@@ -170,7 +174,7 @@ class Converter {
 		$value = $this->getValue();
 
 		// Get the measurement format
-		$measurement = $measurement ?: $this->getMeasurement($this->to . '.format');
+		$measurement = $measurement ?: $this->getMeasurement("{$this->to}.format");
 
 		// Value Regex
 		$valRegex = '/([0-9].*|)[0-9]/';
@@ -234,7 +238,8 @@ class Converter {
 	 * Return information about the provided measure.
 	 *
 	 * @param  string  $measurement
-	 * @return array
+	 * @return mixed
+	 * @throws \Exception
 	 */
 	public function getMeasurement($measurement)
 	{
@@ -242,6 +247,13 @@ class Converter {
 
 		if ( ! $measure = array_get($measurements, $measurement))
 		{
+			if (str_contains($measurement, 'currency'))
+			{
+				$currency = explode('.', $measurement);
+
+				return $this->exchanger->get($currency[0]);
+			}
+
 			throw new Exception("Measurement [{$measurement}] was not found.");
 		}
 

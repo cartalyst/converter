@@ -50,53 +50,66 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 		$this->converter->setMeasurements(array(
 
-			'weights' => array(
-				'kg' => array(
-					'format' => '1.0,00 KG',
-					'unit' => '1.00',
+			'area' => array(
+
+				'sqm' => array(
+					'format' => '1,00.00 SQM',
+					'unit'   => 1,
 				),
-				'g' => array(
-					'format' => '(1,0.00 grams)',
-					'unit' => 1000.00
+
+				'acre' => array(
+					'format' => '1,00.000 Acres',
+					'unit'   => 0.000247105,
 				),
-				'lb' => array(
-					'format' => '1 lb',
-					'unit' => 2.20462
-				),
+
 			),
 
 			'lengths' => array(
+
 				'km' => array(
 					'format' => '1,0.000 KM',
-					'unit' => '1.00',
+					'unit'   => 1.00,
 				),
+
 				'mile' => array(
 					'format' => '1,0.000 Miles',
-					'unit' => 0.621371,
+					'unit'   => 0.621371,
 				),
+
 				'cm' => array(
 					'format' => '1!0 centimeters',
-					'unit' => 100000
+					'unit'   => 100000
 				),
+
 				'mm' => array(
 					'format' => '1,0.00 millimeters',
-					'unit' => 1000000
+					'unit'   => 1000000
 				),
+
 				'ft' => array(
 					'format' => '1,0.00 feet',
-					'unit' => 3280.84
+					'unit'   => 3280.84
 				),
+
 			),
 
-			'area' => array(
-				'sqm' => array(
-					'format' => '1,00.00 SQM',
-					'unit' => 1,
+			'weights' => array(
+
+				'kg' => array(
+					'format' => '1.0,00 KG',
+					'unit'   => 1.00,
 				),
-				'acre' => array(
-					'format' => '1,00.000 Acres',
-					'unit' => 0.000247105,
+
+				'g' => array(
+					'format' => '(1,0.00 grams)',
+					'unit'   => 1000.00,
 				),
+
+				'lb' => array(
+					'format' => '1 lb',
+					'unit'   => 2.20462,
+				),
+
 			),
 
 		));

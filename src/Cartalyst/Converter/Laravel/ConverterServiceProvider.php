@@ -63,20 +63,22 @@ class ConverterServiceProvider extends ServiceProvider {
 
 		$this->app['converter.openexchangerates.exchanger'] = $this->app->share(function($app)
 		{
-			$config = $app['config']->get('converter::config');
+			$appId = $app['config']->get('converter::exchangers.openexchangerates.app_id');
+
+			$expires = $app['config']->get('converter::expires');
 
 			$exchanger = new OpenExchangeRatesExchanger($app['cache']);
-			$exchanger->setAppId($config['exchangers']['openexchangerates']['app_id']);
-			$exchanger->setExpires($config['expires']);
+			$exchanger->setAppId($appId);
+			$exchanger->setExpires($expires);
 
 			return $exchanger;
 		});
 
 		$this->app['converter.exchanger'] = $this->app->share(function($app)
 		{
-			$config = $app['config']->get('converter::config');
+			$default = $app['config']->get('converter::exchangers.default');
 
-			return $app["converter.{$config['exchangers']['default']}.exchanger"];
+			return $app["converter.{$default}.exchanger"];
 		});
 	}
 

@@ -42,7 +42,7 @@ class ConverterServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['config']->package('cartalyst/converter', __DIR__.'/../../config');
+		$this->app['config']->package('cartalyst/converter', __DIR__.'/../../../config');
 
 		$this->registerExchangers();
 

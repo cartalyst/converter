@@ -32,7 +32,7 @@ class ConverterServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('cartalyst/converter', 'cartalyst/converter');
+		$this->package('cartalyst/converter', 'cartalyst/converter', __DIR__.'/../../..');
 	}
 
 	/**
@@ -42,8 +42,6 @@ class ConverterServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['config']->package('cartalyst/converter', __DIR__.'/../../../config');
-
 		$this->registerExchangers();
 
 		$this->registerConverter();
@@ -63,9 +61,9 @@ class ConverterServiceProvider extends ServiceProvider {
 
 		$this->app['converter.openexchangerates.exchanger'] = $this->app->share(function($app)
 		{
-			$appId = $app['config']->get('converter::exchangers.openexchangerates.app_id');
+			$appId = $app['config']->get('cartalyst/converter::exchangers.openexchangerates.app_id');
 
-			$expires = $app['config']->get('converter::expires');
+			$expires = $app['config']->get('cartalyst/converter::expires');
 
 			$exchanger = new OpenExchangeRatesExchanger($app['cache']);
 			$exchanger->setAppId($appId);
@@ -76,7 +74,7 @@ class ConverterServiceProvider extends ServiceProvider {
 
 		$this->app['converter.exchanger'] = $this->app->share(function($app)
 		{
-			$default = $app['config']->get('converter::exchangers.default');
+			$default = $app['config']->get('cartalyst/converter::exchangers.default');
 
 			return $app["converter.{$default}.exchanger"];
 		});
@@ -91,7 +89,7 @@ class ConverterServiceProvider extends ServiceProvider {
 	{
 		$this->app['converter'] = $this->app->share(function($app)
 		{
-			$measurements = $app['config']->get('converter::measurements');
+			$measurements = $app['config']->get('cartalyst/converter::measurements');
 
 			$converter = new Converter($app['converter.exchanger']);
 			$converter->setMeasurements($measurements);

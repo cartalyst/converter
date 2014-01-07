@@ -10,7 +10,7 @@ History and future capabilities.
 
 ### Complete
 
-#### *xx-Jan-14* - v1.0.0
+#### xx-Jan-14 - v1.0.0
 
 - User can convert and format from and to the following units/sizes:
 	- Area

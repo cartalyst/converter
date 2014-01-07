@@ -33,7 +33,6 @@ If you want to have only a decimal separator, you have to override the first sep
 
 	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->getValue();
 
-
 ## Get all available measurements {#all-measurements}
 
 	Converter::getMeasurements();

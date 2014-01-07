@@ -1,7 +1,5 @@
 {
 	"name" : "Converter",
-	"branch" : "master",
 	"github" : "cartalyst/converter",
-	"travis" : false,
 	"demo" : null
 }

@@ -8,15 +8,15 @@ Click [here](https://www.cartalyst.com/pricing) to obtain your subscription.
 Open your `composer.json` file and add the following lines
 
 	{
+		"require": {
+			"cartalyst/converter": "1.0.*",
+		},
 		"repositories": [
 			{
 				"type": "composer",
 				"url": "http://packages.cartalyst.com"
 			}
 		],
-		"require": {
-			"cartalyst/converter": "1.0.*",
-		},
 		"minimum-stability": "dev"
 	}
 

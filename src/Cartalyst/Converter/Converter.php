@@ -83,7 +83,7 @@ class Converter {
 	}
 
 	/**
-	 * Return the measurement we want to convert from.
+	 * Returns the measurement we want to convert from.
 	 *
 	 * @return string
 	 */
@@ -106,7 +106,7 @@ class Converter {
 	}
 
 	/**
-	 * Return the measurement we want to convert to.
+	 * Returns the measurement we want to convert to.
 	 *
 	 * @return string
 	 */
@@ -129,7 +129,7 @@ class Converter {
 	}
 
 	/**
-	 * Return the value.
+	 * Returns the value.
 	 *
 	 * @return float
 	 */
@@ -180,7 +180,7 @@ class Converter {
 		$format = $negative ? 'negative' : 'format';
 
 		// Get the measurement format
-		$measurement = $measurement ?: $this->getMeasurement("{$this->to}.$format");
+		$measurement = $measurement ?: $this->getMeasurement("{$this->to}.{$format}");
 
 		// Value Regex
 		$valRegex = '/([0-9].*|)[0-9]/';
@@ -217,7 +217,7 @@ class Converter {
 	}
 
 	/**
-	 * Return the list of available measurements.
+	 * Returns the list of the available measurements.
 	 *
 	 * @return array
 	 */
@@ -227,7 +227,7 @@ class Converter {
 	}
 
 	/**
-	 * Set measurements.
+	 * Set the measurements.
 	 *
 	 * By default it will merge the new measurements with the current
 	 * measurements, you can change this behavior by setting false
@@ -247,7 +247,7 @@ class Converter {
 	}
 
 	/**
-	 * Return information about the provided measure.
+	 * Returns information about the provided measure.
 	 *
 	 * @param  string  $measurement
 	 * @return mixed

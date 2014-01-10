@@ -68,9 +68,9 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 			'currency' => array(
 
 				'usd' => array(
-					'format' => '$1,0.00',
+					'format'   => '$1,0.00',
 					'negative' => '($1,0.00)',
-					'unit' => 1,
+					'unit'     => 1,
 				),
 
 				'eur' => array(

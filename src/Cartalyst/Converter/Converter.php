@@ -173,8 +173,14 @@ class Converter {
 		// Get the value
 		$value = $this->getValue();
 
+		// Do we have a negative value ?
+		$negative = $value < 0;
+
+		// Switch to negative format
+		$format = $negative ? 'negative' : 'format';
+
 		// Get the measurement format
-		$measurement = $measurement ?: $this->getMeasurement("{$this->to}.format");
+		$measurement = $measurement ?: $this->getMeasurement("{$this->to}.$format");
 
 		// Value Regex
 		$valRegex = '/([0-9].*|)[0-9]/';
@@ -196,6 +202,12 @@ class Converter {
 
 		// Count decimals length
 		$decimals = $decimal ? strlen(substr(strrchr($valFormat, $decimal), 1)) : 0;
+
+		// Strip negative sign
+		if ($negative)
+		{
+			$value *= -1;
+		}
 
 		// Format the value
 		$value = number_format($value, $decimals, $decimal, $thousand);
@@ -247,6 +259,11 @@ class Converter {
 
 		if ( ! $measure = array_get($measurements, $measurement))
 		{
+			if (str_contains($measurement, 'negative'))
+			{
+				return '-' . $this->getMeasurement(str_replace('negative', 'format', $measurement));
+			}
+
 			if (str_contains($measurement, 'currency'))
 			{
 				$currency = explode('.', $measurement);

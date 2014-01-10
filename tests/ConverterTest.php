@@ -69,7 +69,8 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 				'usd' => array(
 					'format' => '$1,0.00',
-					'unit'   => 1,
+					'negative' => '($1,0.00)',
+					'unit' => 1,
 				),
 
 				'eur' => array(
@@ -176,6 +177,22 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($eurGbp->format(), '&pound;59.43');
 
 		$this->assertEquals(round($eurGbp->getValue(), 3), 59.433);
+
+
+		// Negative EUR to USD (negative defined)
+		$eurUsdNegative = $this->converter->value(-25.50)->from('currency.eur')->to('currency.usd')->convert();
+
+		$this->assertEquals($eurUsdNegative->format(), '($35.07)');
+
+		$this->assertEquals(round($eurUsdNegative->getValue(), 3), -35.066);
+
+
+		// Negative USD to EUR (negative undefined)
+		$usdEurNegative = $this->converter->value(-25.50)->from('currency.usd')->to('currency.eur')->convert();
+
+		$this->assertEquals($usdEurNegative->format(), '-&euro;18.54');
+
+		$this->assertEquals(round($usdEurNegative->getValue(), 3), -18.544);
 	}
 
 

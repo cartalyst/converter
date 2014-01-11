@@ -1,4 +1,4 @@
-# Laravel 4
+# Basics
 
 ## Setting Measurements {#settings-measurements}
 

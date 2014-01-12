@@ -6,6 +6,7 @@
 	- [Retrieve value](#retrieve-value)
 	- [Get all available measurements](#all-measurements)
 	- [Custom Formatting](#custom-formatting)
+	- [Negative Formats](#negative-formats)
 - [Currency]({url}/usage/currency)
 	- [Default Exchangers](#default-exchangers)
 	- [Custom Exchangers](#custom-exchangers)

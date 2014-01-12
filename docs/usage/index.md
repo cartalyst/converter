@@ -40,3 +40,16 @@ If you want to have only a decimal separator, you have to override the first sep
 ## Custom Formatting {#custom-formatting}
 
 	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format('1,0.00 Pounds');
+
+## Negative Formats {#negative-formats}
+
+Negative numbers are formatted according to the regular format by default, if you need to override the format for negative values, just provide a 'negative' property that defines your negative format.
+
+Example
+
+	'currency' => array(
+		'usd' => array(
+			'format' => '$1,0.00',
+			'negative' => '($1,0.00)'.
+		),
+	),

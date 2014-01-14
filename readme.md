@@ -1,6 +1,6 @@
 # Converter v1.0.0
 
-A framework agnostic package to convert and format units, sizes and currencies (from one tax rate to another).
+A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
 Part of the Cartalyst Arsenal & licensed [OSI BSD 3](license.txt). Code well, rock on.
 

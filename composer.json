@@ -1,6 +1,6 @@
 {
 	"name": "cartalyst/converter",
-	"description": "Convert and format units, sizes and currencies.",
+	"description": "A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.",
 	"keywords": [
 		"php",
 		"cartalyst",

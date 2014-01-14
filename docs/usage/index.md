@@ -3,20 +3,26 @@
 ## Setting Measurements {#settings-measurements}
 
 	Converter::setMeasurements(array(
+
 		'weights' => array(
+
 			'kg' => array(
 				'format' => '1,0.00 KG',
-				'unit' => '1.00',
+				'unit'   => '1.00',
 			),
+
 			'g' => array(
 				'format' => '(1,0.00 grams)',
-				'unit' => 1000.00
+				'unit'   => 1000.00
 			),
+
 			'lb' => array(
 				'format' => '1,0.00 lb',
-				'unit' => 2.20462
+				'unit'   => 2.20462
 			),
+
 		),
+
 	));
 
 You can add your required measurements to `app/config/packages/cartalyst/converter/config.php`
@@ -48,8 +54,10 @@ Negative numbers are formatted according to the regular format by default, if yo
 Example
 
 	'currency' => array(
+
 		'usd' => array(
-			'format' => '$1,0.00',
+			'format'   => '$1,0.00',
 			'negative' => '($1,0.00)'.
 		),
+
 	),

@@ -13,16 +13,20 @@ We have built-in support for two exchangers out of the box.
 It defaults to user defined measurements configurations
 
 	'measurements' => array(
+
 		'currency' => array(
+
 			'usd' => array(
 				'format' => '$1,0.00',
 				'unit'   => 1
 			),
+
 			'eur' => array(
 				'format' => '&euro;1,0.00',
 				'unit'   => 1.2
 			),
-		)
+
+		),
 	)
 
 > **Note** If you're using Laravel 4, define the units on your config file.
@@ -65,7 +69,7 @@ It utilizes illuminate/cache to cache the currency results for a configurable am
 
 ### Custom Exchangers {#custom-exchangers}
 
-You can create your own exchanger by creating a class that implements the Cartalyst\Converter\Exchangers\ExchangerInterface
+You can create your own exchanger by creating a class that implements the `Cartalyst\Converter\Exchangers\ExchangerInterface`.
 
 	use Cartalyst\Converter\Exchangers\ExchangerInterface;
 

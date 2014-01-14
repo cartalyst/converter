@@ -3,17 +3,14 @@
 	"description": "Convert and format units, sizes and currencies.",
 	"keywords": [
 		"php",
+		"cartalyst",
 		"laravel",
-		"areas",
 		"area",
 		"currencies",
 		"currency",
-		"lenghts",
 		"lenght",
-		"weights",
 		"weight",
 		"unit",
-		"converter",
 		"convert"
 	],
 	"license": "BSD-3-Clause",

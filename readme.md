@@ -13,10 +13,26 @@ History and future capabilities.
 #### xx-Jan-14 - v1.0.0
 
 - User can convert and format from and to the following units/sizes:
-	- Area
-	- Length
-	- Weight
+	- Areas
+	- Lengths
+	- Weights
 - User can convert and format currencies from one tax rate to another tax rate.
+
+## Requirements
+
+- PHP >=5.3
+
+## Installation
+
+Converter is installable with Composer. Read further information on how to install.
+
+[Installation Guide](http://cartalyst.com/manual/converter/introduction/installation)
+
+## Documentation
+
+Refer to the following guide on how to use the Converter package.
+
+[Documentation](http://cartalyst.com/manual/converter)
 
 ## Versioning
 
@@ -36,7 +52,7 @@ And constructed with the following guidelines:
 
 Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
 
-https://github.com/cartalyst/cart/issues
+https://github.com/cartalyst/converter/issues
 
 Follow us on Twitter, [@cartalyst](http://twitter.com/cartalyst).
 

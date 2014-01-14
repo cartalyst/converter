@@ -1,14 +1,14 @@
-## Currency
+# Currency
 
 Currency conversion requires an exchanger to fetch currency rates from a third party.
 
-### Default Exchangers {#default-exchangers}
+## Default Exchangers {#default-exchangers}
 
 By default the native exchanger is used, which will fall back to regular config values, you can define these units under your config file, if no unit is defined, the exchanger defaults to 1.
 
 We have built-in support for two exchangers out of the box.
 
-#### Native Exchanger
+### Native Exchanger
 
 It defaults to user defined measurements configurations
 
@@ -31,14 +31,14 @@ It defaults to user defined measurements configurations
 
 > **Note** If you're using Laravel 4, define the units on your config file.
 
-#### [OpenExchangeRatesExchanger](https://openexchangerates.org)
+### [OpenExchangeRates.org Exchanger](https://openexchangerates.org)
 
 It utilizes illuminate/cache to cache the currency results for a configurable amount of time.
 
+	use Cartalyst\Converter\Converter;
+	use Cartalyst\Converter\Exchangers\OpenExchangeRatesExchanger;
 	use Illuminate\Cache\CacheManager;
 	use Illuminate\Filesystem\Filesystem;
-	use Cartalyst\Converter\Exchangers\OpenExchangeRatesExchanger;
-	use Cartalyst\Converter\Converter;
 
 	// Setup illuminate cache
 	$cache = new CacheManager(
@@ -65,9 +65,11 @@ It utilizes illuminate/cache to cache the currency results for a configurable am
 
 	$converter->value(200)->from('currency.usd')->to('currency.eur')->convert()->format();
 
-> **Note** If you're using Laravel 4, you only need to modify your config file and set your app_id and switch the default exchanger to openexchangerates, you're ready to go, just use the facade.
+> **Note** If you're using Laravel 4, you only need to modify your config file
+and set your app_id and switch the default exchanger to openexchangerates and
+you're ready to go, just use the facade.
 
-### Custom Exchangers {#custom-exchangers}
+## Custom Exchangers {#custom-exchangers}
 
 You can create your own exchanger by creating a class that implements the `Cartalyst\Converter\Exchangers\ExchangerInterface`.
 

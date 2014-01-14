@@ -13,41 +13,37 @@
 
 			'g' => array(
 				'format' => '(1,0.00 grams)',
-				'unit'   => 1000.00
+				'unit'   => 1000.00,
 			),
 
 			'lb' => array(
 				'format' => '1,0.00 lb',
-				'unit'   => 2.20462
+				'unit'   => 2.20462,
 			),
 
 		),
 
 	));
 
-You can add your required measurements to `app/config/packages/cartalyst/converter/config.php`
+You can set your measurements at runtime as shown above or you can add your
+required measurements directly on the `app/config/packages/cartalyst/converter/config.php`
 
-> **Note 1**: You can place any currency symbol or text at the beginning or end of the format, the first character ',' in the case above represents the thousands separator, second character represents the decimals separator, digits after the second separator represent the number of decimals you want to show.
-If you want to have only a decimal separator, you have to override the first separator using an `!` Ex. a value of 2000.5 with the format '0!0.00 KG' would output 2000.50 KG.
-**Note 2**: Passing a boolean of false as the second parameter will not merge the current measurements with the provided measurements.
+> **Note**: Passing a boolean of `false` as the second parameter will not merge
+the current measurements with the given measurements.
 
-## Converting from a unit to another {#convert-units}
+### How the format works
 
-	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format();
+You can place any currency symbol or text at the beginning or end of the format.
 
-## Retrieve value {#retrieve-value}
+The first character `,` in the case above represents the thousands separator, the
+second one represents the decimals separator, digits after the second separator
+represent the number of decimals you want to show.
 
-	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->getValue();
+If you want to have only a decimal separator, you have to override the first separator using an `!`
 
-## Get all available measurements {#all-measurements}
+Ex. a value of 2000.5 with the format '0!0.00 KG' would output 2000.50 KG.
 
-	Converter::getMeasurements();
-
-## Custom Formatting {#custom-formatting}
-
-	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format('1,0.00 Pounds');
-
-## Negative Formats {#negative-formats}
+### Negative Formats {#negative-formats}
 
 Negative numbers are formatted according to the regular format by default, if you need to override the format for negative values, just provide a 'negative' property that defines your negative format.
 
@@ -61,3 +57,19 @@ Example
 		),
 
 	),
+
+## Get all the available measurements {#all-measurements}
+
+	Converter::getMeasurements();
+
+## Converting from a unit to another {#convert-units}
+
+	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format();
+
+## Retrieve a converted value {#retrieve-value}
+
+	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->getValue();
+
+## Custom Formatting {#custom-formatting}
+
+	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format('1,0.00 Pounds');

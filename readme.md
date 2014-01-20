@@ -21,8 +21,8 @@ History and future capabilities.
 - ```Converter::getTo()``` User can return the measurement he wants to convert to.
 - ```Converter::value($value)``` User can set the value he wants to convert.
 - ```Converter::getValue()``` User can return the value he wants to convert.
-- ```Converter::convert($value|null)``` User can convert the specified value or the value that was setup previously.
-- ```Converter::format($format|null)``` User can format the value into the desired measurement.
+- ```Converter::convert($value|null)``` User can convert the given `$value` or the value that was previously set.
+- ```Converter::format($format|null)``` User can format the value using the given `$format` or using the default format.
 
 ## Requirements
 

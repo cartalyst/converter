@@ -10,13 +10,19 @@ History and future capabilities.
 
 ### Complete
 
-#### xx-Jan-14 - v1.0.0
+#### 20-Jan-14 - v1.0.0
 
-- User can convert and format from and to the following units/sizes:
-	- Areas
-	- Lengths
-	- Weights
-- User can convert and format currencies from one tax rate to another tax rate.
+- ```Converter::getMeasurements()``` User can return all the available measurements.
+- ```Converter::setMeasurements($measurements)``` User can set measurements.
+- ```Converter::getMeasurement($measurement)``` User can return information about the given measurement.
+- ```Converter::from($measurement)``` User can set the measurement he wants to convert from.
+- ```Converter::getFrom()``` User can return the measurement he wants to convert from.
+- ```Converter::to($measurement)``` User can set the measurement he wants to convert to.
+- ```Converter::getTo()``` User can return the measurement he wants to convert to.
+- ```Converter::value($value)``` User can set the value he wants to convert.
+- ```Converter::getValue()``` User can return the value he wants to convert.
+- ```Converter::convert($value|null)``` User can convert the specified value or the value that was setup previously.
+- ```Converter::format($format|null)``` User can format the value into the desired measurement.
 
 ## Requirements
 

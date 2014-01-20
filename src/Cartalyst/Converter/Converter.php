@@ -129,7 +129,7 @@ class Converter {
 	}
 
 	/**
-	 * Returns the value.
+	 * Returns the value we want to convert.
 	 *
 	 * @return float
 	 */

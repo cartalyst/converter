@@ -1,6 +1,12 @@
 # Overview
 
-## Setting Measurements {#settings-measurements}
+## Getting Measurements {#retrieve-measurements}
+
+This returns all the available measurements.
+
+	$measurements = Converter::getMeasurements();
+
+## Setting Measurements {#set-measurements}
 
 	Converter::setMeasurements(array(
 
@@ -58,9 +64,13 @@ Example
 
 	),
 
-## Get all the available measurements {#all-measurements}
+## Formatting from a unit to another {#format-units}
 
-	Converter::getMeasurements();
+	Converter::value(200000)->from('weights.g')->to('weights.lb')->format();
+
+## Custom Formatting {#custom-formatting}
+
+	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format('1,0.00 Pounds');
 
 ## Converting from a unit to another {#convert-units}
 
@@ -69,7 +79,3 @@ Example
 ## Retrieve a converted value {#retrieve-value}
 
 	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->getValue();
-
-## Custom Formatting {#custom-formatting}
-
-	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format('1,0.00 Pounds');

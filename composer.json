@@ -51,8 +51,8 @@
 		"phpunit/phpunit": "3.7.*"
 	},
 	"autoload": {
-		"psr-0": {
-			"Cartalyst\\Converter": "src/"
+		"psr-4": {
+			"Cartalyst\\Converter\\": "src/"
 		}
 	},
 	"extra": {

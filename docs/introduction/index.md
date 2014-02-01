@@ -2,7 +2,7 @@
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
-The package follows the FIG standard PSR-0 to ensure a high level of
+The package follows the FIG standard PSR-4 to ensure a high level of
 interoperability between shared PHP code and is fully unit-tested.
 
 ## Getting started

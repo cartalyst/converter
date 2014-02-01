@@ -1,12 +1,14 @@
 # Installation
 
-The best way to install the Converter package is quickly and easily done with [Composer](http://getcomposer.org).
+The best and easy way to install the Converter package is with [Composer](http://getcomposer.org).
 
-Open your `composer.json` and add the following to the `require` array
+### Preparation
+
+Open your `composer.json` and add the following to the `require` array:
 
 	"cartalyst/converter": "1.0.*"
 
-Add the following lines after the `require` array on your `composer.json` file
+Add the following lines after the `require` array on your `composer.json` file:
 
 	"repositories": [
 		{
@@ -27,7 +29,7 @@ or
 
 	php composer update
 
-Now you are able to require the `vendor/autoload.php` file to PSR-0 autoload the package.
+Now you are able to require the `vendor/autoload.php` file to autoload the package.
 
 ## Example
 

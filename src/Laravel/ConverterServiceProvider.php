@@ -32,7 +32,7 @@ class ConverterServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('cartalyst/converter', 'cartalyst/converter', __DIR__.'/../../..');
+		$this->package('cartalyst/converter', 'cartalyst/converter', __DIR__.'/..');
 	}
 
 	/**

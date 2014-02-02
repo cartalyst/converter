@@ -142,10 +142,37 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 	}
 
 
+	public function testGetMeasurement()
+	{
+		$mesasurement = $this->converter->getMeasurement('area');
+
+		$this->assertEquals(count($mesasurement), 2);
+	}
+
+
+	/**
+	 * @expectedException  \Exception
+	 */
+	public function testGetMissingMeasurement()
+	{
+		$mesasurement = $this->converter->getMeasurement('foo');
+	}
+
+
+	public function testCustomFormatting()
+	{
+		$eurUsd = $this->converter->from('currency.eur')->value(25.50);
+
+		$this->assertEquals($eurUsd->format('eur 1,0.00'), 'eur 25.50');
+
+		$this->assertEquals(round($eurUsd->getValue(), 3), 25.500);
+	}
+
+
 	public function testConvertAreas()
 	{
 		// SQM to Acres
-		$sqmAcres = $this->converter->value(43200)->from('area.sqm')->to('area.acre')->convert();
+		$sqmAcres = $this->converter->from('area.sqm')->to('area.acre')->convert(43200);
 
 		$this->assertEquals($sqmAcres->format(), '10.675 Acres');
 
@@ -156,7 +183,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 	public function testConvertCurrencies()
 	{
 		// EUR to USD
-		$eurUsd = $this->converter->value(25.50)->from('currency.eur')->to('currency.usd')->convert();
+		$eurUsd = $this->converter->from('currency.eur')->to('currency.usd')->convert(25.50);
 
 		$this->assertEquals($eurUsd->format(), '$35.07');
 
@@ -164,7 +191,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// USD to EUR
-		$usdEur = $this->converter->value(56.73)->from('currency.usd')->to('currency.eur')->convert();
+		$usdEur = $this->converter->from('currency.usd')->to('currency.eur')->convert(56.73);
 
 		$this->assertEquals($usdEur->format(), '&euro;41.25');
 
@@ -172,7 +199,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// EUR to GBP
-		$eurGbp = $this->converter->value(43.22)->from('currency.eur')->to('currency.gbp')->convert();
+		$eurGbp = $this->converter->from('currency.eur')->to('currency.gbp')->convert(43.22);
 
 		$this->assertEquals($eurGbp->format(), '&pound;59.43');
 
@@ -180,7 +207,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Negative EUR to USD (negative defined)
-		$eurUsdNegative = $this->converter->value(-25.50)->from('currency.eur')->to('currency.usd')->convert();
+		$eurUsdNegative = $this->converter->from('currency.eur')->to('currency.usd')->convert(-25.50);
 
 		$this->assertEquals($eurUsdNegative->format(), '($35.07)');
 
@@ -188,7 +215,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Negative USD to EUR (negative undefined)
-		$usdEurNegative = $this->converter->value(-25.50)->from('currency.usd')->to('currency.eur')->convert();
+		$usdEurNegative = $this->converter->from('currency.usd')->to('currency.eur')->convert(-25.50);
 
 		$this->assertEquals($usdEurNegative->format(), '-&euro;18.54');
 
@@ -199,7 +226,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 	public function testConvertLenghts()
 	{
 		// Millimeters to kilometers
-		$mmKm = $this->converter->value(2000000)->from('lengths.mm')->to('lengths.km')->convert();
+		$mmKm = $this->converter->from('lengths.mm')->to('lengths.km')->convert(2000000);
 
 		$this->assertEquals($mmKm->format(), '2.000 KM');
 
@@ -207,7 +234,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Miles to kilometers
-		$mileKm = $this->converter->value(200)->from('lengths.mile')->to('lengths.km')->convert();
+		$mileKm = $this->converter->from('lengths.mile')->to('lengths.km')->convert(200);
 
 		$this->assertEquals($mileKm->format(), '321.869 KM');
 
@@ -215,7 +242,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Kilometers to miles
-		$kmMile = $this->converter->value(200)->from('lengths.km')->to('lengths.mile')->convert();
+		$kmMile = $this->converter->from('lengths.km')->to('lengths.mile')->convert(200);
 
 		$this->assertEquals($kmMile->format(), '124.274 Miles');
 
@@ -223,7 +250,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Foot to centimeters
-		$ftCm = $this->converter->value(200)->from('lengths.ft')->to('lengths.cm')->convert();
+		$ftCm = $this->converter->from('lengths.ft')->to('lengths.cm')->convert(200);
 
 		$this->assertEquals($ftCm->format(), '6096 centimeters');
 
@@ -234,7 +261,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 	public function testConvertWeights()
 	{
 		// Grams to pounds
-		$gLb = $this->converter->value(200000)->from('weights.g')->to('weights.lb')->convert();
+		$gLb = $this->converter->from('weights.g')->to('weights.lb')->convert(200000);
 
 		$this->assertEquals($gLb->format(), '441 lb');
 
@@ -242,7 +269,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Pounds to kilograms
-		$lbKg = $this->converter->value(4440.924)->from('weights.lb')->to('weights.kg')->convert();
+		$lbKg = $this->converter->from('weights.lb')->to('weights.kg')->convert(4440.924);
 
 		$this->assertEquals($lbKg->format(), '2.014,37 KG');
 

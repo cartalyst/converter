@@ -3,7 +3,7 @@
 The Converter package has optional support for Laravel 4 and it comes bundled with a
 Service Provider and a Facade for easier integration.
 
-After you have installed the package correctly, just follow the instructions.
+After you have installed the package, just follow the instructions.
 
 Open your Laravel config file `app/config/app.php` and add the following lines.
 

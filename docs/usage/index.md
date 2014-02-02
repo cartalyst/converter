@@ -66,16 +66,16 @@ Example
 
 ## Formatting from a unit to another {#format-units}
 
-	Converter::value(200000)->from('weights.g')->to('weights.lb')->format();
+	Converter::from('weights.g')->to('weights.lb')->value(200000)->format();
 
 ## Custom Formatting {#custom-formatting}
 
-	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format('1,0.00 Pounds');
+	Converter::from('weights.g')->to('weights.lb')->convert(200000)->format('1,0.00 Pounds');
 
 ## Converting from a unit to another {#convert-units}
 
-	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->format();
+	Converter::from('weights.g')->to('weights.lb')->convert(200000)->format();
 
 ## Retrieve a converted value {#retrieve-value}
 
-	Converter::value(200000)->from('weights.g')->to('weights.lb')->convert()->getValue();
+	Converter::from('weights.g')->to('weights.lb')->convert(200000)->getValue();

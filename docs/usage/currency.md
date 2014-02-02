@@ -63,7 +63,7 @@ It utilizes illuminate/cache to cache the currency results for a configurable am
 	// Create a new converter instance
 	$converter = new Converter($exchanger);
 
-	$converter->value(200)->from('currency.usd')->to('currency.eur')->convert()->format();
+	$converter->from('currency.usd')->to('currency.eur')->convert(200)->format();
 
 > **Note** If you're using Laravel 4, you only need to modify your config file
 and set your app_id and switch the default exchanger to openexchangerates and

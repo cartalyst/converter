@@ -2,8 +2,7 @@
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
-The package follows the FIG standard PSR-4 to ensure a high level of
-interoperability between shared PHP code and is fully unit-tested.
+The package follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is fully unit-tested with 100% code coverage.
 
 ## Getting started
 
@@ -16,4 +15,4 @@ on how to [Integrate it with Laravel 4]({url}/introduction/laravel-4).
 ## Quick Example
 
 	// Convert meters to centimeters
-	Converter::value(200)->from('length.m')->to('length.cm')->convert()->format();
+	Converter::from('length.m')->to('length.cm')->convert(200)->format();

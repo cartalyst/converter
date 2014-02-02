@@ -6,13 +6,17 @@ The package follows the FIG standard PSR-4 to ensure a high level of interoperab
 
 ## Getting started
 
-The package requires at least PHP version 5.3 and comes with a Laravel 4 Facade
-and a Service Provider to simplify the optional framework integration.
+The package requires PHP 5.3+ and comes bundled with a Laravel 4 Facade and a Service Provider to simplify the optional framework integration.
 
 Have a [read through the Installation Guide]({url}/introduction/installation) and
 on how to [Integrate it with Laravel 4]({url}/introduction/laravel-4).
 
 ## Quick Example
 
-	// Convert meters to centimeters
-	Converter::from('length.m')->to('length.cm')->convert(200)->format();
+### Convert meters to centimeters
+
+	Converter::from('lengths.m')->to('lengths.cm')->convert(200)->format();
+
+### Returns
+
+	20000 centimeters

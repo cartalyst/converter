@@ -61,18 +61,38 @@ Example
 
 	),
 
-## Formatting from a unit to another {#format-units}
 
-	Converter::from('weights.g')->to('weights.lb')->value(200000)->format();
+## Formatting to a unit {#format-units}
+
+	Converter::to('weights.lb')->value(200000)->format();
+
+### Returns
+
+	200,000 lb
+
 
 ## Custom Formatting {#custom-formatting}
 
-	Converter::from('weights.g')->to('weights.lb')->convert(200000)->format('1,0.00 Pounds');
+	Converter::to('weights.lb')->value(200000)->format('1,0.00 Pounds');
+
+### Returns
+
+	200,000.00 Pounds
+
 
 ## Converting from a unit to another {#convert-units}
 
 	Converter::from('weights.g')->to('weights.lb')->convert(200000)->format();
 
+### Returns
+
+	441 lb
+
+
 ## Retrieve a converted value {#retrieve-value}
 
 	Converter::from('weights.g')->to('weights.lb')->convert(200000)->getValue();
+
+### Returns
+
+	440.924

@@ -2,7 +2,7 @@
 
 The best and easy way to install the Converter package is with [Composer](http://getcomposer.org).
 
-### Preparation
+## Preparation
 
 Open your `composer.json` and add the following to the `require` array:
 
@@ -19,7 +19,7 @@ Add the following lines after the `require` array on your `composer.json` file:
 
 > **Note:** Make sure your `composer.json` file is in a valid JSON format after the required changes.
 
-### Install the dependencies
+## Install the dependencies
 
 Run Composer to install or update the new requirement.
 

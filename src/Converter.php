@@ -171,7 +171,7 @@ class Converter {
 		// Get the value
 		$value = $this->getValue();
 
-		// Do we have a negative value ?
+		// Do we have a negative value?
 		$negative = $value < 0;
 
 		// Switch to negative format
@@ -227,19 +227,14 @@ class Converter {
 	/**
 	 * Set the measurements.
 	 *
-	 * By default it will merge the new measurements with the current
-	 * measurements, you can change this behavior by setting false
-	 * as the second parameter.
-	 *
 	 * @param  array  $measurements
-	 * @param  bool   $merge
-	 * @return array
+	 * @return \Cartalyst\Converter\Converter
 	 */
-	public function setMeasurements($measurements = array(), $merge = true)
+	public function setMeasurements($measurements = array())
 	{
-		$currentMeasurements = $merge ? $this->getMeasurements() : array();
+		$this->measurements = (array) $measurements;
 
-		return $this->measurements = array_merge($currentMeasurements, (array) $measurements);
+		return $this;
 	}
 
 	/**

@@ -34,9 +34,6 @@ This returns all the available measurements.
 You can set your measurements at runtime as shown above or you can add your
 required measurements directly on the `app/config/packages/cartalyst/converter/config.php`
 
-> **Note:**: Passing a boolean of `false` as the second parameter will force
-the current measurements to not be merged with the given measurements.
-
 ### How the format works
 
 You can place any currency symbol or text at the beginning or end of the format.

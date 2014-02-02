@@ -139,7 +139,7 @@ class Converter {
 	}
 
 	/**
-	 * Convert the specified value.
+	 * Convert the given value.
 	 *
 	 * @param  float  $value
 	 * @return \Cartalyst\Converter\Converter
@@ -151,13 +151,11 @@ class Converter {
 			$this->value($value);
 		}
 
-		$to = $this->getTo();
+		$to = $this->getMeasurement("{$this->getTo()}.unit");
 
-		$from = $this->getFrom();
+		$from = $this->getMeasurement("{$this->getFrom()}.unit");
 
-		$value = $this->getValue();
-
-		$this->value = $value * $this->getMeasurement("{$to}.unit") * (1 / $this->getMeasurement("{$from}.unit"));
+		$this->value = $this->getValue() * $to * (1 / $from);
 
 		return $this;
 	}
@@ -212,7 +210,7 @@ class Converter {
 		// Format the value
 		$value = number_format($value, $decimals, $decimal, $thousand);
 
-		// Return the formatted measure
+		// Return the formatted measurement
 		return preg_replace($valRegex, $value, $measurement);
 	}
 
@@ -239,15 +237,13 @@ class Converter {
 	 */
 	public function setMeasurements($measurements = array(), $merge = true)
 	{
-		$measurements = (array) $measurements;
-
 		$currentMeasurements = $merge ? $this->getMeasurements() : array();
 
-		return $this->measurements = array_merge($currentMeasurements, $measurements);
+		return $this->measurements = array_merge($currentMeasurements, (array) $measurements);
 	}
 
 	/**
-	 * Returns information about the provided measure.
+	 * Returns information about the given measurement.
 	 *
 	 * @param  string  $measurement
 	 * @return mixed

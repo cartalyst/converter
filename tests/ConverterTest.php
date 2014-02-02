@@ -136,17 +136,45 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public function testMeasureCanBeInstantiated()
+
+	public function testCanBeInstantiated()
 	{
-		$this->converter = new Converter(new NativeExchanger);
+		new Converter(new NativeExchanger);
 	}
 
 
-	public function testGetMeasurement()
+	public function testCanSetAndGetMeasurements()
 	{
-		$mesasurement = $this->converter->getMeasurement('area');
+		$converter = new Converter(new NativeExchanger);
 
-		$this->assertEquals(count($mesasurement), 2);
+		$converter->setMeasurements(array(
+
+			'currency' => array(
+
+				'usd' => array(
+					'format'   => '$1,0.00',
+					'negative' => '($1,0.00)',
+					'unit'     => 1,
+				),
+
+				'eur' => array(
+					'format' => '&euro;1,0.00',
+					'unit'   => 0.727204,
+				),
+
+				'gbp' => array(
+					'format' => '&pound;1,0.00',
+				),
+
+			),
+
+		));
+
+		$this->assertEquals(count($converter->getMeasurements()), 1);
+
+		$this->assertEquals(count($converter->getMeasurement('currency')), 3);
+
+		$this->assertEquals($converter->getMeasurement('currency.eur.format'), '&euro;1,0.00');
 	}
 
 

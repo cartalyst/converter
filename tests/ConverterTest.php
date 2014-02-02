@@ -84,7 +84,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 			),
 
-			'lengths' => array(
+			'length' => array(
 
 				'km' => array(
 					'format' => '1,0.000 KM',
@@ -113,7 +113,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 			),
 
-			'weights' => array(
+			'weight' => array(
 
 				'kg' => array(
 					'format' => '1.0,00 KG',
@@ -188,11 +188,18 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 	public function testCustomFormatting()
 	{
-		$eurUsd = $this->converter->from('currency.eur')->value(25.50);
+		$eurUsd = $this->converter->to('currency.eur')->value(25.50);
 
 		$this->assertEquals($eurUsd->format('eur 1,0.00'), 'eur 25.50');
 
 		$this->assertEquals(round($eurUsd->getValue(), 3), 25.500);
+
+
+		$eurUsd = $this->converter->from('currency.usd')->to('currency.eur')->convert(25.50);
+
+		$this->assertEquals($eurUsd->format('eur 1,0.00'), 'eur 18.54');
+
+		$this->assertEquals(round($eurUsd->getValue(), 3), 18.544);
 	}
 
 
@@ -253,7 +260,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 	public function testConvertLenghts()
 	{
 		// Millimeters to kilometers
-		$mmKm = $this->converter->from('lengths.mm')->to('lengths.km')->convert(2000000);
+		$mmKm = $this->converter->from('length.mm')->to('length.km')->convert(2000000);
 
 		$this->assertEquals($mmKm->format(), '2.000 KM');
 
@@ -261,7 +268,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Miles to kilometers
-		$mileKm = $this->converter->from('lengths.mile')->to('lengths.km')->convert(200);
+		$mileKm = $this->converter->from('length.mile')->to('length.km')->convert(200);
 
 		$this->assertEquals($mileKm->format(), '321.869 KM');
 
@@ -269,7 +276,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Kilometers to miles
-		$kmMile = $this->converter->from('lengths.km')->to('lengths.mile')->convert(200);
+		$kmMile = $this->converter->from('length.km')->to('length.mile')->convert(200);
 
 		$this->assertEquals($kmMile->format(), '124.274 Miles');
 
@@ -277,7 +284,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Foot to centimeters
-		$ftCm = $this->converter->from('lengths.ft')->to('lengths.cm')->convert(200);
+		$ftCm = $this->converter->from('length.ft')->to('length.cm')->convert(200);
 
 		$this->assertEquals($ftCm->format(), '6096 centimeters');
 
@@ -288,7 +295,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 	public function testConvertWeights()
 	{
 		// Grams to pounds
-		$gLb = $this->converter->from('weights.g')->to('weights.lb')->convert(200000);
+		$gLb = $this->converter->from('weight.g')->to('weight.lb')->convert(200000);
 
 		$this->assertEquals($gLb->format(), '441 lb');
 
@@ -296,7 +303,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 
 		// Pounds to kilograms
-		$lbKg = $this->converter->from('weights.lb')->to('weights.kg')->convert(4440.924);
+		$lbKg = $this->converter->from('weight.lb')->to('weight.kg')->convert(4440.924);
 
 		$this->assertEquals($lbKg->format(), '2.014,37 KG');
 

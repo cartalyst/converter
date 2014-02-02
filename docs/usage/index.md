@@ -10,7 +10,7 @@ This returns all the available measurements.
 
 	Converter::setMeasurements(array(
 
-		'weights' => array(
+		'weight' => array(
 
 			'kg' => array(
 				'format' => '1,0.00 KG',
@@ -64,7 +64,7 @@ Example
 
 ## Formatting to a unit {#format-units}
 
-	Converter::to('weights.lb')->value(200000)->format();
+	Converter::to('weigth.lb')->value(200000)->format();
 
 ### Returns
 
@@ -73,7 +73,7 @@ Example
 
 ## Custom Formatting {#custom-formatting}
 
-	Converter::to('weights.lb')->value(200000)->format('1,0.00 Pounds');
+	Converter::to('weigth.lb')->value(200000)->format('1,0.00 Pounds');
 
 ### Returns
 
@@ -82,7 +82,7 @@ Example
 
 ## Converting from a unit to another {#convert-units}
 
-	Converter::from('weights.g')->to('weights.lb')->convert(200000)->format();
+	Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->format();
 
 ### Returns
 
@@ -91,7 +91,7 @@ Example
 
 ## Retrieve a converted value {#retrieve-value}
 
-	Converter::from('weights.g')->to('weights.lb')->convert(200000)->getValue();
+	Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->getValue();
 
 ### Returns
 

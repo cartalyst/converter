@@ -4,7 +4,7 @@ Currency conversion requires an exchanger to fetch currency rates from a third p
 
 ## Default Exchangers {#default-exchangers}
 
-By default the native exchanger is used, which will fall back to regular config values, you can define these units under your config file, if no unit is defined, the exchanger defaults to 1.
+By default the native exchanger is used, which will fall back to the regular config values, you can define these units under your config file, if no unit is defined, the exchanger defaults to 1.
 
 We have built-in support for two exchangers out of the box.
 
@@ -66,7 +66,8 @@ It utilizes `illuminate/cache` to cache the currency results for a configurable 
 	// Create a new converter instance
 	$converter = new Converter($exchanger);
 
-	$converter->from('currency.usd')->to('currency.eur')->convert(200)->format();
+	// Convert a currency from USD to EUR
+	$value = $converter->from('currency.usd')->to('currency.eur')->convert(200)->format();
 
 > **Note:** If you're using Laravel 4, you only need to modify your config file
 and set your `app_id` and switch the default exchanger to `openexchangerates` and

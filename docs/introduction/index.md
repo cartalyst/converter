@@ -15,7 +15,7 @@ on how to [Integrate it with Laravel 4]({url}/introduction/laravel-4).
 
 ### Convert meters to centimeters
 
-	Converter::from('lengths.m')->to('lengths.cm')->convert(200)->format();
+	Converter::from('length.m')->to('length.cm')->convert(200)->format();
 
 ### Returns
 

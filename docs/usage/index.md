@@ -1,8 +1,8 @@
 # Overview
 
-## Getting Measurements {#retrieve-measurements}
+## Getting Measurements {#get-measurements}
 
-This returns all the available measurements.
+This returns an array with all the available measurements.
 
 	$measurements = Converter::getMeasurements();
 
@@ -46,7 +46,7 @@ If you want to have only a decimal separator, you have to override the first sep
 
 Ex. a value of 2000.5 with the format '0!0.00 KG' would output 2000.50 KG.
 
-### Negative Formats {#negative-formats}
+### Negative Formats
 
 Negative numbers are formatted according to the regular format by default, if you need to override the format for negative values, just provide a 'negative' property that defines your negative format.
 
@@ -62,7 +62,7 @@ Example
 	),
 
 
-## Formatting to a unit {#format-units}
+## Format a unit {#format-units}
 
 	Converter::to('weigth.lb')->value(200000)->format();
 
@@ -89,7 +89,7 @@ Example
 	441 lb
 
 
-## Retrieve a converted value {#retrieve-value}
+## Retrieve a converted unit value {#retrieve-value}
 
 	Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->getValue();
 

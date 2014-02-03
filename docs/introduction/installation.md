@@ -47,8 +47,8 @@ Now you are able to require the `vendor/autoload.php` file to autoload the packa
 	$converter = new Converter(new NativeExchanger);
 	$converter->setMeasurements($config['measurements']);
 
-	// Convert kilometers to meters
-	$meters = $converter->from('length.m')->to('length.cm')->convert(200)->format();
+	// Convert meters to centimeters
+	$value = $converter->from('length.m')->to('length.cm')->convert(200)->format();
 
 The package also has optional Laravel 4 support. The integration into the framework is done in seconds.
 

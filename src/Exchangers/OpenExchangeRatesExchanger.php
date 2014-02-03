@@ -19,8 +19,8 @@
  */
 
 use Exception;
+use Guzzle\Http\Client;
 use Illuminate\Cache\CacheManager;
-use Requests;
 
 class OpenExchangeRatesExchanger implements ExchangerInterface {
 
@@ -50,7 +50,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface {
 	 *
 	 * @var string
 	 */
-	protected $url = 'http://openexchangerates.org/api/latest.json';
+	protected $url = 'http://openexchangerates.org/api';
 
 	/**
 	 * Holds the application id.
@@ -182,13 +182,15 @@ class OpenExchangeRatesExchanger implements ExchangerInterface {
 				throw new Exception('OpenExchangeRates.org requires an app key.');
 			}
 
-			$url = "{$self->getUrl()}?app_id={$appId}";
+			$client = new Client($self->getUrl());
 
-			$response = Requests::get($url);
+			$request = $client->get("latest.json?app_id={$appId}");
 
-			$data = json_decode($response->body);
+			$response = $request->send();
 
-			return $data->rates;
+			$data = $response->json();
+
+			return $data['rates'];
 		});
 	}
 

@@ -26,9 +26,7 @@ use Illuminate\Support\ServiceProvider;
 class ConverterServiceProvider extends ServiceProvider {
 
 	/**
-	 * Boot the service provider.
-	 *
-	 * @return void
+	 * {@inheritDoc}
 	 */
 	public function boot()
 	{
@@ -36,9 +34,7 @@ class ConverterServiceProvider extends ServiceProvider {
 	}
 
 	/**
-	 * Register the service provider.
-	 *
-	 * @return void
+	 * {@inheritDoc}
 	 */
 	public function register()
 	{

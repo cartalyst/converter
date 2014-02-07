@@ -135,14 +135,18 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		));
 	}
 
-
-	public function testCanBeInstantiated()
+	/**
+	 * @test
+	 */
+	public function converter_can_be_instantiated()
 	{
 		new Converter(new NativeExchanger);
 	}
 
-
-	public function testCanSetAndGetMeasurements()
+	/**
+	 * @test
+	 */
+	public function it_can_set_and_get_measurements()
 	{
 		$converter = new Converter(new NativeExchanger);
 
@@ -176,17 +180,19 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($converter->getMeasurement('currency.eur.format'), '&euro;1,0.00');
 	}
 
-
 	/**
-	 * @expectedException  \Exception
+	 * @test
+	 * @expectedException \Exception
 	 */
-	public function testGetMissingMeasurement()
+	public function it_throws_exception_when_a_measurement_is_not_found()
 	{
 		$mesasurement = $this->converter->getMeasurement('foo');
 	}
 
-
-	public function testCustomFormatting()
+	/**
+	 * @test
+	 */
+	public function it_can_have_custom_formatting()
 	{
 		$eurUsd = $this->converter->to('currency.eur')->value(25.50);
 
@@ -202,8 +208,10 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(round($eurUsd->getValue(), 3), 18.544);
 	}
 
-
-	public function testConvertAreas()
+	/**
+	 * @test
+	 */
+	public function it_can_convert_areas()
 	{
 		// SQM to Acres
 		$sqmAcres = $this->converter->from('area.sqm')->to('area.acre')->convert(43200);
@@ -213,8 +221,10 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(round($sqmAcres->getValue(), 3), 10.675);
 	}
 
-
-	public function testConvertCurrencies()
+	/**
+	 * @test
+	 */
+	public function it_can_convert_currencies()
 	{
 		// EUR to USD
 		$eurUsd = $this->converter->from('currency.eur')->to('currency.usd')->convert(25.50);
@@ -256,8 +266,10 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(round($usdEurNegative->getValue(), 3), -18.544);
 	}
 
-
-	public function testConvertLenghts()
+	/**
+	 * @test
+	 */
+	public function it_can_convert_lengths()
 	{
 		// Millimeters to kilometers
 		$mmKm = $this->converter->from('length.mm')->to('length.km')->convert(2000000);
@@ -291,8 +303,10 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(round($ftCm->getValue(), 3), 6096);
 	}
 
-
-	public function testConvertWeights()
+	/**
+	 * @test
+	 */
+	public function it_can_convert_weights()
 	{
 		// Grams to pounds
 		$gLb = $this->converter->from('weight.g')->to('weight.lb')->convert(200000);

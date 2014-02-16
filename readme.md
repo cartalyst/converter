@@ -2,6 +2,8 @@
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
+The package follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is fully unit-tested with 100% code coverage.
+
 Part of the Cartalyst Arsenal & licensed [OSI BSD 3](license.txt). Code well, rock on.
 
 ## Package Story
@@ -10,7 +12,7 @@ History and future capabilities.
 
 ### Complete
 
-#### 20-Jan-14 - v1.0.0
+#### 16-Feb-14 - v1.0.0
 
 - ```Converter::getMeasurements()``` User can return all the available measurements.
 - ```Converter::setMeasurements($measurements)``` User can set measurements.

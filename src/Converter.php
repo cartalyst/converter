@@ -146,10 +146,7 @@ class Converter {
 	 */
 	public function convert($value = null)
 	{
-		if ($value)
-		{
-			$this->value($value);
-		}
+		if ($value) $this->value($value);
 
 		$to = $this->getMeasurement("{$this->getTo()}.unit");
 
@@ -202,10 +199,7 @@ class Converter {
 		$decimals = $decimal ? strlen(substr(strrchr($valFormat, $decimal), 1)) : 0;
 
 		// Strip negative sign
-		if ($negative)
-		{
-			$value *= -1;
-		}
+		if ($negative) $value *= -1;
 
 		// Format the value
 		$value = number_format($value, $decimals, $decimal, $thousand);

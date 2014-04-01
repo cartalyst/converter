@@ -103,12 +103,12 @@ class OpenExchangeRatesExchanger implements ExchangerInterface {
 
 		$code = strtoupper($code);
 
-		if (empty($rates->{$code}))
+		if (empty($rates[$code]))
 		{
 			throw new Exception;
 		}
 
-		return $rates->{$code};
+		return $rates[$code];
 	}
 
 	/**

@@ -4,7 +4,7 @@ A framework agnostic measurement conversion and formatting package featuring mul
 
 The package follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is fully unit-tested with 100% code coverage.
 
-Part of the Cartalyst Arsenal & licensed [OSI BSD 3](license.txt). Code well, rock on.
+Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](license.txt). Code well, rock on.
 
 ## Package Story
 

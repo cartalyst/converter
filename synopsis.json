@@ -1,5 +1,7 @@
 {
-	"name" : "Converter",
 	"github" : "cartalyst/converter",
-	"demo" : null
+	"demo" : {
+		"source" : false,
+		"online" : false
+	}
 }

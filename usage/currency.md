@@ -69,9 +69,7 @@ It utilizes `illuminate/cache` to cache the currency results for a configurable 
 	// Convert a currency from USD to EUR
 	$value = $converter->from('currency.usd')->to('currency.eur')->convert(200)->format();
 
-> **Note:** If you're using Laravel 4, you only need to modify your config file
-and set your `app_id` and switch the default exchanger to `openexchangerates` and
-you're ready to go, just use the facade.
+> **Note:** If you're using Laravel 4, you only need to modify your config file and set your `app_id` and switch the default exchanger to `openexchangerates` and you're ready to go, just use the facade.
 
 ### Custom Exchangers
 

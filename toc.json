@@ -2,7 +2,7 @@
 	"introduction" : [
 		"index",
 		"installation",
-		"laravel-4"
+		"integration"
 	],
 	"usage": [
 		"index",

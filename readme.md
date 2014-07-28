@@ -1,5 +1,7 @@
 # Converter v1.0.0
 
+[![Build Status](http://ci.cartalyst.com/build-status/svg/4)](http://ci.cartalyst.com/build-status/view/4)
+
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
 The package follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is fully unit-tested with 100% code coverage.

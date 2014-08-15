@@ -87,27 +87,37 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 				'km' => array(
 					'format' => '1,0.000 KM',
-					'unit'   => 1.00,
+					'unit'   => 0.001,
 				),
 
 				'mile' => array(
 					'format' => '1,0.000 Miles',
-					'unit'   => 0.621371,
+					'unit'   => 0.000621371,
 				),
 
 				'cm' => array(
 					'format' => '1!0 centimeters',
-					'unit'   => 100000
+					'unit'   => 100
 				),
 
 				'mm' => array(
 					'format' => '1,0.00 millimeters',
-					'unit'   => 1000000
+					'unit'   => 1000
+				),
+				
+				'meter' => array(
+					'format' => '1,0.00',
+					'unit'   => 1.00
 				),
 
 				'ft' => array(
 					'format' => '1,0.00 feet',
-					'unit'   => 3280.84
+					'unit'   => 3.28084
+				),
+				
+				'in' => array(
+					'format' => '1,0.00 inches',
+					'unit'   => 39.3701
 				),
 
 			),
@@ -116,17 +126,17 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 
 				'kg' => array(
 					'format' => '1.0,00 KG',
-					'unit'   => 1.00,
+					'unit'   => 0.001,
 				),
 
 				'g' => array(
 					'format' => '(1,0.00 grams)',
-					'unit'   => 1000.00,
+					'unit'   => 1.00,
 				),
 
 				'lb' => array(
 					'format' => '1 lb',
-					'unit'   => 2.20462,
+					'unit'   => 0.00220462,
 				),
 
 			),
@@ -300,6 +310,20 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($ftCm->format(), '6096 centimeters');
 
 		$this->assertEquals(round($ftCm->getValue(), 3), 6096);
+
+		// Meter to Feet
+		$meterFt = $this->converter->from('length.meter')->to('length.ft')->convert(200);
+
+		$this->assertEquals($meterFt->format(), '656.17 feet');
+
+		$this->assertEquals(round($meterFt->getValue(), 3), 656.168);
+
+		// Meter to inches
+		$meterIn = $this->converter->from('length.meter')->to('length.in')->convert(200);
+
+		$this->assertEquals($meterIn->format(), '7,874.02 inches');
+
+		$this->assertEquals(round($meterIn->getValue(), 3), 7874.02);
 	}
 
 	/**

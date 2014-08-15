@@ -91,22 +91,32 @@ return array(
 
 			'km' => array(
 				'format' => '1,0.00 KM',
-				'unit'   => 1.00,
+				'unit'   => 0.001,
 			),
 
 			'm' => array(
 				'format' => '1,0.00 M',
-				'unit'   => 1000,
+				'unit'   => 1.00,
 			),
 
 			'cm' => array(
 				'format' => '1,0.00 CM',
-				'unit'   => 100000,
+				'unit'   => 100,
 			),
 
 			'mm' => array(
 				'format' => '1,0.00 MM',
-				'unit'   => 1000000,
+				'unit'   => 1000,
+			),
+			
+			'in' => array(
+				'format' => '1,0.00 IN',
+				'unit'   => 39.3701,
+			),
+			
+			'ft' => array(
+				'format' => '1,0.00 FT',
+				'unit'   => 3.28084
 			),
 
 		),
@@ -124,14 +134,18 @@ return array(
 
 			'kg' => array(
 				'format' => '1,0.00 KG',
-				'unit'   => 1.00,
+				'unit'   => 0.001,
 			),
 
 			'g' => array(
 				'format' => '1,0.00 G',
-				'unit'   => 1000.00,
+				'unit'   => 1.00,
 			),
 
+			'lb' => array(
+				'format' => '1 lb',
+				'unit'   => 0.00220462,
+			),
 		),
 
 	),

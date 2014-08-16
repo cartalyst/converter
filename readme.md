@@ -1,4 +1,4 @@
-# Converter v1.0.0
+# Converter v1.1.0
 
 [![Build Status](http://ci.cartalyst.com/build-status/svg/4)](http://ci.cartalyst.com/build-status/view/4)
 
@@ -13,6 +13,12 @@ Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](license.txt). Code well
 History and future capabilities.
 
 ### Complete
+
+#### 16-Aug-14 - v1.1.0
+
+- Base lengths are using `meters` instead of `kilometers`.
+- Added some more common units `mile`, `feet` and `inch`.
+- Some unit formats updated in the config to use abbreviations so it's more consistent with the International System of Units.
 
 #### 09-May-14 - v1.0.0
 

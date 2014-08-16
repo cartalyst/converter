@@ -53,12 +53,12 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 			'area' => array(
 
 				'sqm' => array(
-					'format' => '1,00.00 SQM',
+					'format' => '1,00.00 sq m',
 					'unit'   => 1,
 				),
 
 				'acre' => array(
-					'format' => '1,00.000 Acres',
+					'format' => '1,00.000 ac',
 					'unit'   => 0.000247105,
 				),
 
@@ -86,38 +86,38 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 			'length' => array(
 
 				'km' => array(
-					'format' => '1,0.000 KM',
+					'format' => '1,0.000 km',
 					'unit'   => 0.001,
 				),
 
-				'mile' => array(
-					'format' => '1,0.000 Miles',
+				'mi' => array(
+					'format' => '1,0.000 mi',
 					'unit'   => 0.000621371,
 				),
 
-				'meter' => array(
-					'format' => '1,0.000',
-					'unit' => 1.00,
+				'm' => array(
+					'format' => '1,0.000 m',
+					'unit'   => 1.00,
 				),
 
 				'cm' => array(
-					'format' => '1!0 centimeters',
-					'unit'   => 100
+					'format' => '1!0 cm',
+					'unit'   => 100,
 				),
 
 				'mm' => array(
-					'format' => '1,0.00 millimeters',
-					'unit'   => 1000
+					'format' => '1,0.00 mm',
+					'unit'   => 1000,
 				),
 
 				'ft' => array(
-					'format' => '1,0.00 feet',
-					'unit'   => 3.28084
+					'format' => '1,0.00 ft.',
+					'unit'   => 3.28084,
 				),
 
 				'in' => array(
-					'format' => '1,0.00 inches',
-					'unit'   => 39.3701
+					'format' => '1,0.00 in',
+					'unit'   => 39.3701,
 				),
 
 			),
@@ -225,7 +225,7 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		// SQM to Acres
 		$sqmAcres = $this->converter->from('area.sqm')->to('area.acre')->convert(43200);
 
-		$this->assertEquals($sqmAcres->format(), '10.675 Acres');
+		$this->assertEquals($sqmAcres->format(), '10.675 ac');
 
 		$this->assertEquals(round($sqmAcres->getValue(), 3), 10.675);
 	}
@@ -283,23 +283,23 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		// Millimeters to kilometers
 		$mmKm = $this->converter->from('length.mm')->to('length.km')->convert(2000000);
 
-		$this->assertEquals($mmKm->format(), '2.000 KM');
+		$this->assertEquals($mmKm->format(), '2.000 km');
 
 		$this->assertEquals(round($mmKm->getValue(), 3), 2.000);
 
 
 		// Miles to kilometers
-		$mileKm = $this->converter->from('length.mile')->to('length.km')->convert(200);
+		$mileKm = $this->converter->from('length.mi')->to('length.km')->convert(200);
 
-		$this->assertEquals($mileKm->format(), '321.869 KM');
+		$this->assertEquals($mileKm->format(), '321.869 km');
 
 		$this->assertEquals(round($mileKm->getValue(), 3), 321.869);
 
 
 		// Kilometers to miles
-		$kmMile = $this->converter->from('length.km')->to('length.mile')->convert(200);
+		$kmMile = $this->converter->from('length.km')->to('length.mi')->convert(200);
 
-		$this->assertEquals($kmMile->format(), '124.274 Miles');
+		$this->assertEquals($kmMile->format(), '124.274 mi');
 
 		$this->assertEquals(round($kmMile->getValue(), 3), 124.274);
 
@@ -307,23 +307,41 @@ class ConverterTest extends PHPUnit_Framework_TestCase {
 		// Foot to centimeters
 		$ftCm = $this->converter->from('length.ft')->to('length.cm')->convert(200);
 
-		$this->assertEquals($ftCm->format(), '6096 centimeters');
+		$this->assertEquals($ftCm->format(), '6096 cm');
 
 		$this->assertEquals(round($ftCm->getValue(), 3), 6096);
 
-		// Meter to Feet
-		$meterFt = $this->converter->from('length.meter')->to('length.ft')->convert(200);
 
-		$this->assertEquals($meterFt->format(), '656.17 feet');
+		// Meter to Feet
+		$meterFt = $this->converter->from('length.m')->to('length.ft')->convert(200);
+
+		$this->assertEquals($meterFt->format(), '656.17 ft.');
 
 		$this->assertEquals(round($meterFt->getValue(), 3), 656.168);
 
-		// Meter to inches
-		$meterIn = $this->converter->from('length.meter')->to('length.in')->convert(200);
 
-		$this->assertEquals($meterIn->format(), '7,874.02 inches');
+		// Feet to meter
+		$feetM = $this->converter->from('length.ft')->to('length.m')->convert(200);
+
+		$this->assertEquals($feetM->format(), '60.960 m');
+
+		$this->assertEquals(round($feetM->getValue(), 3), 60.960);
+
+
+		// Meter to inches
+		$meterIn = $this->converter->from('length.m')->to('length.in')->convert(200);
+
+		$this->assertEquals($meterIn->format(), '7,874.02 in');
 
 		$this->assertEquals(round($meterIn->getValue(), 3), 7874.02);
+
+
+		// Inches to meter
+		$inchM = $this->converter->from('length.in')->to('length.m')->convert(200);
+
+		$this->assertEquals($inchM->format(), '5.080 m');
+
+		$this->assertEquals(round($inchM->getValue(), 3), 5.080);
 	}
 
 	/**

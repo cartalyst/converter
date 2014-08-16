@@ -101,7 +101,7 @@ return array(
 
 			'm' => array(
 				'format' => '1,0.000 m',
-				'unit' => 1.00,
+				'unit'   => 1.00,
 			),
 
 			'cm' => array(

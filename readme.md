@@ -1,4 +1,4 @@
-# Converter v1.1.0
+# Converter v1.2.0
 
 [![Build Status](http://ci.cartalyst.com/build-status/svg/4)](http://ci.cartalyst.com/build-status/view/4)
 

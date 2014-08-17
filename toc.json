@@ -1,6 +1,7 @@
 {
 	"introduction" : [
 		"index",
+		"upgrade",
 		"installation",
 		"integration"
 	],

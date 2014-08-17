@@ -1,4 +1,4 @@
-# Introduction
+## Introduction
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
@@ -6,9 +6,7 @@ The package requires PHP 5.3+ and comes bundled with a Laravel 4 Facade and a Se
 
 Have a [read through the Installation Guide](#installation) and on how to [Integrate it with Laravel 4](#laravel-4).
 
-### Quick Example
-
-#### Convert and Format meters to centimeters
+###### Convert and Format meters to centimeters
 
 ```php
 $value = Converter::from('length.m')->to('length.cm')->convert(200)->format();

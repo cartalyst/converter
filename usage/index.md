@@ -1,12 +1,12 @@
-# Usage
+## Usage
 
 In this section we'll show you how to use the converter package.
 
-## Measurements
+### Measurements
 
 The measurements are the crucial part of the package
 
-### Converter::getMeasurements()
+#### Get the measurements
 
 This will return an array containing all the available measurements.
 
@@ -14,13 +14,13 @@ This will return an array containing all the available measurements.
 $measurements = Converter::getMeasurements();
 ```
 
-### Converter::setMeasurements()
+#### Set the measurements
 
 Setting new measurements is simple and easy, you just need to provide a multidimensional array.
 
 You have two ways of setting measurements, `runtime` or through the `config` file.
 
-#### Runtime
+###### Runtime
 
 ```php
 Converter::setMeasurements(array(
@@ -47,11 +47,11 @@ Converter::setMeasurements(array(
 ));
 ```
 
-#### Config
+###### Config
 
 Open the file located at `app/config/packages/cartalyst/converter/config.php` and add your new measurements.
 
-## Formatting
+### Formatting
 
 We have a robust way of formatting measurements, please read along
 
@@ -64,7 +64,7 @@ If you want to have only a decimal separator, you have to override the first sep
 Ex. a value of `2000.5` with the format `'0!0.00 KG'` would output `2000.50 KG`.
 
 
-### Format a unit
+#### Format a unit
 
 ```php
 $value = Converter::to('weigth.lb')->value(200000)->format();
@@ -72,7 +72,7 @@ $value = Converter::to('weigth.lb')->value(200000)->format();
 >>> 200,000 lb
 ```
 
-### Custom Formatting
+#### Custom Formatting
 
 ```php
 $value = Converter::to('weigth.lb')->value(200000)->format('1,0.00 Pounds');
@@ -80,7 +80,7 @@ $value = Converter::to('weigth.lb')->value(200000)->format('1,0.00 Pounds');
 >>> 200,000.00 Pounds
 ```
 
-### Negative Formats
+#### Negative Formats
 
 Negative numbers are formatted according to the regular format by default, if you need to override the format for negative values, just provide a 'negative' property that defines your negative format.
 
@@ -97,11 +97,11 @@ Negative numbers are formatted according to the regular format by default, if yo
 ),
 ```
 
-## Convertions
+### Convertions
 
 We have a very simple way of converting a `measurement` to another.
 
-### Converting from a unit to another
+#### Converting from a unit to another
 
 ```php
 $value = Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->format();
@@ -109,7 +109,7 @@ $value = Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->format()
 >>> 441 lb
 ```
 
-### Retrieve a converted unit value
+#### Retrieve a converted unit value
 
 ```php
 $value = Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->getValue();

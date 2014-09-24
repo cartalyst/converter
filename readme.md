@@ -1,10 +1,10 @@
-# Converter v1.1.0
+# Converter
 
 [![Build Status](http://ci.cartalyst.com/build-status/svg/4)](http://ci.cartalyst.com/build-status/view/4)
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
-The package follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is fully unit-tested with 100% code coverage.
+The package requires PHP 5.3+ and comes bundled with a Laravel 4 and Laravel 5 Facade and a Service Provider to simplify the optional framework integration and follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is fully unit-tested.
 
 Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](license.txt). Code well, rock on.
 
@@ -14,11 +14,19 @@ History and future capabilities.
 
 ### Complete
 
+#### 23-Set-14 - v1.1.1
+
+- Loosen requirements to allow the usage on Laravel 5.0.
+
 #### 16-Aug-14 - v1.1.0
 
 - Base lengths are using `meters` instead of `kilometers`.
 - Added some more common units `mile`, `feet` and `inch`.
 - Some unit formats updated in the config to use abbreviations so it's more consistent with the International System of Units.
+
+#### 23-Set-14 - v1.0.1
+
+- Loosen requirements to allow the usage on Laravel 5.0.
 
 #### 09-May-14 - v1.0.0
 
@@ -34,21 +42,17 @@ History and future capabilities.
 - ```Converter::convert($value|null)``` Convert the given `$value` or the value that was previously set.
 - ```Converter::format($format|null)``` Format the value using the given `$format` or using the default format.
 
-## Requirements
-
-- PHP >=5.3
-
 ## Installation
 
 Converter is installable with Composer. Read further information on how to install.
 
-[Installation Guide](https://cartalyst.com/manual/converter#installation)
+[Installation Guide](https://cartalyst.com/manual/converter/1.1#installation)
 
 ## Documentation
 
 Refer to the following guide on how to use the Converter package.
 
-[Documentation](https://cartalyst.com/manual/converter)
+[Documentation](https://cartalyst.com/manual/converter/1.1)
 
 ## Versioning
 

@@ -67,7 +67,7 @@ Ex. a value of `2000.5` with the format `'0!0.00 KG'` would output `2000.50 KG`.
 #### Format a unit
 
 ```php
-$value = Converter::to('weigth.lb')->value(200000)->format();
+$value = Converter::to('weight.lb')->value(200000)->format();
 
 >>> 200,000 lb
 ```
@@ -75,7 +75,7 @@ $value = Converter::to('weigth.lb')->value(200000)->format();
 #### Custom Formatting
 
 ```php
-$value = Converter::to('weigth.lb')->value(200000)->format('1,0.00 Pounds');
+$value = Converter::to('weight.lb')->value(200000)->format('1,0.00 Pounds');
 
 >>> 200,000.00 Pounds
 ```
@@ -104,7 +104,7 @@ We have a very simple way of converting a `measurement` to another.
 #### Converting from a unit to another
 
 ```php
-$value = Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->format();
+$value = Converter::from('weight.g')->to('weight.lb')->convert(200000)->format();
 
 >>> 441 lb
 ```
@@ -112,7 +112,7 @@ $value = Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->format()
 #### Retrieve a converted unit value
 
 ```php
-$value = Converter::from('weigth.g')->to('weigth.lb')->convert(200000)->getValue();
+$value = Converter::from('weight.g')->to('weight.lb')->convert(200000)->getValue();
 
 >>> 440.924
 ```

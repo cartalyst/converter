@@ -1,8 +1,8 @@
-### Installation
+## Installation
 
 The best and easiest way to install the Converter package is with [Composer](http://getcomposer.org).
 
-#### Preparation
+### Preparation
 
 Open your `composer.json` and add the following to the `require` array:
 

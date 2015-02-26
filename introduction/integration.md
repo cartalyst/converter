@@ -50,7 +50,7 @@ In the `$aliases` array add the following facade for this package.
 
 After installing, you can publish the package configuration file into your application by running the following command on your terminal:
 
-	php artisan publish:config cartalyst/converter
+	php artisan vendor:publish
 
 This will publish the config file to `config/packages/cartalyst/converter/config.php` where you can modify the package configuration.
 

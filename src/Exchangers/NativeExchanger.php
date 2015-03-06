@@ -1,33 +1,35 @@
-<?php namespace Cartalyst\Converter\Exchangers;
+<?php
+
 /**
  * Part of the Converter package.
  *
  * NOTICE OF LICENSE
  *
- * Licensed under the Cartalyst PSL License.
+ * Licensed under the 3-clause BSD License.
  *
- * This source file is subject to the Cartalyst PSL License that is
- * bundled with this package in the license.txt file.
+ * This source file is subject to the 3-clause BSD License that is
+ * bundled with this package in the LICENSE file.
  *
  * @package    Converter
- * @version    1.0.1
+ * @version    1.0.2
  * @author     Cartalyst LLC
- * @license    Cartalyst PSL
- * @copyright  (c) 2011-2014, Cartalyst LLC
+ * @license    BSD License (3-clause)
+ * @copyright  (c) 2011-2015, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
-class NativeExchanger implements ExchangerInterface {
+namespace Cartalyst\Converter\Exchangers;
 
-	/**
-	 * Return the exchange rate for the provided currency code.
-	 *
-	 * @param  string  $code
-	 * @return float
-	 */
-	public function get($code)
-	{
-		return 1;
-	}
-
+class NativeExchanger implements ExchangerInterface
+{
+    /**
+     * Return the exchange rate for the provided currency code.
+     *
+     * @param  string  $code
+     * @return float
+     */
+    public function get($code)
+    {
+        return 1;
+    }
 }

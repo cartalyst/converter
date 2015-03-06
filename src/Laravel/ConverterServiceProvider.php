@@ -1,96 +1,106 @@
-<?php namespace Cartalyst\Converter\Laravel;
+<?php
+
 /**
  * Part of the Converter package.
  *
  * NOTICE OF LICENSE
  *
- * Licensed under the Cartalyst PSL License.
+ * Licensed under the 3-clause BSD License.
  *
- * This source file is subject to the Cartalyst PSL License that is
- * bundled with this package in the license.txt file.
+ * This source file is subject to the 3-clause BSD License that is
+ * bundled with this package in the LICENSE file.
  *
  * @package    Converter
- * @version    1.2.0
+ * @version    2.0.0
  * @author     Cartalyst LLC
- * @license    Cartalyst PSL
- * @copyright  (c) 2011-2014, Cartalyst LLC
+ * @license    BSD License (3-clause)
+ * @copyright  (c) 2011-2015, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
+namespace Cartalyst\Converter\Laravel;
+
 use Cartalyst\Converter\Converter;
+use Illuminate\Support\ServiceProvider;
 use Cartalyst\Converter\Exchangers\NativeExchanger;
 use Cartalyst\Converter\Exchangers\OpenExchangeRatesExchanger;
-use Illuminate\Support\ServiceProvider;
 
-class ConverterServiceProvider extends ServiceProvider {
+class ConverterServiceProvider extends ServiceProvider
+{
+    /**
+     * {@inheritDoc}
+     */
+    public function register()
+    {
+        $this->prepareResources();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public function boot()
-	{
-		$this->package('cartalyst/converter', 'cartalyst/converter', __DIR__.'/..');
-	}
+        $this->registerExchangers();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public function register()
-	{
-		$this->registerExchangers();
+        $this->registerConverter();
+    }
 
-		$this->registerConverter();
-	}
+    /**
+     * Prepare the package resources.
+     *
+     * @return void
+     */
+    protected function prepareResources()
+    {
+        $config = realpath(__DIR__.'/../config/config.php');
 
-	/**
-	 * Register all the available exchangers.
-	 *
-	 * @return void
-	 */
-	protected function registerExchangers()
-	{
-		$this->app['converter.native.exchanger'] = $this->app->share(function($app)
-		{
-			return new NativeExchanger;
-		});
+        $this->mergeConfigFrom($config, 'cartalyst.converter');
 
-		$this->app['converter.openexchangerates.exchanger'] = $this->app->share(function($app)
-		{
-			$appId = $app['config']->get('cartalyst/converter::exchangers.openexchangerates.app_id');
+        $this->publishes([
+            $config => config_path('cartalyst.converter.php'),
+        ], 'config');
+    }
 
-			$expires = $app['config']->get('cartalyst/converter::expires');
+    /**
+     * Register all the available exchangers.
+     *
+     * @return void
+     */
+    protected function registerExchangers()
+    {
+        $this->app['converter.native.exchanger'] = $this->app->share(function ($app) {
+            return new NativeExchanger;
+        });
 
-			$exchanger = new OpenExchangeRatesExchanger($app['cache']);
-			$exchanger->setAppId($appId);
-			$exchanger->setExpires($expires);
+        $this->app['converter.openexchangerates.exchanger'] = $this->app->share(function ($app) {
+            $config = $app['config']->get('cartalyst.converter');
 
-			return $exchanger;
-		});
+            $appId = array_gey($config, 'exchangers.openexchangerates.app_id');
 
-		$this->app['converter.exchanger'] = $this->app->share(function($app)
-		{
-			$default = $app['config']->get('cartalyst/converter::exchangers.default');
+            $expires = array_gey($config, 'expires');
 
-			return $app["converter.{$default}.exchanger"];
-		});
-	}
+            $exchanger = new OpenExchangeRatesExchanger($app['cache']);
+            $exchanger->setAppId($appId);
+            $exchanger->setExpires($expires);
 
-	/**
-	 * Register the Converter.
-	 *
-	 * @return void
-	 */
-	protected function registerConverter()
-	{
-		$this->app['converter'] = $this->app->share(function($app)
-		{
-			$measurements = $app['config']->get('cartalyst/converter::measurements');
+            return $exchanger;
+        });
 
-			$converter = new Converter($app['converter.exchanger']);
-			$converter->setMeasurements($measurements);
+        $this->app['converter.exchanger'] = $this->app->share(function ($app) {
+            $default = $app['config']->get('cartalyst.converter.exchangers.default');
 
-			return $converter;
-		});
-	}
+            return $app["converter.{$default}.exchanger"];
+        });
+    }
 
+    /**
+     * Register the Converter.
+     *
+     * @return void
+     */
+    protected function registerConverter()
+    {
+        $this->app['converter'] = $this->app->share(function ($app) {
+            $measurements = $app['config']->get('cartalyst.converter.measurements');
+
+            $converter = new Converter($app['converter.exchanger']);
+            $converter->setMeasurements($measurements);
+
+            return $converter;
+        });
+    }
 }

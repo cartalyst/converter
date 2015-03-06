@@ -6,7 +6,7 @@ A framework agnostic measurement conversion and formatting package featuring mul
 
 The package requires PHP 5.3+ and comes bundled with a Laravel 4 Facade and a Service Provider to simplify the optional framework integration and follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is unit-tested.
 
-Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](LICENSE). Code well, rock on.
+An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
 
 ## Documentation
 
@@ -41,6 +41,6 @@ Bug reports, feature requests, and pull requests can be submitted by following o
 
 ## License
 
-This software is released under the [Cartalyst PSL](LICENSE) License.
+This software is released under the [BSD 3-Clause](LICENSE) License.
 
 © 2011-2015 Cartalyst LLC, All rights reserved.

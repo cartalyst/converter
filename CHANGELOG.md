@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v2.0.1 - 2015-04-15
+
+`FIXED`
+
+- Fix typo on Service Provider.
+
 #### v2.0.0 - 2015-03-06
 
 `ADDED`

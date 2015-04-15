@@ -69,9 +69,9 @@ class ConverterServiceProvider extends ServiceProvider
         $this->app['converter.openexchangerates.exchanger'] = $this->app->share(function ($app) {
             $config = $app['config']->get('cartalyst.converter');
 
-            $appId = array_gey($config, 'exchangers.openexchangerates.app_id');
+            $appId = array_get($config, 'exchangers.openexchangerates.app_id');
 
-            $expires = array_gey($config, 'expires');
+            $expires = array_get($config, 'expires');
 
             $exchanger = new OpenExchangeRatesExchanger($app['cache']);
             $exchanger->setAppId($appId);

@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v1.1.3 - 2015-04-17
+
+`UPDATED`
+
+- Updated to Guzzle 5 to remove deprecated warnings during installation through Composer.
+
 #### v1.1.2 - 2015-03-06
 
 `REVISED`
@@ -36,6 +42,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 - Base lengths are using `meters` instead of `kilometers`.
  Added some more common units `mile`, `feet` and `inch`.
 - Some unit formats updated in the config to use abbreviations so it's more consistent with the International System of Units.
+
+#### v1.0.3 - 2015-04-17
+
+`UPDATED`
+
+- Updated to Guzzle 5 to remove deprecated warnings during installation through Composer.
 
 #### v1.0.2 - 2015-03-06
 

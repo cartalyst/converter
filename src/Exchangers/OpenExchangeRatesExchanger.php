@@ -21,7 +21,7 @@
 namespace Cartalyst\Converter\Exchangers;
 
 use Exception;
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 use Illuminate\Cache\CacheManager;
 
 class OpenExchangeRatesExchanger implements ExchangerInterface
@@ -181,9 +181,9 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
                 throw new Exception('OpenExchangeRates.org requires an app key.');
             }
 
-            $client = new Client($self->getUrl());
+            $client = new Client(['base_url' => $self->getUrl()]);
 
-            $request = $client->get("latest.json?app_id={$appId}");
+            $request = $client->get("/latest.json?app_id={$appId}");
 
             $response = $request->send();
 

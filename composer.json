@@ -44,7 +44,7 @@
         "php": ">=5.3.0",
         "illuminate/cache": "~4.1",
         "illuminate/filesystem": "~4.1",
-        "guzzle/guzzle" : "~3.9"
+        "guzzlehttp/guzzle" : "~5.2"
     },
     "require-dev": {
         "mockery/mockery": "~0.9",

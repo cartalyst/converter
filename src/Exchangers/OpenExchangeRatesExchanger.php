@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Converter
- * @version    2.0.1
+ * @version    2.0.2
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2015, Cartalyst LLC
@@ -21,7 +21,7 @@
 namespace Cartalyst\Converter\Exchangers;
 
 use Exception;
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 use Illuminate\Cache\CacheManager;
 
 class OpenExchangeRatesExchanger implements ExchangerInterface
@@ -181,13 +181,9 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
                 throw new Exception('OpenExchangeRates.org requires an app key.');
             }
 
-            $client = new Client($self->getUrl());
+            $client = new Client([ 'base_url' => $self->getUrl() ]);
 
-            $request = $client->get("latest.json?app_id={$appId}");
-
-            $response = $request->send();
-
-            $data = $response->json();
+            $data = $client->get("latest.json?app_id={$appId}")->json();
 
             return $data['rates'];
         });

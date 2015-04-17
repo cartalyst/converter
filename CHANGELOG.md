@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v1.0.3 - 2015-04-17
+
+`UPDATED`
+
+- Updated to Guzzle 5 to remove deprecated warnings during installation through Composer.
+
 #### v1.0.2 - 2015-03-06
 
 `REVISED`

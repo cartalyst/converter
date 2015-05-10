@@ -6,7 +6,7 @@ The best and easiest way to install the Converter package is with [Composer](htt
 
 Open your `composer.json` and add the following to the `require` array:
 
-	"cartalyst/converter": "1.1.*"
+	"cartalyst/converter": "2.0.*"
 
 Add the following lines after the `require` array on your `composer.json` file:
 

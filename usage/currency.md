@@ -29,7 +29,7 @@ It defaults to user defined measurements configurations
 		),
 	)
 
-> **Note:** If you're using Laravel 4, define the units on your config file.
+> **Note:** If you're using Laravel 5, define the units on your config file.
 
 ##### [OpenExchangeRates.org Exchanger](https://openexchangerates.org)
 
@@ -43,16 +43,7 @@ It utilizes `illuminate/cache` to cache the currency results for a configurable 
 	use Illuminate\Filesystem\Filesystem;
 
 	// Setup the Illuminate cache
-	$cache = new CacheManager(array(
-
-		'config' => array(
-			'cache.driver' => 'file',
-			'cache.path'   => __DIR__.'/cache',
-		),
-
-		'files' => new Filesystem(),
-
-	));
+	$cache = new CacheManager(app());
 
 	// Create the exchanger
 	$exchanger = new OpenExchangeRatesExchanger($cache);
@@ -69,7 +60,7 @@ It utilizes `illuminate/cache` to cache the currency results for a configurable 
 	// Convert a currency from USD to EUR
 	$value = $converter->from('currency.usd')->to('currency.eur')->convert(200)->format();
 
-> **Note:** If you're using Laravel 4, you only need to modify your config file and set your `app_id` and switch the default exchanger to `openexchangerates` and you're ready to go, just use the facade.
+> **Note:** If you're using Laravel 5, you only need to modify your config file and set your `app_id` and switch the default exchanger to `openexchangerates` and you're ready to go, just use the facade.
 
 #### Custom Exchangers
 
@@ -97,4 +88,4 @@ You can create your own exchanger by creating a class that implements the `Carta
 
 To use your new exchanger simply pass it as a parameter to the Converter instance.
 
-> **Note:** If you're using Laravel 4, you can bind your new exchanger into the container as converter.{exchanger_name}.exchanger and switch the default exchanger on your config file to match your exchanger name, and simply use the facade.
+> **Note:** If you're using Laravel 5, you can bind your new exchanger into the container as converter.{exchanger_name}.exchanger and switch the default exchanger on your config file to match your exchanger name, and simply use the facade.

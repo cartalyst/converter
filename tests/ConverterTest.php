@@ -276,6 +276,14 @@ class ConverterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($usdEurNegative->format(), '-&euro;18.54');
 
         $this->assertEquals(round($usdEurNegative->getValue(), 3), -18.544);
+
+
+        // Zero value USD to EUR
+        $usdEurZero = $this->converter->from('currency.usd')->to('currency.eur')->convert(0);
+
+        $this->assertEquals($usdEurZero->format(), '&euro;0.00');
+
+        $this->assertEquals(round($usdEurZero->getValue(), 3), 0.00);
     }
 
     /**

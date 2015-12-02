@@ -148,7 +148,7 @@ class Converter
      */
     public function convert($value = null)
     {
-        if ($value) {
+        if ($value !== null) {
             $this->value($value);
         }
 

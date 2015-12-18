@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v2.0.3 - 2015-12-18
+
+`FIXED`
+
+- Issue when passing values as 0 (zero) it was not being properly evaluated.
+
 #### v2.0.2 - 2015-04-17
 
 `UPDATED`

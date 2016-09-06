@@ -249,7 +249,7 @@ class Converter
     {
         $measurements = $this->getMeasurements();
 
-        if ( ! $measure = array_get($measurements, $measurement)) {
+        if (! $measure = array_get($measurements, $measurement)) {
             if (str_contains($measurement, 'negative')) {
                 return '-' . $this->getMeasurement(str_replace('negative', 'format', $measurement));
             }

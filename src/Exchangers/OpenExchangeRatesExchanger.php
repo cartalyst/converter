@@ -177,7 +177,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
 
         // Cache the currencies
         return $this->rates = $this->cache->remember('currencies', $this->getExpires(), function () use ($self) {
-            if ( ! $appId = $self->getAppId()) {
+            if (! $appId = $self->getAppId()) {
                 throw new Exception('OpenExchangeRates.org requires an app key.');
             }
 

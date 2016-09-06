@@ -1,26 +1,22 @@
 # Converter
 
-[![Build Status](http://ci.cartalyst.com/build-status/svg/4)](http://ci.cartalyst.com/build-status/view/4)
+[![Build Status](https://travis-ci.org/cartalyst/converter.svg?branch=2.0)](https://travis-ci.org/cartalyst/converter)
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
-The package requires PHP 5.3+ and comes bundled with a Laravel 5 Facade and a Service Provider to simplify the optional framework integration and follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is unit-tested.
+The package requires PHP 5.3+ and follows the FIG standards PSR-1, PSR-2 and PSR-4 to ensure a high level of interoperability between shared PHP.
 
 An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
 
 ## Documentation
 
-Reader-friendly Documentation can be found here. [Converter Manual](https://cartalyst.com/manual/converter).
+Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/converter/2.0).
 
-Raw files can be found via this projects docs/version branch.
+Raw files can be found [here](https://github.com/cartalyst/converter/tree/docs/2.0).
 
-- [2.0](https://github.com/cartalyst/converter/tree/docs/2.0)
-- [1.1](https://github.com/cartalyst/converter/tree/docs/1.1)
-- [1.0](https://github.com/cartalyst/converter/tree/docs/1.0)
+## Change Log
 
-## Changelog
-
-Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
+Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
 
 - [2.0](CHANGELOG.md) - 2015-03-06
 - [1.1](CHANGELOG.md) - 2014-08-16

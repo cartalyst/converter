@@ -62,11 +62,11 @@ class ConverterServiceProvider extends ServiceProvider
      */
     protected function registerExchangers()
     {
-        $this->app['converter.native.exchanger'] = $this->app->share(function ($app) {
+        $this->app->singleton('converter.native.exchanger', function ($app) {
             return new NativeExchanger;
         });
 
-        $this->app['converter.openexchangerates.exchanger'] = $this->app->share(function ($app) {
+        $this->app->singleton('converter.openexchangerates.exchanger', function ($app) {
             $config = $app['config']->get('cartalyst.converter');
 
             $appId = array_get($config, 'exchangers.openexchangerates.app_id');
@@ -80,7 +80,7 @@ class ConverterServiceProvider extends ServiceProvider
             return $exchanger;
         });
 
-        $this->app['converter.exchanger'] = $this->app->share(function ($app) {
+        $this->app->singleton('converter.exchanger', function ($app) {
             $default = $app['config']->get('cartalyst.converter.exchangers.default');
 
             return $app["converter.{$default}.exchanger"];
@@ -94,7 +94,7 @@ class ConverterServiceProvider extends ServiceProvider
      */
     protected function registerConverter()
     {
-        $this->app['converter'] = $this->app->share(function ($app) {
+        $this->app->singleton('converter', function ($app) {
             $measurements = $app['config']->get('cartalyst.converter.measurements');
 
             $converter = new Converter($app['converter.exchanger']);

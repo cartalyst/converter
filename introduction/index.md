@@ -2,7 +2,7 @@
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
-The package requires PHP 5.3+ and comes bundled with a Laravel 5 Facade and a Service Provider to simplify the optional framework integration and follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is fully unit-tested.
+The package requires PHP 5.6.4+ and comes bundled with a Laravel 5 Facade and a Service Provider to simplify the optional framework integration and follows the FIG standard PSR-4 to ensure a high level of interoperability between shared PHP code and is fully unit-tested.
 
 Have a [read through the Installation Guide](#installation) and on how to [Integrate it with Laravel 5](#laravel-5).
 

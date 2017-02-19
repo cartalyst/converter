@@ -11,6 +11,13 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v3.0.0 - 2017-02-19
+
+`UPDATED`
+
+- Updated to Guzzle 6.
+- Updated service provider for laravel 5.3+.
+
 #### v2.0.3 - 2015-12-18
 
 `FIXED`

@@ -181,9 +181,10 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
                 throw new Exception('OpenExchangeRates.org requires an app key.');
             }
 
-            $client = new Client([ 'base_url' => $self->getUrl() ]);
+            $client = new Client([ 'base_uri' => $self->getUrl() ]);
 
-            $data = $client->get("latest.json?app_id={$appId}")->json();
+            $response = $client->request("GET", "/latest.json?app_id={$appId}");
+            $data = json_decode($response->getBody(), true);
 
             return $data['rates'];
         });

@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Converter
- * @version    2.0.3
+ * @version    2.0.4
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2016, Cartalyst LLC
@@ -182,8 +182,20 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
             }
 
             $client = new Client([ 'base_url' => $self->getUrl() ]);
-
-            $data = $client->get("latest.json?app_id={$appId}")->json();
+           
+            try {
+                $data = $client->get("latest.json?app_id={$appId}")->json();
+            } catch(Exception $e) {
+                
+                // Use backup cached currencies when the cache has expired, and the API is down
+                if( $fallback_rates = $this->cache->get('fallback_currencies', null) ) {
+                    $data['rates'] = $fallback_rates;
+                }
+                // If the API is down and the fallback cache is empty, default to 'something' so that the api isnt contantly called on each
+                $data['rates'] = ['USD' => 1, 'EUR' => 1, 'GBP' => 1];
+            }
+            // Create fallback cache with a slightly longer expiry
+            $fallback_rates = $this->cache->put('fallback_currencies',  $data['rates'], $this->getExpires() + 5);
 
             return $data['rates'];
         });

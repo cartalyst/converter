@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v2.0.4 - 2017-06-29
+
+`FIXED`
+
+- Openexchange API error now uses a backup cached version of the currency rates previously collected.
+
 #### v2.0.3 - 2015-12-18
 
 `FIXED`

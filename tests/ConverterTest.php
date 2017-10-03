@@ -141,6 +141,36 @@ class ConverterTest extends PHPUnit_Framework_TestCase
                     'format' => '1 lb',
                     'unit'   => 2.20462,
                 ),
+            ),
+
+            'temperature' => array(
+
+                'c' => array(
+                    'format' => '1,0.00 C',
+                    'unit'   => 1.00,
+                ),
+
+                'f' => array(
+                    'format' => '1,0.00 °F',
+                    'unit'   => 1.80,
+                    'offset' => 32,
+                ),
+
+                'k' => array(
+                    'format' => '1,0.00 K',
+                    'unit'   => 1.00,
+                    'offset' => 273.15,
+                ),
+                'rankine' => array(
+                    'format' => '1,0.00 °R',
+                    'unit' => 1.80,
+                    'offset' => 491.67,
+                ),
+                'romer' => array(   //properly Rømer, but 'ø' is hard to type for many users.
+                    'format' => '1,0.00 °Rø',
+                    'unit' => 0.525,
+                    'offset' => 7.5,
+                ),
 
             ),
 
@@ -374,5 +404,40 @@ class ConverterTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($lbKg->format(), '2.014,37 KG');
 
         $this->assertEquals(round($lbKg->getValue(), 2), 2014.37);
+    }
+
+    /**
+     * @test
+     * @dataProvider data_provider_for_temperatures
+     */
+    public function it_can_convert_temperatures($from, $to, $fromVal, $toVal, $toFormatted)
+    {
+        $fk = $this->converter->from('temperature.'.$from)->to('temperature.'.$to)->convert($fromVal);
+
+        $this->assertEquals($fk->format(), $toFormatted);
+
+        $this->assertEquals(round($fk->getValue(), 2), $toVal);
+    }
+
+    public function data_provider_for_temperatures()
+    {
+        return array(
+            array('c', 'f',   26,   78.80, '78.80 °F'),
+            array('f', 'c',  900,  482.22, '482.22 C'),
+            array('c', 'k',  500,  773.15, '773.15 K'),
+            array('k', 'c',  100, -173.15, '-173.15 C'),
+            array('k', 'f', 1000, 1340.33, '1,340.33 °F'),
+            array('f', 'k',   60,  288.71, '288.71 K'),
+
+            array('c', 'rankine',   123,  713.07, '713.07 °R'),
+            array('k', 'rankine',   920, 1656,    '1,656.00 °R'),
+            array('rankine', 'k',   900, 500, '500.00 K'),
+
+            array('c', 'romer',      44,  30.6, '30.60 °Rø'),
+            array('romer', 'c',      58,  96.19, '96.19 C'),
+            array('romer', 'f',     133, 462.29, '462.29 °F'),
+
+            array('rankine', 'romer',   220, -71.74, '-71.74 °Rø'),
+        );
     }
 }

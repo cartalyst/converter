@@ -150,6 +150,48 @@ return array(
 
         ),
 
+        /*
+        |--------------------------------------------------------------------------
+        | Weight
+        |--------------------------------------------------------------------------
+        |
+        | The available measurements to convert and format temperatures.
+        | For the more obscure scales, see https://en.wikipedia.org/wiki/Rankine_scale
+        | and https://en.wikipedia.org/wiki/R%C3%B8mer_scale
+        |
+        */
+
+        'temperature' => array(
+
+            'c' => array(
+                'format' => '1,0.00 C',
+                'unit'   => 1.00,
+            ),
+
+            'f' => array(
+                'format' => '1,0.00 °F',
+                'unit'   => 1.80,
+                'offset' => 32,
+            ),
+
+            'k' => array(
+                'format' => '1,0.00 K',
+                'unit'   => 1.00,
+                'offset' => 273.15,
+            ),
+            'rankine' => array(
+                'format' => '1,0.00 °R',
+                'unit' => 1.80,
+                'offset' => 491.67,
+            ),
+            'romer' => array(   //properly Rømer, but 'ø' is hard to type for many users.
+                'format' => '1,0.00 °Rø',
+                'unit' => 0.525,
+                'offset' => 7.5,
+            ),
+
+        ),
+
     ),
 
     /*

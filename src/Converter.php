@@ -153,11 +153,14 @@ class Converter
         }
 
         $to = $this->getMeasurement("{$this->getTo()}.unit");
+        $toOffset = $this->getMeasurement("{$this->getTo()}.offset", 0);
 
         $from = $this->getMeasurement("{$this->getFrom()}.unit");
+        $fromOffset = $this->getMeasurement("{$this->getFrom()}.offset", 0);
 
-        $this->value = $this->getValue() * $to * (1 / $from);
+        $offset = ($toOffset * $from / $to) - $fromOffset;
 
+        $this->value = ($this->getValue() + $offset) * $to * (1 / $from);
         return $this;
     }
 
@@ -245,11 +248,12 @@ class Converter
      * @return mixed
      * @throws \Exception
      */
-    public function getMeasurement($measurement)
+    public function getMeasurement($measurement, $default = null)
     {
         $measurements = $this->getMeasurements();
 
-        if (! $measure = array_get($measurements, $measurement)) {
+        $measure = array_get($measurements, $measurement, $default);
+        if (is_null($measure)) {
             if (str_contains($measurement, 'negative')) {
                 return '-' . $this->getMeasurement(str_replace('negative', 'format', $measurement));
             }

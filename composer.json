@@ -38,6 +38,14 @@
         "component": "package",
         "branch-alias": {
             "dev-master": "3.0.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Cartalyst\\Converter\\Laravel\\ConverterServiceProvider"
+            ],
+            "aliases": {
+                "Converter": "Cartalyst\\Converter\\Laravel\\Facades\\Converter"
+            }
         }
     },
     "minimum-stability": "stable"

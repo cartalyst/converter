@@ -161,12 +161,14 @@ class ConverterTest extends PHPUnit_Framework_TestCase
                     'unit'   => 1.00,
                     'offset' => 273.15,
                 ),
+
                 'rankine' => array(
                     'format' => '1,0.00 °R',
                     'unit' => 1.80,
                     'offset' => 491.67,
                 ),
-                'romer' => array(   //properly Rømer, but 'ø' is hard to type for many users.
+
+                'romer' => array(
                     'format' => '1,0.00 °Rø',
                     'unit' => 0.525,
                     'offset' => 7.5,

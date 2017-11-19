@@ -161,6 +161,7 @@ class Converter
         $offset = ($toOffset * $from / $to) - $fromOffset;
 
         $this->value = ($this->getValue() + $offset) * $to * (1 / $from);
+
         return $this;
     }
 
@@ -245,6 +246,7 @@ class Converter
      * Returns information about the given measurement.
      *
      * @param  string  $measurement
+     * @param  mixed  $default
      * @return mixed
      * @throws \Exception
      */
@@ -253,6 +255,7 @@ class Converter
         $measurements = $this->getMeasurements();
 
         $measure = array_get($measurements, $measurement, $default);
+
         if (is_null($measure)) {
             if (str_contains($measurement, 'negative')) {
                 return '-' . $this->getMeasurement(str_replace('negative', 'format', $measurement));

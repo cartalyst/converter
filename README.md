@@ -1,6 +1,6 @@
 # Converter
 
-[![Build Status](https://travis-ci.org/cartalyst/converter.svg?branch=2.0)](https://travis-ci.org/cartalyst/converter)
+[![Build Status](https://travis-ci.org/cartalyst/converter.svg?branch=3.0)](https://travis-ci.org/cartalyst/converter)
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
@@ -10,14 +10,15 @@ An open source package by [Cartalyst](https://cartalyst.com), code well, rock on
 
 ## Documentation
 
-Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/converter/2.0).
+Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/converter/3.0).
 
-Raw files can be found [here](https://github.com/cartalyst/converter/tree/docs/2.0).
+Raw files can be found [here](https://github.com/cartalyst/converter/tree/docs/3.0).
 
 ## Change Log
 
 Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
 
+- [3.0](CHANGELOG.md) - 2017-02-19
 - [2.0](CHANGELOG.md) - 2015-03-06
 - [1.1](CHANGELOG.md) - 2014-08-16
 - [1.0](CHANGELOG.md) - 2014-05-09

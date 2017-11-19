@@ -11,6 +11,13 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v3.0.1 - 2017-11-19
+
+`ADDED`
+
+- Support for Laravel 5.5 Package Discovery.
+- Support for Temperatures.
+
 #### v3.0.0 - 2017-02-19
 
 `UPDATED`

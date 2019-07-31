@@ -32,7 +32,19 @@
         "phpunit/phpunit": "^5.7"
     },
     "autoload": {
-        "psr-4": { "Cartalyst\\Converter\\": "src/" }
+        "psr-4": {
+            "Cartalyst\\Converter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cartalyst\\Converter\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
     },
     "extra": {
         "component": "package",
@@ -48,5 +60,6 @@
             }
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

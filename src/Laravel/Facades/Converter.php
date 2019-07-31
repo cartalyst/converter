@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Converter package.
  *
  * NOTICE OF LICENSE
@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Facade;
 class Converter extends Facade
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected static function getFacadeAccessor()
     {

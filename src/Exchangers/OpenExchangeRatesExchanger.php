@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Converter package.
  *
  * NOTICE OF LICENSE
@@ -45,7 +45,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
      *
      * @var object
      */
-    protected $rates = null;
+    protected $rates;
 
     /**
      * Holds the OpenExchangeRates.org api url.
@@ -59,12 +59,13 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
      *
      * @var array
      */
-    protected $appId = null;
+    protected $appId;
 
     /**
      * Constructor.
      *
-     * @param  \Illuminate\Cache\CacheManager  $cache
+     * @param \Illuminate\Cache\CacheManager $cache
+     *
      * @return void
      */
     public function __construct(CacheManager $cache)
@@ -73,11 +74,11 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     }
 
     /**
-     * Get the api key.
+     * Get the API Key.
      *
-     * @return string
+     * @return array
      */
-    public function getAppId()
+    public function getAppId(): array
     {
         return $this->appId;
     }
@@ -85,28 +86,34 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     /**
      * Set the app id.
      *
-     * @return void
+     * @param mixed $appId
+     *
+     * @return $this
      */
-    public function setAppId($appId)
+    public function setAppId($appId): self
     {
         $this->appId = $appId;
+
+        return $this;
     }
 
     /**
      * Return the exchange rate for the provided currency code.
      *
-     * @param  string  $code
-     * @return float
+     * @param string $code
+     *
      * @throws \Exception
+     *
+     * @return float
      */
-    public function get($code)
+    public function get(string $code): float
     {
         $rates = $this->getRates();
 
         $code = strtoupper($code);
 
         if (empty($rates[$code])) {
-            throw new Exception;
+            throw new Exception();
         }
 
         return $rates[$code];
@@ -117,7 +124,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
      *
      * @return string
      */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -125,12 +132,15 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     /**
      * Set the api url.
      *
-     * @param  string  $url
-     * @return void
+     * @param string $url
+     *
+     * @return $this
      */
-    public function setUrl($url)
+    public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
     }
 
     /**
@@ -138,7 +148,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
      *
      * @return int
      */
-    public function getExpires()
+    public function getExpires(): int
     {
         return $this->expires;
     }
@@ -146,11 +156,15 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     /**
      * Set cache expiration duration.
      *
-     * @return void
+     * @param mixed $expires
+     *
+     * @return $this
      */
-    public function setExpires($expires)
+    public function setExpires($expires): self
     {
         $this->expires = $expires;
+
+        return $this;
     }
 
     /**
@@ -166,22 +180,19 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     }
 
     /**
-     * Downloads the latest exchange rates file from openexchangerates.org
+     * Downloads the latest exchange rates file from openexchangerates.org.
      *
      * @return object
      */
     public function setRates()
     {
-        // Avoid instance issues
-        $self = $this;
-
         // Cache the currencies
-        return $this->rates = $this->cache->remember('currencies', $this->getExpires(), function () use ($self) {
-            if (! $appId = $self->getAppId()) {
+        return $this->rates = $this->cache->remember('currencies', $this->getExpires(), function () {
+            if (! $appId = $this->getAppId()) {
                 throw new Exception('OpenExchangeRates.org requires an app key.');
             }
 
-            $client = new Client([ 'base_url' => $self->getUrl() ]);
+            $client = new Client(['base_url' => $this->getUrl()]);
 
             $data = $client->get("latest.json?app_id={$appId}")->json();
 

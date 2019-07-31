@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Converter package.
  *
  * NOTICE OF LICENSE
@@ -25,10 +25,11 @@ class NativeExchanger implements ExchangerInterface
     /**
      * Return the exchange rate for the provided currency code.
      *
-     * @param  string  $code
+     * @param string $code
+     *
      * @return float
      */
-    public function get($code)
+    public function get(string $code): float
     {
         return 1;
     }

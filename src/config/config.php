@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Converter package.
  *
  * NOTICE OF LICENSE
@@ -18,8 +18,7 @@
  * @link       http://cartalyst.com
  */
 
-return array(
-
+return [
     /*
     |--------------------------------------------------------------------------
     | Measurements
@@ -29,8 +28,7 @@ return array(
     |
     */
 
-    'measurements' => array(
-
+    'measurements' => [
         /*
         |--------------------------------------------------------------------------
         | Area
@@ -40,19 +38,17 @@ return array(
         |
         */
 
-        'area' => array(
-
-            'sqm' => array(
+        'area' => [
+            'sqm' => [
                 'format' => '1,00.00 sq m',
                 'unit'   => 1,
-            ),
+            ],
 
-            'acre' => array(
+            'acre' => [
                 'format' => '1,00.000 ac',
                 'unit'   => 0.000247105,
-            ),
-
-        ),
+            ],
+        ],
 
         /*
         |--------------------------------------------------------------------------
@@ -63,21 +59,19 @@ return array(
         |
         */
 
-        'currency' => array(
-
-            'usd' => array(
+        'currency' => [
+            'usd' => [
                 'format' => '$1,0.00',
-            ),
+            ],
 
-            'eur' => array(
+            'eur' => [
                 'format' => '&euro;1,0.00',
-            ),
+            ],
 
-            'gbp' => array(
+            'gbp' => [
                 'format' => '&pound;1,0.00',
-            ),
-
-        ),
+            ],
+        ],
 
         /*
         |--------------------------------------------------------------------------
@@ -88,44 +82,42 @@ return array(
         |
         */
 
-        'length' => array(
-
-            'km' => array(
+        'length' => [
+            'km' => [
                 'format' => '1,0.000 km',
                 'unit'   => 0.001,
-            ),
+            ],
 
-            'mi' => array(
+            'mi' => [
                 'format' => '1,0.000 mi.',
                 'unit'   => 0.000621371,
-            ),
+            ],
 
-            'm' => array(
+            'm' => [
                 'format' => '1,0.000 m',
                 'unit'   => 1.00,
-            ),
+            ],
 
-            'cm' => array(
+            'cm' => [
                 'format' => '1!0 cm',
                 'unit'   => 100,
-            ),
+            ],
 
-            'mm' => array(
+            'mm' => [
                 'format' => '1,0.00 mm',
                 'unit'   => 1000,
-            ),
+            ],
 
-            'ft' => array(
+            'ft' => [
                 'format' => '1,0.00 ft.',
                 'unit'   => 3.28084,
-            ),
+            ],
 
-            'in' => array(
+            'in' => [
                 'format' => '1,0.00 in.',
                 'unit'   => 39.3701,
-            ),
-
-        ),
+            ],
+        ],
 
         /*
         |--------------------------------------------------------------------------
@@ -136,19 +128,17 @@ return array(
         |
         */
 
-        'weight' => array(
-
-            'kg' => array(
+        'weight' => [
+            'kg' => [
                 'format' => '1,0.00 kg',
                 'unit'   => 1.00,
-            ),
+            ],
 
-            'g' => array(
+            'g' => [
                 'format' => '1,0.00 g',
                 'unit'   => 1000.00,
-            ),
-
-        ),
+            ],
+        ],
 
         /*
         |--------------------------------------------------------------------------
@@ -159,40 +149,37 @@ return array(
         |
         */
 
-        'temperature' => array(
-
-            'c' => array(
+        'temperature' => [
+            'c' => [
                 'format' => '1,0.00 C',
                 'unit'   => 1.00,
-            ),
+            ],
 
-            'f' => array(
+            'f' => [
                 'format' => '1,0.00 °F',
                 'unit'   => 1.80,
                 'offset' => 32,
-            ),
+            ],
 
-            'k' => array(
+            'k' => [
                 'format' => '1,0.00 K',
                 'unit'   => 1.00,
                 'offset' => 273.15,
-            ),
+            ],
 
-            'rankine' => array(
+            'rankine' => [
                 'format' => '1,0.00 °R',
                 'unit'   => 1.80,
                 'offset' => 491.67,
-            ),
+            ],
 
-            'romer' => array(
+            'romer' => [
                 'format' => '1,0.00 °Rø',
                 'unit'   => 0.525,
                 'offset' => 7.5,
-            ),
-
-        ),
-
-    ),
+            ],
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -215,8 +202,7 @@ return array(
     |
     */
 
-    'exchangers' => array(
-
+    'exchangers' => [
         /*
         |--------------------------------------------------------------------------
         | Default Exchanger
@@ -237,12 +223,8 @@ return array(
         |
         */
 
-        'openexchangerates' => array(
-
+        'openexchangerates' => [
             'app_id' => null,
-
-        ),
-
-    ),
-
-);
+        ],
+    ],
+];

@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Converter package.
  *
  * NOTICE OF LICENSE
@@ -28,7 +28,7 @@ use Cartalyst\Converter\Exchangers\OpenExchangeRatesExchanger;
 class ConverterServiceProvider extends ServiceProvider
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function register()
     {
@@ -62,8 +62,8 @@ class ConverterServiceProvider extends ServiceProvider
      */
     protected function registerExchangers()
     {
-        $this->app->singleton('converter.native.exchanger', function ($app) {
-            return new NativeExchanger;
+        $this->app->singleton('converter.native.exchanger', function () {
+            return new NativeExchanger();
         });
 
         $this->app->singleton('converter.openexchangerates.exchanger', function ($app) {

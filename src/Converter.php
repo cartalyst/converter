@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Converter package.
  *
  * NOTICE OF LICENSE
@@ -30,40 +30,41 @@ class Converter
      *
      * @var \Cartalyst\Converter\Exchangers\ExchangerInterface
      */
-    protected $exchanger = null;
+    protected $exchanger;
 
     /**
      * Measurement we are converting from.
      *
      * @var string
      */
-    protected $from = null;
+    protected $from;
 
     /**
      * Measurement we are going to convert to.
      *
      * @var string
      */
-    protected $to = null;
+    protected $to;
 
     /**
      * Measurement value.
      *
      * @var float
      */
-    protected $value = null;
+    protected $value;
 
     /**
      * The available measurements to convert and format the measurement.
      *
      * @var array
      */
-    protected $measurements = array();
+    protected $measurements = [];
 
     /**
      * Constructor.
      *
-     * @param  \Cartalyst\Converter\Exchangers\ExchangerInterface  $exchanger
+     * @param \Cartalyst\Converter\Exchangers\ExchangerInterface $exchanger
+     *
      * @return void
      */
     public function __construct(ExchangerInterface $exchanger)
@@ -74,10 +75,11 @@ class Converter
     /**
      * Set the measurement we want to convert from.
      *
-     * @param  string  $value
-     * @return \Cartalyst\Converter\Converter
+     * @param string $value
+     *
+     * @return $this
      */
-    public function from($value)
+    public function from(string $value): self
     {
         $this->from = $value;
 
@@ -89,7 +91,7 @@ class Converter
      *
      * @return string
      */
-    public function getFrom()
+    public function getFrom(): string
     {
         return $this->from;
     }
@@ -97,10 +99,11 @@ class Converter
     /**
      * Set the measurement we want to convert to.
      *
-     * @param  string  $value
-     * @return \Cartalyst\Converter\Converter
+     * @param string $value
+     *
+     * @return $this
      */
-    public function to($value)
+    public function to($value): self
     {
         $this->to = $value;
 
@@ -112,7 +115,7 @@ class Converter
      *
      * @return string
      */
-    public function getTo()
+    public function getTo(): string
     {
         return $this->to;
     }
@@ -120,10 +123,11 @@ class Converter
     /**
      * Set the value we want to convert.
      *
-     * @param  float  $value
-     * @return \Cartalyst\Converter\Converter
+     * @param float $value
+     *
+     * @return $this
      */
-    public function value($value)
+    public function value(float $value): self
     {
         $this->value = $value;
 
@@ -135,7 +139,7 @@ class Converter
      *
      * @return float
      */
-    public function getValue()
+    public function getValue(): float
     {
         return $this->value;
     }
@@ -143,19 +147,20 @@ class Converter
     /**
      * Convert the given value.
      *
-     * @param  float  $value
-     * @return \Cartalyst\Converter\Converter
+     * @param float $value
+     *
+     * @return $this
      */
-    public function convert($value = null)
+    public function convert($value = null): self
     {
         if ($value !== null) {
             $this->value($value);
         }
 
-        $to = $this->getMeasurement("{$this->getTo()}.unit");
-        $toOffset = $this->getMeasurement("{$this->getTo()}.offset", 0);
-
+        $to   = $this->getMeasurement("{$this->getTo()}.unit");
         $from = $this->getMeasurement("{$this->getFrom()}.unit");
+
+        $toOffset   = $this->getMeasurement("{$this->getTo()}.offset", 0);
         $fromOffset = $this->getMeasurement("{$this->getFrom()}.offset", 0);
 
         $offset = ($toOffset * $from / $to) - $fromOffset;
@@ -168,10 +173,11 @@ class Converter
     /**
      * Format the value into the desired measurement.
      *
-     * @param  string  $measurement
+     * @param string|null $measurement
+     *
      * @return string
      */
-    public function format($measurement = null)
+    public function format(?string $measurement = null): string
     {
         // Get the value
         $value = $this->getValue();
@@ -224,7 +230,7 @@ class Converter
      *
      * @return array
      */
-    public function getMeasurements()
+    public function getMeasurements(): array
     {
         return $this->measurements;
     }
@@ -232,10 +238,11 @@ class Converter
     /**
      * Set the measurements.
      *
-     * @param  array  $measurements
-     * @return \Cartalyst\Converter\Converter
+     * @param array $measurements
+     *
+     * @return $this
      */
-    public function setMeasurements($measurements = array())
+    public function setMeasurements(array $measurements = []): self
     {
         $this->measurements = (array) $measurements;
 
@@ -245,12 +252,14 @@ class Converter
     /**
      * Returns information about the given measurement.
      *
-     * @param  string  $measurement
-     * @param  mixed  $default
-     * @return mixed
+     * @param string     $measurement
+     * @param mixed|null $default
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
-    public function getMeasurement($measurement, $default = null)
+    public function getMeasurement(string $measurement, $default = null)
     {
         $measurements = $this->getMeasurements();
 
@@ -258,7 +267,7 @@ class Converter
 
         if (is_null($measure)) {
             if (str_contains($measurement, 'negative')) {
-                return '-' . $this->getMeasurement(str_replace('negative', 'format', $measurement));
+                return '-'.$this->getMeasurement(str_replace('negative', 'format', $measurement));
             }
 
             if (str_contains($measurement, 'currency')) {

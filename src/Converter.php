@@ -21,6 +21,8 @@
 namespace Cartalyst\Converter;
 
 use Exception;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Cartalyst\Converter\Exchangers\ExchangerInterface;
 
 class Converter
@@ -197,18 +199,18 @@ class Converter
         // Match decimal and thousand separators
         preg_match_all('/[,.!]/', $measurement, $separators);
 
-        if ($thousand = array_get($separators, '0.0', null)) {
+        if ($thousand = Arr::get($separators, '0.0', null)) {
             if ($thousand == '!') {
                 $thousand = '';
             }
         }
 
-        $decimal = array_get($separators, '0.1', null);
+        $decimal = Arr::get($separators, '0.1', null);
 
         // Match format for decimals count
         preg_match($valRegex, $measurement, $valFormat);
 
-        $valFormat = array_get($valFormat, 0, 0);
+        $valFormat = Arr::get($valFormat, 0, 0);
 
         // Count decimals length
         $decimals = $decimal ? strlen(substr(strrchr($valFormat, $decimal), 1)) : 0;
@@ -263,14 +265,14 @@ class Converter
     {
         $measurements = $this->getMeasurements();
 
-        $measure = array_get($measurements, $measurement, $default);
+        $measure = Arr::get($measurements, $measurement, $default);
 
         if (is_null($measure)) {
-            if (str_contains($measurement, 'negative')) {
+            if (Str::contains($measurement, 'negative')) {
                 return '-'.$this->getMeasurement(str_replace('negative', 'format', $measurement));
             }
 
-            if (str_contains($measurement, 'currency')) {
+            if (Str::contains($measurement, 'currency')) {
                 $currency = explode('.', $measurement);
 
                 return $this->exchanger->get($currency[1]);

@@ -1,45 +1,50 @@
 # Converter
 
-[![Build Status](https://travis-ci.org/cartalyst/converter.svg?branch=3.0)](https://travis-ci.org/cartalyst/converter)
+[![Build Status][icon-travis]][link-travis]
+[![Software License][icon-license]][link-license]
+[![Latest Version on Packagist][icon-version]][link-packagist]
+[![Total Downloads][icon-downloads]][link-packagist]
 
 A framework agnostic measurement conversion and formatting package featuring multiple types of measurements and currency conversion.
 
-The package requires PHP 5.3+ and follows the FIG standards PSR-1, PSR-2 and PSR-4 to ensure a high level of interoperability between shared PHP.
-
 An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
+
+## Version Matrix
+
+Version | Laravel   | PHP Version
+------- | --------- | ------------
+4.x     | 6.x       | >= 7.2
+3.x     | 5.x       | >= 5.6.4
+2.x     | 5.x       | >= 5.3.0
+1.x     | 4.1 - 4.2 | >= 5.3.0
 
 ## Documentation
 
-Reader-friendly Documentation can be found [here](https://cartalyst.com/manual/converter/3.0).
+Reader-friendly documentation can be found [here][link-docs].
 
-Raw files can be found [here](https://github.com/cartalyst/converter/tree/docs/3.0).
+Using the package, but you're stuck? Found a bug? Have a question or suggestion for improving this package? Feel free to create an issue on GitHub, we'll try to address it as soon as possible.
 
-## Change Log
+## Contributing
 
-Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
+Thank you for your interest, here are some of the many ways to contribute.
 
-- [3.0](CHANGELOG.md) - 2017-02-19
-- [2.0](CHANGELOG.md) - 2015-03-06
-- [1.1](CHANGELOG.md) - 2014-08-16
-- [1.0](CHANGELOG.md) - 2014-05-09
+- Check out our [contributing guide](/.github/CONTRIBUTING.md)
+- Look at our [code of conduct](/.github/CODE_OF_CONDUCT.md)
 
-## Support
+## Security
 
-The following support channels can be used for contact.
-
-- [Twitter](https://twitter.com/@cartalyst)
-- [Email](mailto:help@cartalyst.com)
-
-Bug reports, feature requests, and pull requests can be submitted by following our [Contribution Guide](CONTRIBUTING.md).
-
-## Contributing & Protocols
-
-- [Versioning](CONTRIBUTING.md#versioning)
-- [Coding Standards](CONTRIBUTING.md#coding-standards)
-- [Pull Requests](CONTRIBUTING.md#pull-requests)
+If you discover any security related issues, please email help@cartalyst.com instead of using the issue tracker.
 
 ## License
 
 This software is released under the [BSD 3-Clause](LICENSE) License.
 
-© 2011-2017 Cartalyst LLC, All rights reserved.
+[link-docs]:      https://cartalyst.com/manual/converter
+[link-travis]:    https://travis-ci.org/cartalyst/converter
+[link-license]:   https://opensource.org/licenses/MIT
+[link-packagist]: https://packagist.org/packages/cartalyst/converter
+
+[icon-travis]:    https://travis-ci.org/cartalyst/converter.svg?branch=4.0
+[icon-license]:   https://poser.pugx.org/cartalyst/converter/license
+[icon-version]:   https://poser.pugx.org/cartalyst/converter/version
+[icon-downloads]: https://poser.pugx.org/cartalyst/converter/downloads

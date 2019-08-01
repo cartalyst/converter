@@ -1,5 +1,11 @@
 # Changelog
 
+### v4.0.0 - TBA
+
+- Added support for PHP 7.2
+- Added support for Laravel 6.0
+- Dropped support for PHP 5.6.4+
+
 ### v3.0.1 - 2017-11-19
 
 `ADDED`

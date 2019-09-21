@@ -20,6 +20,7 @@
 
 namespace Cartalyst\Converter\Laravel;
 
+use Illuminate\Support\Arr;
 use Cartalyst\Converter\Converter;
 use Illuminate\Support\ServiceProvider;
 use Cartalyst\Converter\Exchangers\NativeExchanger;
@@ -69,9 +70,9 @@ class ConverterServiceProvider extends ServiceProvider
         $this->app->singleton('converter.openexchangerates.exchanger', function ($app) {
             $config = $app['config']->get('cartalyst.converter');
 
-            $appId = array_get($config, 'exchangers.openexchangerates.app_id');
+            $appId = Arr::get($config, 'exchangers.openexchangerates.app_id');
 
-            $expires = array_get($config, 'expires');
+            $expires = Arr::get($config, 'expires');
 
             $exchanger = new OpenExchangeRatesExchanger($app['cache']);
             $exchanger->setAppId($appId);

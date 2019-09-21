@@ -1,5 +1,11 @@
 # Changelog
 
+### v4.0.1 - 2019-09-21
+
+`FIXED`
+
+- `array_get` references.
+
 ### v4.0.0 - 2019-08-30
 
 - BC Break: PHP 7.2 is the minimum required PHP version

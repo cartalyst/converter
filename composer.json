@@ -22,10 +22,10 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "illuminate/cache": "^6.0",
-        "illuminate/filesystem": "^6.0",
-        "guzzlehttp/guzzle": "^6.0"
+        "php": "^7.2.5",
+        "illuminate/cache": "^7.0",
+        "illuminate/filesystem": "^7.0",
+        "guzzlehttp/guzzle": "^7.0"
     },
     "require-dev": {
         "cartalyst/php-cs-fixer-config": "^1.0",

@@ -1,5 +1,9 @@
 # Changelog
 
+### v5.0.0 - TBA
+
+- Updated for Laravel 7.
+
 ### v4.0.1 - 2019-09-21
 
 `FIXED`

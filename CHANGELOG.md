@@ -1,6 +1,6 @@
 # Changelog
 
-### v5.0.0 - TBA
+### v5.0.0 - 2020-03-03
 
 - Updated for Laravel 7.
 

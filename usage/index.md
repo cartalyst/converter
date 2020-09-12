@@ -25,24 +25,24 @@ You have two ways of setting measurements, `runtime` or through the `config` fil
 ```php
 Converter::setMeasurements(array(
 
-	'weight' => array(
+    'weight' => array(
 
-		'kg' => array(
-			'format' => '1,0.00 KG',
-			'unit'   => '1.00',
-		),
+        'kg' => array(
+            'format' => '1,0.00 KG',
+            'unit'   => '1.00',
+        ),
 
-		'g' => array(
-			'format' => '(1,0.00 grams)',
-			'unit'   => 1000.00,
-		),
+        'g' => array(
+            'format' => '(1,0.00 grams)',
+            'unit'   => 1000.00,
+        ),
 
-		'lb' => array(
-			'format' => '1,0.00 lb',
-			'unit'   => 2.20462,
-		),
+        'lb' => array(
+            'format' => '1,0.00 lb',
+            'unit'   => 2.20462,
+        ),
 
-	),
+    ),
 
 ));
 ```
@@ -89,10 +89,10 @@ Negative numbers are formatted according to the regular format by default, if yo
 ```php
 'currency' => array(
 
-	'usd' => array(
-		'format'   => '$1,0.00',
-		'negative' => '($1,0.00)'.
-	),
+    'usd' => array(
+        'format'   => '$1,0.00',
+        'negative' => '($1,0.00)'.
+    ),
 
 ),
 ```

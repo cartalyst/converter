@@ -42,11 +42,11 @@ If you discover any security related issues, please email help@cartalyst.com ins
 This software is released under the [BSD 3-Clause](LICENSE) License.
 
 [link-docs]:      https://cartalyst.com/manual/converter
-[link-travis]:    https://travis-ci.org/cartalyst/converter
+[link-travis]:    https://travis-ci.com/cartalyst/converter
 [link-license]:   https://opensource.org/licenses/MIT
 [link-packagist]: https://packagist.org/packages/cartalyst/converter
 
-[icon-travis]:    https://travis-ci.org/cartalyst/converter.svg?branch=6.x
+[icon-travis]:    https://travis-ci.com/cartalyst/converter.svg?branch=6.x
 [icon-license]:   https://poser.pugx.org/cartalyst/converter/license
 [icon-version]:   https://poser.pugx.org/cartalyst/converter/version
 [icon-downloads]: https://poser.pugx.org/cartalyst/converter/downloads

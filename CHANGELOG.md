@@ -1,5 +1,9 @@
 # Changelog
 
+### v6.1.0 - TBA
+
+- Add PHP 8 support
+
 ### v6.0.0 - 2020-09-12
 
 - Updated for Laravel 8.

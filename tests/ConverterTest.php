@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Converter
- * @version    8.0.0
+ * @version    9.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2023, Cartalyst LLC
+ * @copyright  (c) 2011-2024, Cartalyst LLC
  * @link       https://cartalyst.com
  */
 
@@ -384,7 +384,7 @@ class ConverterTest extends TestCase
         $this->assertSame(round($fk->getValue(), 2), $toVal);
     }
 
-    public function data_provider_for_temperatures()
+    public static function data_provider_for_temperatures(): array
     {
         return [
             ['c', 'f',   26,   78.80, '78.80 °F'],

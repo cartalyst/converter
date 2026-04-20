@@ -1,5 +1,10 @@
 # Changelog
 
+### v11.0.0 - 2026-04-20
+
+- Add Laravel 13 support
+- Raise minimum PHP version to 8.4
+
 ### v1.0.0 - 2025-02-28
 
 - Add Laravel 12 support

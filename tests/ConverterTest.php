@@ -23,6 +23,7 @@ namespace Cartalyst\Converter\Tests;
 use Exception;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Cartalyst\Converter\Converter;
 use Cartalyst\Converter\Exchangers\NativeExchanger;
 
@@ -168,7 +169,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function converter_can_be_instantiated()
+    public function test_converter_can_be_instantiated()
     {
         $converter = new Converter(new NativeExchanger());
 
@@ -176,7 +177,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_can_set_and_get_measurements()
+    public function test_it_can_set_and_get_measurements()
     {
         $converter = new Converter(new NativeExchanger());
 
@@ -207,7 +208,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_throws_an_exception_when_a_measurement_is_not_found()
+    public function test_it_throws_an_exception_when_a_measurement_is_not_found()
     {
         $this->expectException(Exception::class);
 
@@ -215,7 +216,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_can_have_custom_formatting()
+    public function test_it_can_have_custom_formatting()
     {
         $eurUsd = $this->converter->to('currency.eur')->value(25.50);
 
@@ -231,7 +232,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_areas()
+    public function test_it_can_convert_areas()
     {
         // SQM to Acres
         $sqmAcres = $this->converter->from('area.sqm')->to('area.acre')->convert(43200);
@@ -242,7 +243,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_currencies()
+    public function test_it_can_convert_currencies()
     {
         // EUR to USD
         $eurUsd = $this->converter->from('currency.eur')->to('currency.usd')->convert(25.50);
@@ -288,7 +289,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_lengths()
+    public function test_it_can_convert_lengths()
     {
         // Millimeters to kilometers
         $mmKm = $this->converter->from('length.mm')->to('length.km')->convert(2000000);
@@ -348,7 +349,7 @@ class ConverterTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_weights()
+    public function test_it_can_convert_weights()
     {
         // Grams to pounds
         $gLb = $this->converter->from('weight.g')->to('weight.lb')->convert(200000);
@@ -365,17 +366,8 @@ class ConverterTest extends TestCase
         $this->assertSame(round($lbKg->getValue(), 2), 2014.37);
     }
 
-    /**
-     * @test
-     * @dataProvider data_provider_for_temperatures
-     *
-     * @param mixed $from
-     * @param mixed $to
-     * @param mixed $fromVal
-     * @param mixed $toVal
-     * @param mixed $toFormatted
-     */
-    public function it_can_convert_temperatures($from, $to, $fromVal, $toVal, $toFormatted)
+    #[DataProvider('data_provider_for_temperatures')]
+    public function test_it_can_convert_temperatures($from, $to, $fromVal, $toVal, $toFormatted)
     {
         $fk = $this->converter->from('temperature.'.$from)->to('temperature.'.$to)->convert($fromVal);
 

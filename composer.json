@@ -22,9 +22,9 @@
         }
     ],
     "require": {
-        "php": "^8.3",
-        "illuminate/cache": "^12.0",
-        "illuminate/filesystem": "^12.0",
+        "php": "^8.4",
+        "illuminate/cache": "^13.0",
+        "illuminate/filesystem": "^13.0",
         "guzzlehttp/guzzle": "^7.2"
     },
     "require-dev": {
@@ -50,7 +50,7 @@
     "extra": {
         "component": "package",
         "branch-alias": {
-            "dev-master": "10.0.x-dev"
+            "dev-11.x": "11.0.x-dev"
         },
         "laravel": {
             "providers": [
@@ -64,6 +64,6 @@
     "scripts": {
         "cs:check": "./vendor/bin/php-cs-fixer fix --verbose --ansi --show-progress=estimating --diff --dry-run --config .php_cs.php",
         "cs:fix": "./vendor/bin/php-cs-fixer fix --verbose --ansi --show-progress=estimating --config .php_cs.php",
-        "test": "./vendor/bin/phpunit --verbose --colors=always"
+        "test": "./vendor/bin/phpunit --colors=always"
     }
 }

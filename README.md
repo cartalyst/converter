@@ -1,6 +1,5 @@
 # Converter
 
-[![Build Status][icon-travis]][link-travis]
 [![Software License][icon-license]][link-license]
 [![Latest Version on Packagist][icon-version]][link-packagist]
 [![Total Downloads][icon-downloads]][link-packagist]

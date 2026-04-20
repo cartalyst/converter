@@ -25,7 +25,7 @@
         "php": "^8.4",
         "illuminate/cache": "^13.0",
         "illuminate/filesystem": "^13.0",
-        "guzzlehttp/guzzle": "^7.2"
+        "guzzlehttp/guzzle": "^7.10"
     },
     "require-dev": {
         "cartalyst/php-cs-fixer-config": "^2.0",

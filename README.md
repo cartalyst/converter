@@ -10,7 +10,7 @@ An open source package by [Cartalyst](https://cartalyst.com), code well, rock on
 
 ## Version Matrix
 
-Version | Laravel   | PHP Version
+Branch | Laravel   | PHP Version
 ------- |-----------| ------------
 11.x    | 13.x      | >= 8.4
 10.x    | 12.x      | >= 8.3

@@ -23,8 +23,8 @@
     ],
     "require": {
         "php": "^8.3",
-        "illuminate/cache": "^12.0",
-        "illuminate/filesystem": "^12.0",
+        "illuminate/cache": "^12.0|^13.0",
+        "illuminate/filesystem": "^12.0|^13.0",
         "guzzlehttp/guzzle": "^7.2"
     },
     "require-dev": {

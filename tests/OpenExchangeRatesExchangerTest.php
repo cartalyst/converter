@@ -20,18 +20,18 @@
 
 namespace Cartalyst\Converter\Tests;
 
-use ArrayObject;
 use Exception;
+use ArrayObject;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Cache\CacheManager;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
 use Cartalyst\Converter\Exchangers\OpenExchangeRatesExchanger;
 
 class OpenExchangeRatesExchangerTest extends TestCase
@@ -166,6 +166,48 @@ class OpenExchangeRatesExchangerTest extends TestCase
     }
 
     /** @test */
+    public function it_keeps_the_fallback_when_the_api_returns_empty_rates()
+    {
+        $this->mock->append(
+            $this->rates(['EUR' => 0.92]),
+            $this->rates([])
+        );
+
+        $exchanger = $this->exchanger();
+        $exchanger->get('eur');
+
+        $this->expireRates();
+
+        $this->assertSame(0.92, $exchanger->get('eur'));
+        $this->assertSame(['EUR' => 0.92], $this->cache->get('currencies.fallback'));
+    }
+
+    /** @test */
+    public function it_keeps_the_api_path_when_the_url_has_a_trailing_slash()
+    {
+        $this->mock->append($this->rates(['EUR' => 0.92]));
+
+        $this->exchanger()->setUrl('https://example.test/api/')->get('eur');
+
+        $uri = (string) $this->history[0]['request']->getUri();
+
+        $this->assertSame('https://example.test/api/latest.json?app_id=secret', $uri);
+    }
+
+    /** @test */
+    public function it_sets_timeouts_so_a_hanging_api_triggers_the_fallback()
+    {
+        $this->mock->append($this->rates(['EUR' => 0.92]));
+
+        $this->exchanger()->get('eur');
+
+        $options = $this->history[0]['options'];
+
+        $this->assertSame(5, $options['connect_timeout']);
+        $this->assertSame(10, $options['timeout']);
+    }
+
+    /** @test */
     public function it_rethrows_api_errors_when_there_is_no_fallback()
     {
         $this->expectException(ClientException::class);
@@ -201,10 +243,10 @@ class OpenExchangeRatesExchangerTest extends TestCase
 
             protected function createClient(): Client
             {
-                return new Client([
-                    'base_uri' => parent::createClient()->getConfig('base_uri'),
-                    'handler'  => $this->stack,
-                ]);
+                // Reuse the real client configuration, only swap the handler
+                $config = parent::createClient()->getConfig();
+
+                return new Client(['handler' => $this->stack] + $config);
             }
         };
 

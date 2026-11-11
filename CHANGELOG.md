@@ -7,6 +7,7 @@
 - Fix `OpenExchangeRatesExchanger` still using the removed Guzzle 5 API (`base_url`, `Response::json()`)
 - Fix `OpenExchangeRatesExchanger::getAppId()` return type (`?string` instead of `array`)
 - `OpenExchangeRatesExchanger` falls back to the last good rates when the api is unreachable, rate limited or returns an invalid response
+- `OpenExchangeRatesExchanger` requests time out after 5 seconds connecting and 10 seconds in total
 
 ### v11.0.0 - 2026-04-20
 

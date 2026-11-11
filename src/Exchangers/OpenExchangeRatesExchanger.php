@@ -21,11 +21,11 @@
 namespace Cartalyst\Converter\Exchangers;
 
 use Exception;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Cache\CacheManager;
 use JsonException;
+use GuzzleHttp\Client;
 use UnexpectedValueException;
+use Illuminate\Cache\CacheManager;
+use GuzzleHttp\Exception\GuzzleException;
 
 class OpenExchangeRatesExchanger implements ExchangerInterface
 {
@@ -46,7 +46,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     /**
      * Holds the currency rates.
      *
-     * @var object
+     * @var array
      */
     protected $rates;
 
@@ -180,7 +180,12 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     /**
      * Return the currencies rates.
      *
-     * @return object
+     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
+     * @throws \UnexpectedValueException
+     *
+     * @return array
      */
     public function getRates()
     {
@@ -192,7 +197,15 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     /**
      * Downloads the latest exchange rates file from openexchangerates.org.
      *
-     * @return object
+     * Falls back to the last good rates when the api is unreachable, rate
+     * limited or returns an invalid response.
+     *
+     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
+     * @throws \UnexpectedValueException
+     *
+     * @return array
      */
     public function setRates()
     {
@@ -240,7 +253,9 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
 
         $data = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
 
-        if (! isset($data['rates']) || ! is_array($data['rates'])) {
+        // Empty rates are treated as invalid too, so they never replace
+        // the last good rates that are kept as fallback.
+        if (empty($data['rates']) || ! is_array($data['rates'])) {
             throw new UnexpectedValueException('OpenExchangeRates.org returned no rates.');
         }
 
@@ -256,6 +271,12 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     {
         // A trailing slash is required, otherwise RFC 3986 resolution
         // would drop the last path segment ("/api") of the base uri.
-        return new Client(['base_uri' => rtrim($this->getUrl(), '/').'/']);
+        // Explicit timeouts make a hanging api fail, so the fallback kicks in
+        // instead of blocking until the max execution time is reached.
+        return new Client([
+            'base_uri'        => rtrim($this->getUrl(), '/').'/',
+            'connect_timeout' => 5,
+            'timeout'         => 10,
+        ]);
     }
 }

@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Converter
- * @version    12.0.0
+ * @version    12.1.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2025, Cartalyst LLC
@@ -91,7 +91,7 @@ class OpenExchangeRatesExchangerTest extends TestCase
 
         $uri = (string) $this->history[0]['request']->getUri();
 
-        $this->assertSame('http://openexchangerates.org/api/latest.json?app_id=secret', $uri);
+        $this->assertSame('https://openexchangerates.org/api/latest.json?app_id=secret', $uri);
     }
 
     /** @test */
@@ -218,6 +218,18 @@ class OpenExchangeRatesExchangerTest extends TestCase
     }
 
     /** @test */
+    public function it_does_not_fall_back_when_the_app_key_is_invalid()
+    {
+        $this->assertRejectedAppKeyIsNotHidden(401);
+    }
+
+    /** @test */
+    public function it_does_not_fall_back_when_the_app_key_is_restricted()
+    {
+        $this->assertRejectedAppKeyIsNotHidden(403);
+    }
+
+    /** @test */
     public function it_does_not_fall_back_when_the_app_key_is_missing()
     {
         $this->expectException(Exception::class);
@@ -253,6 +265,34 @@ class OpenExchangeRatesExchangerTest extends TestCase
         $exchanger->stack = $stack;
 
         return $exchanger->setAppId('secret')->setExpires(60);
+    }
+
+    /**
+     * Asserts that a rejected app key throws, even if fallback rates exist.
+     *
+     * @param int $status
+     *
+     * @return void
+     */
+    protected function assertRejectedAppKeyIsNotHidden(int $status): void
+    {
+        $this->mock->append(
+            $this->rates(['EUR' => 0.92]),
+            new Response($status, [], '{"error":true,"status":'.$status.'}')
+        );
+
+        $exchanger = $this->exchanger();
+        $exchanger->get('eur');
+
+        $this->expireRates();
+
+        try {
+            $exchanger->get('eur');
+
+            $this->fail("A {$status} response must not fall back to the last good rates.");
+        } catch (ClientException $e) {
+            $this->assertSame($status, $e->getResponse()->getStatusCode());
+        }
     }
 
     /**

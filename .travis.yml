@@ -1,6 +1,6 @@
 language: php
 
-dist: bionic
+dist: noble
 
 php:
   - 8.5

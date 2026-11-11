@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Converter
- * @version    12.0.0
+ * @version    12.1.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
  * @copyright  (c) 2011-2025, Cartalyst LLC
@@ -25,6 +25,7 @@ use JsonException;
 use GuzzleHttp\Client;
 use UnexpectedValueException;
 use Illuminate\Cache\CacheManager;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 
 class OpenExchangeRatesExchanger implements ExchangerInterface
@@ -51,6 +52,13 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     protected $rates;
 
     /**
+     * Cache key holding the current rates.
+     *
+     * @var string
+     */
+    protected $cacheKey = 'currencies';
+
+    /**
      * Cache key holding the last successfully fetched rates.
      *
      * @var string
@@ -62,7 +70,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
      *
      * @var string
      */
-    protected $url = 'http://openexchangerates.org/api';
+    protected $url = 'https://openexchangerates.org/api';
 
     /**
      * Holds the application id.
@@ -198,7 +206,8 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
      * Downloads the latest exchange rates file from openexchangerates.org.
      *
      * Falls back to the last good rates when the api is unreachable, rate
-     * limited or returns an invalid response.
+     * limited or returns an invalid response. A rejected app key (401/403)
+     * never falls back.
      *
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -210,7 +219,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     public function setRates()
     {
         // Cache the currencies
-        return $this->rates = $this->cache->remember('currencies', $this->getExpires(), function () {
+        return $this->rates = $this->cache->remember($this->cacheKey, $this->getExpires(), function () {
             if (! $appId = $this->getAppId()) {
                 throw new Exception('OpenExchangeRates.org requires an app key.');
             }
@@ -218,10 +227,16 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
             try {
                 $rates = $this->fetchRates($appId);
             } catch (GuzzleException|JsonException|UnexpectedValueException $e) {
-                // The api is unreachable, rate limited or returned garbage, so
-                // serve the last good rates instead. They are cached again for
-                // the regular duration, so the api isn't hit on every request.
-                if ($fallback = $this->cache->get($this->fallbackKey)) {
+                // An invalid, revoked or restricted app key is a configuration
+                // error, which must not be hidden behind stale rates.
+                $rejected = $e instanceof ClientException
+                    && in_array($e->getResponse()->getStatusCode(), [401, 403], true);
+
+                // Otherwise the api is unreachable, rate limited or returned
+                // garbage, so serve the last good rates instead. They are cached
+                // again for the regular duration, so the api isn't hit on every
+                // request.
+                if (! $rejected && $fallback = $this->cache->get($this->fallbackKey)) {
                     return $fallback;
                 }
 
@@ -251,7 +266,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
             'query' => ['app_id' => $appId],
         ]);
 
-        $data = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+        $data = json_decode((string) $response->getBody(), associative: true, flags: JSON_THROW_ON_ERROR);
 
         // Empty rates are treated as invalid too, so they never replace
         // the last good rates that are kept as fallback.

@@ -1,5 +1,12 @@
 # Changelog
 
+### v12.1.0 - 2026-11-11
+
+- `OpenExchangeRatesExchanger` no longer falls back to the last good rates when the app key is rejected (401/403), so a misconfigured key isn't hidden behind stale rates
+- `OpenExchangeRatesExchanger` talks to the api over `https://` by default, so the app id is no longer sent in plaintext
+- Replace the abandoned `cartalyst/php-cs-fixer-config` with a local php-cs-fixer config, so `composer cs:check` / `cs:fix` work again
+- Run Travis builds on Ubuntu 24.04 (noble)
+
 ### v12.0.0 - 2026-11-11
 
 - Raise minimum PHP version to 8.5.12

@@ -22,7 +22,10 @@ namespace Cartalyst\Converter\Exchangers;
 
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Cache\CacheManager;
+use JsonException;
+use UnexpectedValueException;
 
 class OpenExchangeRatesExchanger implements ExchangerInterface
 {
@@ -48,6 +51,13 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     protected $rates;
 
     /**
+     * Cache key holding the last successfully fetched rates.
+     *
+     * @var string
+     */
+    protected $fallbackKey = 'currencies.fallback';
+
+    /**
      * Holds the OpenExchangeRates.org api url.
      *
      * @var string
@@ -57,7 +67,7 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     /**
      * Holds the application id.
      *
-     * @var array
+     * @var string|null
      */
     protected $appId;
 
@@ -76,9 +86,9 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
     /**
      * Get the API Key.
      *
-     * @return array
+     * @return string|null
      */
-    public function getAppId(): array
+    public function getAppId(): ?string
     {
         return $this->appId;
     }
@@ -192,11 +202,60 @@ class OpenExchangeRatesExchanger implements ExchangerInterface
                 throw new Exception('OpenExchangeRates.org requires an app key.');
             }
 
-            $client = new Client(['base_url' => $this->getUrl()]);
+            try {
+                $rates = $this->fetchRates($appId);
+            } catch (GuzzleException|JsonException|UnexpectedValueException $e) {
+                // The api is unreachable, rate limited or returned garbage, so
+                // serve the last good rates instead. They are cached again for
+                // the regular duration, so the api isn't hit on every request.
+                if ($fallback = $this->cache->get($this->fallbackKey)) {
+                    return $fallback;
+                }
 
-            $data = $client->get("latest.json?app_id={$appId}")->json();
+                throw $e;
+            }
 
-            return $data['rates'];
+            $this->cache->forever($this->fallbackKey, $rates);
+
+            return $rates;
         });
+    }
+
+    /**
+     * Fetches the latest exchange rates from openexchangerates.org.
+     *
+     * @param string $appId
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
+     * @throws \UnexpectedValueException
+     *
+     * @return array
+     */
+    protected function fetchRates(string $appId): array
+    {
+        $response = $this->createClient()->get('latest.json', [
+            'query' => ['app_id' => $appId],
+        ]);
+
+        $data = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (! isset($data['rates']) || ! is_array($data['rates'])) {
+            throw new UnexpectedValueException('OpenExchangeRates.org returned no rates.');
+        }
+
+        return $data['rates'];
+    }
+
+    /**
+     * Creates the http client used to talk to the api.
+     *
+     * @return \GuzzleHttp\Client
+     */
+    protected function createClient(): Client
+    {
+        // A trailing slash is required, otherwise RFC 3986 resolution
+        // would drop the last path segment ("/api") of the base uri.
+        return new Client(['base_uri' => rtrim($this->getUrl(), '/').'/']);
     }
 }

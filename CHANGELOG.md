@@ -1,11 +1,19 @@
 # Changelog
 
+### v12.0.0 - 2026-11-11
+
+- Raise minimum PHP version to 8.5.12
+- Upgrade `guzzlehttp/guzzle` to `^8.3`
+- Fix `OpenExchangeRatesExchanger` still using the removed Guzzle 5 API (`base_url`, `Response::json()`)
+- Fix `OpenExchangeRatesExchanger::getAppId()` return type (`?string` instead of `array`)
+- `OpenExchangeRatesExchanger` falls back to the last good rates when the api is unreachable, rate limited or returns an invalid response
+
 ### v11.0.0 - 2026-04-20
 
 - Add Laravel 13 support
 - Raise minimum PHP version to 8.4
 
-### v1.0.0 - 2025-02-28
+### v10.0.0 - 2025-02-28
 
 - Add Laravel 12 support
 

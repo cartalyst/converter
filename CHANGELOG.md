@@ -1,5 +1,11 @@
 # Changelog
 
+### Unreleased
+
+- Replace Travis CI with GitHub Actions: tests run against the lowest and highest supported dependency versions, plus a code style check
+- Raise the minimum `mockery/mockery` dev dependency to `^1.6.12`, as older releases trigger PHP 8.4+ deprecations
+- Fix the README license link, which pointed to the MIT license instead of BSD 3-Clause
+
 ### v12.1.0 - 2026-11-11
 
 - `OpenExchangeRatesExchanger` no longer falls back to the last good rates when the app key is rejected (401/403), so a misconfigured key isn't hidden behind stale rates

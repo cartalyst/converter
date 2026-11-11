@@ -87,11 +87,11 @@ $ vendor/bin/phpunit
 
 If the test suite passes on your local machine you should be good to go.
 
-When you make a pull request, the tests will automatically be run again by [Travis CI][link-travis] on multiple php versions.
+When you make a pull request, the tests and the code style check will automatically be run again by [GitHub Actions][link-actions], against both the lowest and the highest supported dependency versions.
 
 
 [link-semver]: http://semver.org
-[link-travis]: https://travis-ci.com
+[link-actions]: https://docs.github.com/actions
 [link-psr-1]: http://www.php-fig.org/psr/psr-1/
 [link-psr-2]: http://www.php-fig.org/psr/psr-2/
 [link-psr-4]: http://www.php-fig.org/psr/psr-4/

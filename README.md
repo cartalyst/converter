@@ -1,5 +1,6 @@
 # Converter
 
+[![Tests][icon-tests]][link-tests]
 [![Software License][icon-license]][link-license]
 [![Latest Version on Packagist][icon-version]][link-packagist]
 [![Total Downloads][icon-downloads]][link-packagist]
@@ -28,11 +29,11 @@ Using the package, but you're stuck? Found a bug? Have a question or suggestion 
 This software is released under the [BSD 3-Clause](LICENSE) License.
 
 [link-docs]:      https://cartalyst.com/manual/converter
-[link-travis]:    https://travis-ci.com/cartalyst/converter
-[link-license]:   https://opensource.org/licenses/MIT
+[link-tests]:     https://github.com/RaBic/cartalyst-converter/actions/workflows/tests.yml?query=branch%3A12.x
+[link-license]:   https://opensource.org/license/bsd-3-clause
 [link-packagist]: https://packagist.org/packages/cartalyst/converter
 
-[icon-travis]:    https://travis-ci.com/cartalyst/converter.svg?branch=12.x
+[icon-tests]:     https://github.com/RaBic/cartalyst-converter/actions/workflows/tests.yml/badge.svg?branch=12.x
 [icon-license]:   https://poser.pugx.org/cartalyst/converter/license
 [icon-version]:   https://poser.pugx.org/cartalyst/converter/version
 [icon-downloads]: https://poser.pugx.org/cartalyst/converter/downloads
